@@ -1,0 +1,101 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: auto;
+}
+.button-con {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: auto;
+}
+
+#login-bg {
+    /*     background-image: url('https://lh5.googleusercontent.com/proxy/hKnRWlJM_B8J3CNLQW6p9vs7qggmGOhz8lZRYQ-5OMkzcZFIJR_LP4JLnWQ0dS2J7qERsQjQ0U-Kf29j7dd2j2QvtSgU-U3CQX4v4oq9sBsavll-M4gCkdC0nwJMkCmcNtJ26UA3R8vfTySSvnSHKa6LnWyuCyPgGnHdtfw8C29Y=w1080-k-no');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; */
+    background-color: #0b2090;
+    padding: 0;
+    border: none;
+}
+
+.login-heading {
+    font-weight: 300;
+    color: #000;
+}
+.login-form {
+    width: 100%;
+}
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+}
+
+.login-left {
+    height: 100%;
+    width: 100%;
+}
+.login-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 40rem;
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.login-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    font-weight: bolder;
+}
+.login-heading img,
+.button-heading img {
+    height: 130px;
+    width: 130px;
+    margin-bottom: 30px;
+}
+.form-control {
+    padding-right: 50px !important;
+}
+.form-control:focus {
+    border: 2px solid;
+    border-color: #0b2090;
+}
+.form-control:focus:is(i) {
+    background-color: #0b2090;
+    color: #fff;
+}
+.form-floating i {
+    font-size: 30px;
+    color: #0b2090;
+    position: absolute;
+    right: 10px;
+    top: 14px;
+    z-index: 1000;
+}
+.button-con {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: auto;
+}
+.btn-title {
+    font-size: 16px;
+}
+.button-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

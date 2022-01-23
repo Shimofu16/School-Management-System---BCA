@@ -1,0 +1,86 @@
+#academics{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.acad-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+.acad-container .acad-con-top {
+  margin-bottom: 30px;
+}
+.acad-container .acad-con-top h1 {
+  font-size: 30px;
+  text-align: center;
+  padding: 30px 0;
+}
+.acad-container .acad-con-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 300px;
+  margin: 20px 0;
+}
+.acad-container .acad-con-bottom .acad-con-items{
+  height: 100%;
+  width: 200px;
+  margin: 20px;
+}
+.acad-container .acad-con-bottom .acad-con-items a{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+  height: 100%;
+}
+.acad-container .acad-con-bottom .acad-con-items img{
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transition: filter 0.3s ease;
+  border-radius: 10px;
+}
+
+.acad-container .acad-con-bottom .acad-con-items:hover a img{
+  filter: blur(0);
+
+}
+.acad-container .acad-con-bottom .acad-con-items h2 {
+  font-size: 20px;
+  color: #fff;
+  z-index: 100000;
+  transition: all 0.3s ease;
+}
+.acad-container .acad-con-bottom .acad-con-items:hover h2{
+  padding: 10px;
+  background-color: #0b2090;
+  border-radius: 5px;
+}
+.acad-container .enroll-btn {
+  margin-top: 40px;
+}
+.acad-container .enroll-btn a{
+  font-size: 20px;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  background-color: #0b2090;
+  cursor: pointer;
+  transition: letter-spacing 0.3s ease;
+}
+.acad-container .enroll-btn a:hover{
+  letter-spacing: 3px;
+  font-weight: 600;
+}

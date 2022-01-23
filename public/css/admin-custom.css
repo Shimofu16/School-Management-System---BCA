@@ -1,0 +1,15 @@
+.custom-alert{
+    position: absolute;
+    top: 30px;
+    width: 300px;
+    right: 10px;
+    z-index: 10000;
+}
+.alert {
+    opacity: 1;
+    transition: opacity 0.6s; /* 600ms to fade out */
+  }
+  .custom-user-icon{
+      height: 250px;
+      width: 250px;
+  }

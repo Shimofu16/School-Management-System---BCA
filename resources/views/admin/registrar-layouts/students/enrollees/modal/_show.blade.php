@@ -1,0 +1,40 @@
+<div class="modal fade" id="studentInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="exampleModalLongTitle">Students information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body d-flex flex-column">
+                <div class="modal-body-top d-flex">
+                    <div class="id border p-2 mx-auto">
+
+           {{--              @if ($unregisteredStudent->Gender == "Male")
+                        <img class="img-fluid" src="{{ asset('/img/students-icns/user-male.png') }}" alt="">
+                        @elseif ($unregisteredStudent->Gender == "Female")
+                        <img class="img-fluid" src="{{ asset('/img/students-icns/user-female.png') }}" alt="">
+                        @endif --}}
+                        <img class="img-fluid" src="{{ asset('/img/students-icns/user-male.png') }}" alt="">
+                    </div>
+                    {{-- <div class="infos ml-4 my-auto">
+                        <h6 class="text-md-left">First name: <span>Roy joseph</span></h6>
+                        <h6 class="text-md-left">Middle name: <span>Mendoza</span></h6>
+                        <h6 class="text-md-left">Last name: <span>Latayan</span></h6>
+                    </div> --}}
+                </div>
+                <div class="modal-body-bottom mt-2">
+                    <h6 class="text-md-left text-dark font-weight-bold">First name: <span class="font-weight-normal"></span></h6>
+                    <h6 class="text-md-left text-dark font-weight-bold">Middle name: <span class="font-weight-normal">Mendoza</span></h6>
+                    <h6 class="text-md-left text-dark font-weight-bold">Last name: <span class="font-weight-normal">Latayan</span></h6>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button> --}}
+            </div>
+        </div>
+    </div>
+</div>

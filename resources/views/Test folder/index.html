@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/public/vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/home/custom.css">
+    <link rel="stylesheet" href="/public/css/hover.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-bca-nav shadow">
+            <div class="container-lg d-flex justify-content-between align-content-center">
+                <a class="navbar-brand d-flex justify-content-center align-content-center" href="#">
+                    <img src="/public/img/BCA-Logo.png" alt="" class="myLogo">
+                    <h2 class="text-bca my-auto navbar-title"> Breakthrough Christian Academy</h2>
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <div class="navbar-toggler-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <div class="collapse navbar-collapse flex-grow-0" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item nav-line mx-1 active">
+                            <a href="http://127.0.0.1:8000" class="nav-link hover-bca p-3 text-bca">Home</a>
+                        </li>
+                        <li class="nav-item nav-line mx-1 dropdown">
+                            <a class="nav-link  hover-bca p-3 text-bca" href="http://127.0.0.1:8000/home/aboutUs">About
+                                us</a>
+                            <div class="dropdown-menu bg-bca">
+                                <a href="http://127.0.0.1:8000/home/aboutUs"
+                                    class="dropdown-item p-3 text-light hover-bca-dd">Mission and Vision</a>
+                                <a href="http://127.0.0.1:8000/home/aboutUs"
+                                    class="dropdown-item p-3 text-light hover-bca-dd">History</a>
+                            </div>
+                        </li>
+                        <li class="nav-item nav-line mx-1 ">
+                            <a href="http://127.0.0.1:8000/home/academics"
+                                class="nav-link hover-bca  p-3 text-bca">Academics</a>
+                        </li>
+                        <li class="nav-item nav-line mx-1 dropdown ">
+                            <a href="#" class="nav-link  hover-bca p-3 text-bca">Student</a>
+                            <div class="dropdown-menu bg-bca">
+                                <a href="http://127.0.0.1:8000/portal"
+                                    class="dropdown-item p-3 text-light hover-bca-dd">Student portal</a>
+                                <a href="http://127.0.0.1:8000/home/calendar"
+                                    class="dropdown-item p-3 text-light hover-bca-dd">Academic calendar</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- <form>
+                  <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                </form> -->
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="h-100 w-100 d-flex justify-content-center align-content-center">
+        <section class="border">
+            <div class="row py-5">
+                <div class="col-lg-4">
+                    <a href="#"
+                        class="d-flex justify-content-center align-items-center flex-column text-decoration-none">
+                        <div class="home-icon-border hvr-sweep-to-bottom">
+                            <i class="fas fa-book home-icons"></i>
+                        </div>
+                        <h2 class="icon-title py-2">Enroll Now!</h2>
+                    </a>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <a href="#"
+                        class="d-flex justify-content-center align-items-center flex-column text-decoration-none">
+                        <div class="home-icon-border hvr-sweep-to-bottom">
+                            <i class="fas fa-calendar home-icons"></i>
+                        </div>
+                        <h2 class="icon-title py-2">Calendar</h2>
+                        <p class="icon-sub-title">Academic Calendar</p>
+                    </a>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <a href="#"
+                        class="d-flex justify-content-center align-items-center flex-column text-decoration-none">
+                        <div class="home-icon-border hvr-sweep-to-bottom">
+                            <i class="fab fa-facebook-f home-icons"></i>
+                        </div>
+                        <h2 class="icon-title py-2">Social</h2>
+                        <p class="icon-sub-title">Visit our Facebook page.</p>
+                    </a>
+                </div><!-- /.col-lg-4 -->
+            </div>
+        </section>
+        <section class="border" id="news">
+            <div class="container">
+                <div class="row">
+                    <h1 class="home-title py-4 mx-3">
+                        Latest News & Events
+                    </h1>
+                </div>
+                <div class="row overflow-scroll flex-nowrap">
+                    <div class="col-sm-4 col-md-5 mx-sm-1">
+                        <article class="border news-hover">
+                            <div class="container my-2">
+                                <div class="row mt">
+                                    <a href="#" target="_blank" rel="noopener noreferrer">
+                                        <img src="/public/img/announcements/1.jpg" alt="" class="img-fluid border">
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <h2 class="news-title my-2">
+                                        title
+                                    </h2>
+                                    <i class="fas fa-clock my-2"> <time>October 28, 2021</time></i>
+                                    <div class="row my-2">
+                                        <p class="news-content">
+                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt modi
+                                            culpa
+                                            quaerat maiores, quos exercitationem sapiente aut odio deleniti tempora
+                                            consectetur blanditiis ad voluptatum ipsum. Commodi ullam perspiciatis
+                                            corrupti
+                                            voluptatem molestiae reiciendis.
+                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt modi
+                                            culpa
+                                            quaerat maiores, quos exercitationem sapiente aut odio deleniti tempora
+                                            consectetur blanditiis ad voluptatum ipsum. Commodi ullam perspiciatis
+                                            corrupti
+                                            voluptatem molestiae reiciendis.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-sm-4 col-md-5 mx-sm-1">
+                        <article class="border news-hover">
+                            <div class="container my-2">
+                                <div class="row mt">
+                                    <a href="#" target="_blank" rel="noopener noreferrer">
+                                        <img src="/public/img/announcements/1.jpg" alt="" class="img-fluid border">
+                                    </a>
+                                </div>
+                                <div class="row">
+                                    <h2 class="news-title my-2">
+                                        title
+                                    </h2>
+                                    <i class="fas fa-clock my-2"> <time>October 28, 2021</time></i>
+                                    <div class="row my-2">
+                                        <p class="news-content">
+                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt modi
+                                            culpa
+                                            quaerat maiores, quos exercitationem sapiente aut odio deleniti tempora
+                                            consectetur blanditiis ad voluptatum ipsum. Commodi ullam perspiciatis
+                                            corrupti
+                                            voluptatem molestiae reiciendis.
+                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt modi
+                                            culpa
+                                            quaerat maiores, quos exercitationem sapiente aut odio deleniti tempora
+                                            consectetur blanditiis ad voluptatum ipsum. Commodi ullam perspiciatis
+                                            corrupti
+                                            voluptatem molestiae reiciendis.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </section>
+        <section class="border">
+            <div class="container">
+                <div class="row py-4">
+                    <div class="col-sm-4 d-flex justify-content-center align-items-center flex-column my-2">
+                        <h1 class="home-title py-4 mx-3">
+                            Featured Video
+                        </h1>
+                        <a href="#" class="btn btn-bca-outline btn-lg text-bca hvr-sweep-to-bottom">
+                            <i class="fab fa-youtube"></i>
+                            <span class="text-uppercase">
+                                Click here for more Videos
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col-sm-4 col-md-4 mb-2">
+                        <iframe
+                            src="https://www.facebook.com/plugins/video.php?height=314&amp;href=https%3A%2F%2Fwww.facebook.com%2F146316647685%2Fvideos%2F228145972035171%2F&amp;show_text=false&amp;width=560&amp;t=0"
+                            scrolling="no" frameborder="0" allowfullscreen="true"
+                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                            class="f-video"></iframe>
+                    </div>
+                    <div class="col-sm-5 col-md-4 mb-2">
+                        <iframe
+                            src="https://www.facebook.com/plugins/video.php?height=314&amp;href=https%3A%2F%2Fwww.facebook.com%2F146316647685%2Fvideos%2F383440052882981%2F&amp;show_text=false&amp;width=560&amp;t=0"
+                            scrolling="no" frameborder="0" allowfullscreen="true"
+                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                            class="f-video"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="border">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 d-flex justify-content-center align-items-center flex-column my-2">
+                        <h1 class="home-title py-4 mx-3">
+                            Photo Gallery
+                        </h1>
+                        <a href="#" class="btn btn-bca-outline btn-lg text-bca hvr-sweep-to-bottom">
+                            <span class="text-uppercase">
+                                More Photos
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="py-5  overflow-hidden">
+                            <div class="hvr-rectangle-out">
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="text-decoration-none d-flex flex-column justify-content-center align-items-center">
+                                    <h2 class="photo-text">BCA Educational Field Trip &amp; Family Day 2012</h2>
+                                    <img src="/public/img/photoGallery/famDay.jpg" alt="" class="img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="py-5  overflow-hidden">
+                            <div class="hvr-rectangle-out">
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="text-decoration-none d-flex flex-column justify-content-center align-items-center">
+                                    <h2 class="photo-text">BCA Educational Field Trip &amp; Family Day 2012</h2>
+                                    <img src="/public/img/photoGallery/famDay.jpg" alt="" class="img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer class="footer-bg">
+        <div class="container-md py-4">
+            <div class="row">
+                <div class="col-sm col-md">
+                    <div class="container">
+                        <h4 class="footer-title">CONTACT US</h4>
+                        <div class="row mt-3 px-2">
+                            <div class="row mb-2">
+                                <span>
+                                    <i class="fas fa-map-marker-alt footer-icon-o"></i>
+                                    <span class="footer-text">9006 Eagle Street Main Road, Area 3 SItio Veterans, Bagong
+                                        SIlangan 1100 Quezon City, Philippines</span>
+                                </span>
+                            </div>
+                            <div class="row mb-2">
+                                <span>
+                                    <i class="fas fa-phone-alt footer-icon-o"></i>
+                                    <span class="footer-text">(02) 990 5970</span>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <span>
+                                    <i class="fas fa-envelope footer-icon-o"></i>
+                                    <span class="footer-text">breakthru_christian@yahoo.com</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <h4 class="footer-title">Stay connected with us</h4>
+                        <div class="row mt-3 px-2">
+                            <a href="https://www.facebook.com/Breakthrough-Christian-Academy-146316647685"
+                                target="__blank"
+                                class="text-decoration-none col-1 footer-icon-border hvr-sweep-to-bottom">
+                                <i class="fab fa-facebook-f footer-icon "></i>
+                            </a>
+                            <a href="" class="text-decoration-none col-1 footer-icon-border hvr-sweep-to-bottom">
+                                <i class="fab fa-youtube footer-icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm col-md my-1">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4718.3033999990985!2d121.1035459152845!3d14.709218778347937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397bbede23753e7%3A0x3bf4fd9f1aa31fe2!2sBreakthrough%20Christian%20Academy!5e1!3m2!1sen!2sph!4v1637679710376!5m2!1sen!2sph"
+                        width="100%" height="300" allowfullscreen="" loading="lazy" class="border-white"
+                        style="border: 2px solid #fff"></iframe>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+    <script src="/public/js/bootstrap/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

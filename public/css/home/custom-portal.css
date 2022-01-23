@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap");
+:root {
+    --bca: #0b2090;
+    --text-color: #2b3233;
+}
+body {
+    font-family: "Open Sans", sans-serif !important;
+}
+.portal-bg {
+    background-color: var(--bca);
+    margin: 0;
+    display: flex;
+}
+.portal-r-blur{
+    width: 35rem;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.portal-img{
+    height: 130px;
+    width: 130px;
+    background-color: #ffff;
+    border-radius: 50%;
+}
+.portal-sub-title{
+    font-size: 16px;
+    color: #000;
+}
+.portal-title{
+    font-size: 25px;
+    color: #000;
+    font-weight: 600;
+}
+.portal-icon{
+    color: var(--bca);
+}
+.btn-bca {
+    background-color: var(--bca);
+}
+.btn-bca-outline {
+    border: 1px solid var(--bca);
+}
