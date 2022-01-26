@@ -8,7 +8,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <title>admin | Login</title>
+    <title>Admin | Login</title>
 </head>
 
 <body class="bg-gradient-primary">

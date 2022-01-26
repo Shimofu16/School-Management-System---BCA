@@ -16,10 +16,9 @@ class StudentMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->roles == "Student") {
+        if (Auth::check() && Auth::user()->role == "student") {
             return $next($request);
-        } else {
-            return redirect()->route('login');
         }
+        return redirect()->route('portal.index');
     }
 }

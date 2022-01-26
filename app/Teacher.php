@@ -2,9 +2,8 @@
 
 namespace App;
 
-use App\Subject;
-use App\Section;
 use Illuminate\Database\Eloquent\Model;
+use App\Subject_teacher;
 
 class Teacher extends Model
 {
@@ -12,20 +11,8 @@ class Teacher extends Model
     public $timestamps = false;
     public $guarded = [];
 
-  /*   public function subjects()
-    {
-        return $this->belongsToMany(Subject::class);
-    } */
-    /**
-     * The roles that belong to the Teacher
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class);
-    }
-    public function sections(){
-        return $this->belongsToMany(Subject::class);
+        return $this->belongsTo(Subject_teacher::class);
     }
 }

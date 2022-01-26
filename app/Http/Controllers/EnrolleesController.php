@@ -6,89 +6,98 @@ use Illuminate\Http\Request;
 use App\Section;
 use App\Student;
 use App\Enrollee;
-use App\Year_level;
+use App\Grade_level;
 
-class EnrolleesController extends Controller {
+
+class EnrolleesController extends Controller
+{
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-    public function index() {
+    public function index()
+    {
 
-        $students = Enrollee::with( 'yearlevel' )->orderBy( 'id', 'asc' )
-        ->get();
+        $students = Enrollee::with('gradeLevel')->orderBy('id', 'asc')
+            ->get();
         $sections = Section::all();
-        $yl = Year_level::all();
-        return view( 'admin.registrar-layouts.students.enrollees.index', compact( 'students', 'sections', 'yl' ) );
+        $gradeLevels = Grade_level::all();
+        return view('admin.registrar-layouts.students.enrollees.index', compact('students', 'sections', 'gradeLevels'));
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-    public function create() {
+    public function create()
+    {
         //
     }
 
     /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
 
-    public function store( Request $request ) {
+    public function store(Request $request)
+    {
         //
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
-    public function show( $id ) {
-        $student = Student::findOrFail( $id );
-        dd( $student );
-        return view( 'admin.registrar-layouts.students.enrollees.show', compact( 'student' ) );
+    public function show($id)
+    {
+        $student = Student::findOrFail($id);
+        dd($student);
+        return view('admin.registrar-layouts.students.enrollees.show', compact('student'));
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
-    public function edit( $id ) {
+    public function edit($id)
+    {
         //
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
-    public function update( Request $request, $id ) {
+    public function update(Request $request, $id)
+    {
         //
     }
 
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
-    public function destroy( $id ) {
+    public function destroy($id)
+    {
         //
     }
 }

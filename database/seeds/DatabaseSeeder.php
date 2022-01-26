@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +11,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(LaratrustSeeder::class);
+        $this->call([
+            teacherSeeder::class,
+            subjectsSeeder::class,
+            sectionSeeder::class,
+            gradelevelSeeder::class,
+            enrolledSeeder::class,
+            enrolleeSeeder::class,
+            userSeeder::class,
+            adminSeeder::class,
+        ]);
     }
 }

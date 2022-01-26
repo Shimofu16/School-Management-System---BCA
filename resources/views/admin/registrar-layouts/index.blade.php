@@ -66,45 +66,40 @@
                 <i class="fas fa-fw fa-object-ungroup"></i>
                 <span>Sections</span></a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-address-card"></i>
                 <span>Grades</span>
             </a>
-        </li>
+        </li> --}}
         <li class="nav-item">
             <a class="nav-link" href="{{ route('subject.index') }}">
                 <i class="fa-fw fas fa-book"></i>
                 <span>Subjects</span>
             </a>
         </li>
-        <!-- Nav Item - Utilities Collapse Menu -->
-        {{-- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+        <!-- Nav Item - Teachers Collapse Me -->
+        <li class="nav-item {{ Request::is('teachers', 'teachers/add') ? 'active' : '' }}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"
+                aria-controls="collapseTwo">
+                <i class="fa-fw fas fa-cogs"></i>
+                <span>Manage</span>
+            </a>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="#">Year Level</a>
+                    <a class="collapse-item" href="#">Time</a>
+                    <a class="collapse-item" href="#">School Year</a>
+                </div>
             </div>
-        </div>
-    </li> --}}
+        </li>
         <hr class="sidebar-divider mb-0">
-        {{-- <li class="nav-item">
-
-                <a class="nav-link" href="{{ route('logout.user') }}">
-                    <i class="fas fa-fw fa-power-off"></i>
-                    <span>Logout</span>
-                </a>
-
-            </li> --}}
+        <li class="nav-item {{ Request::is('teachers', 'teachers/add') ? 'active' : '' }}">
+            <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-fw fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </li>
         <hr class="sidebar-divider d-none d-md-block">
 
         <!-- Sidebar Toggler (Sidebar) -->

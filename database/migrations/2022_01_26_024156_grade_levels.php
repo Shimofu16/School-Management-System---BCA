@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectTeachersTable extends Migration
+class GradeLevels extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateSubjectTeachersTable extends Migration
      */
     public function up()
     {
-        Schema::create('subject_teacher', function (Blueprint $table) {
+        Schema::create('grade_levels', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('section_id');
-            $table->bigInteger('subject_id');
-            $table->bigInteger('teacher_id');
+            $table->string('grade_name');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateSubjectTeachersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_teacher');
+        Schema::dropIfExists('grade_levels');
     }
 }

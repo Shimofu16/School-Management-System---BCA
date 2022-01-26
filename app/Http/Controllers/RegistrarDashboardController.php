@@ -7,7 +7,7 @@ use App\Section;
 use App\Student;
 use App\Teacher;
 use App\Enrollee;
-use App\Year_level;
+
 
 
 class RegistrarDashboardController extends Controller

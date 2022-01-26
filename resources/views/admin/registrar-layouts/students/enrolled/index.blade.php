@@ -36,7 +36,7 @@
                                 <td class="text-center">{{ $student->gender }}</td>
                                 <td class="text-center">{{ $student->age }}</td>
                                 <td class="text-center">{{ $student->section->section_name }}</td>
-                                <td class="text-center">{{ $student->yearlevel->yearlevel_name }}</td>
+                                <td class="text-center">{{ $student->gradeLevel->grade_name }}</td>
                                 <td class="text-center">
                                     {{--< a class="btn btn-sm btn-info" href="{{ route('enrolled.show', $student) }}">View</> --}}
                                     <a class="btn btn-sm btn-info" href="" data-toggle="modal"

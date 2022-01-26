@@ -16,10 +16,9 @@ class TeacherMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->roles == "Teacher") {
+        if (Auth::check() && Auth::user()->role == "teacher") {
             return $next($request);
-        } else {
-            return redirect()->route('login');
         }
+        return redirect()->route('portal.index');
     }
 }

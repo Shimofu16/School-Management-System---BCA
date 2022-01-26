@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Grade_level;
 class Enrollee extends Model
 {
     protected $table = 'enrollees';
@@ -13,10 +13,7 @@ class Enrollee extends Model
     public $guarded = [];
     /* kapag fillable naman selected fields langs ex. "section_name","section shit" */
     /* Year level connection | relation. */
-    public function yearlevel(){
-        return $this->belongsTo('App\Year_level');
-    }
-    public function payment(){
-        return $this->belongsTo('App\Payment');
+    public function yearLevel(){
+        return $this->belongsTo(Grade_level::class);
     }
 }

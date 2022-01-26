@@ -7,13 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" />
-     <link rel="stylesheet" href="{{ asset('css/home/custom-portal.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home/custom-portal.css') }}">
     <link rel="icon" href="{{ asset('img/BCA-Logo.png') }}">
+
     @yield('page_level_css')
     <title>{{ config('app.name') }} | Portal</title>
 </head>
 
 <body>
+
     <div class="portal-bg">
         <div class="col">
 
@@ -48,12 +50,14 @@
                 <form class="login-form" method="POST" action="{{ route('login') }}" }>
                     @csrf
                     <div class="form-floating mb-3">
-                        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <input type="email" name="email" class="form-control" id="floatingInput"
+                            placeholder="name@example.com">
                         <label for="floatingInput"><i class="fas fa-user portal-icon"></i>&nbsp; Email address </label>
                     </div>
 
                     <div class="form-floating mb-3" id="show_hide_password">
-                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                        <input type="password" name="password" class="form-control" id="floatingPassword"
+                            placeholder="Password">
                         <label for="floatingPassword"><i class="fas fa-lock portal-icon"></i>&nbsp; Password </label>
                     </div>
 
@@ -79,6 +83,23 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('js/dist/alert.js') }}"></script>
     <script src="{{ asset('js/dist/util.js') }}"></script>
+    {{-- <script>
+        window.onload = function() {
+            if(!window.location.hash) {
+                window.location = window.location + '#loaded';
+                window.location.reload();
+            }
+        }
+    </script> --}}
+    <script type="text/javascript">
+        function disableBack() {
+            window.history.forward();
+        }
+        setTimeout("disableBack()", 0);
+        window.onunload = function() {
+            null
+        };
+    </script>
 </body>
 
 </html>

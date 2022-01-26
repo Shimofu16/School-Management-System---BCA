@@ -6,41 +6,44 @@ use Illuminate\Http\Request;
 use App\Section;
 use App\Enrollee;
 use App\Year_level;
-use Auth;
+
+
 class HomeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         return view('BCA.pages.Home.index');
     }
-    public function about(){
+    public function about()
+    {
         return view('BCA.pages.about us.index');
     }
-    public function academics(){
+    public function academics()
+    {
         return view('BCA.pages.academics.index');
     }
-    public function calendar(){
+    public function calendar()
+    {
         return view('BCA.pages.calendar.index');
     }
-    public function enroll(){
+    public function enroll()
+    {
         $sections = Section::all();
         $yl = Year_level::all();
         return view('BCA.pages.enrollment form.index', compact('sections', 'yl'));
     }
-    public function portal(){
-        return view('BCA.pages.portal.buttons.index');
+    public function portal()
+    {
+        return view('BCA.pages.portal.index');
     }
-    public function studentPortal(){
-        return view('BCA.pages.portal.portals.student');
-    }
-    public function teacherPortal(){
-        return view('BCA.pages.portal.portals.teacher');
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -73,13 +76,13 @@ class HomeController extends Controller
         $student->birthplace = $request->input('birthplace');
         $student->address = $request->input('address');
         $student->yearlevel_id = $request->input('yearlevel_id');
-        if($request->hasfile('payment')){
+        if ($request->hasfile('payment')) {
             $file = $request->file('payment');
             $extenstion = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extenstion;
+            $filename = time() . '.' . $extenstion;
             $file->move('uploads/payments/', $filename);
             $student->payment = $filename;
-        }else{
+        } else {
             return $request;
             $student->payment = '';
         }

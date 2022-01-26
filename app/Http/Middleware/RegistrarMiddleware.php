@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
+
 use Illuminate\Support\Facades\Auth;
 use Closure;
 
@@ -15,10 +16,9 @@ class RegistrarMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->roles == "Registrar") {
+        if (Auth::check() && Auth::user()->role == "registrar") {
             return $next($request);
-        }else {
-            return redirect()->route('login');
         }
+        return redirect()->route('portal.index');
     }
 }

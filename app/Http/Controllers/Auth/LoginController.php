@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Log;
 use App\User;
-
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -32,13 +32,13 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {
-        if (Auth::user()->roles == 'Admin') {
-            return redirect()->route('admin.dashboard.index');
-        } elseif (Auth::user()->roles == 'Registrar') {
-            return redirect()->route('registrar.dashboard.index');
-        } elseif (Auth::user()->roles == 'Teacher') {
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('admin.dashboard.index ');
+        } elseif (Auth::user()->role == 'registrar') {
+            return redirect()->route('registrar.dashboard.index ');
+        }elseif (Auth::user()->role == 'teacher') {
             return redirect()->route('teacher.dashboard.index ');
-        } elseif (Auth::user()->roles == 'Student') {
+        } elseif (Auth::user()->role == 'student') {
             return redirect()->route('student.dashboard.index ');
         }
     }
@@ -54,22 +54,26 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {
+  /*       User::create([
+            'name'=> 'registrar',
+            'email'=> 'registrar@app.com',
+            'password'=> Hash::make('password'),
+            'role'=>'registrar',
+            'gender'=>'Male',
+        ]);
+dd(User::all()); */
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
         if (Auth::attempt($credentials)) {
             if (Auth::attempt(['email' => request()->email, 'password' => request()->password])) {
-                $user = User::where('id', '=', Auth::user()->id)->update(['active' => 1]);
+                User::where('id', '=', Auth::user()->id)->update(['active' => 1]);
                 $request->session()->regenerate();
-                if (Auth::user()->roles == 'Admin') {
-                    return redirect()->route('admin.dashboard.index');
-                } elseif (Auth::user()->roles == 'Registrar') {
-                    return redirect()->route('registrar.dashboard.index ');
-                } elseif (Auth::user()->roles == 'Teacher') {
-                    return redirect()->route('teacher.dashboard.index ');
-                } elseif (Auth::user()->roles == 'Student') {
-                    return redirect()->route('student.dashboard.index ');
+                if (Auth::user()->role == 'admin') {
+                    return redirect()->intended(route('admin.dashboard.index'));
+                } elseif (Auth::user()->role == 'registrar') {
+                    return redirect()->intended(route('registrar.dashboard.index'));
                 }
             }
         }
@@ -84,10 +88,10 @@ class LoginController extends Controller
             'id' => 'required|exists:users,id'
         ]);
         if ($id) {
-            $user = User::where('id', '=', request()->id)->update(['active' => 0]);
-            Auth::logout();
+            User::where('id', '=', request()->id)->update(['active' => 0]);
             $request->session()->invalidate();
             $request->session()->regenerateToken();
+            Auth::logout();
             return redirect()->route('home.index');
         }
     }

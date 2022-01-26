@@ -4,10 +4,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\EnrolledStudentController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\RegistrarDashboardController;
 use App\Http\Controllers\StudentDashboardController;
 use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Controllers\UsersController;
@@ -23,44 +19,37 @@ use App\Http\Controllers\UsersController;
 |
  */
 
-/* teacher login */
-/* Route::post('/teacher/login', 'TeacherLoginController@authenticate')->name('teacher.login'); */
-/* student login */
-/* Route::post('/student/login', 'StudentLoginController@authenticate')->name('student.login'); */
-/* admin login */
-/* Route::post('/admin/login', 'AdminLoginController@authenticate')->name('admin.login');  */
-
 /* ============================== Home Page ================================ */
 
 Route::middleware(['middleware' => 'PreventBackMiddleware'])->group(function () {
     Auth::routes();
-    Route::get('/', [HomeController::class, 'index'])->name('home.index');
 });
-Route::get('/about us', [HomeController::class, 'about'])->name('about.index');
-Route::get('/academics', [HomeController::class, 'academics'])->name('academics.index');
-Route::get('/calendar', [HomeController::class, 'calendar'])->name('calendar.index');
-Route::get('/enroll', [HomeController::class, 'enroll'])->name('enroll.index');
-Route::post('/enroll', [HomeController::class, 'store'])->name('enroll.store');
-
+Route::get('/', 'HomeController@index')->name('home.index');
+Route::get('/about us', 'HomeController@about')->name('about.index');
+Route::get('/academics', 'HomeController@academics')->name('academics.index');
+Route::get('/calendar', 'HomeController@calendar')->name('calendar.index');
+Route::get('/enroll', 'HomeController@enroll')->name('enroll.index');
+Route::post('/enroll', 'HomeController@store')->name('enroll.store');
 /* ============================== Portal ================================ */
-Route::get('/portal', [HomeController::class, 'portal'])->name('portal.index');
-Route::get('/portal/student', [HomeController::class, 'studentPortal'])->name('student.portal.index');
-Route::get('/portal/teacher', [HomeController::class, 'teacherPortal'])->name('teacher.portal.index');
-Route::get('/admin/login', [AdminLoginController::class, 'index'])->name('admin.login.index');
-
+Route::group(['prefix' => 'portal'], function () {
+    Route::get('/', 'HomeController@portal')->name('portal.index');
+    Route::get('/admin', 'AdminLoginController@index')->name('admin.login.index');
+    Route::post('/admin', 'AdminLoginController@login')->name('admin.login');
+    Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+});
 /* ============================== Student ================================ */
-Route::group(['prefix' => 'student', 'middleware' => ['isStudent', 'auth', 'PreventBackMiddleware']], function () {
+Route::group(['prefix' => 'student', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard.index');
 });
 /* ============================== Teacher ================================ */
-Route::group(['prefix' => 'teacher', 'middleware' => ['isTeacher', 'auth', 'PreventBackMiddleware']], function () {
+Route::group(['prefix' => 'teacher', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', [TeacherDashboardController::class, 'index'])->name('teacher.dashboard.index');
 });
 
 
 
 /* ============================== Admin ================================ */
-Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth', 'PreventBackMiddleware']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','isAdmin']], function () {
     Route::get('/dashboard',  [AdminController::class, 'index'])->name('admin.dashboard.index');
     /* users */
     Route::get('/user', [UsersController::class, 'index'])->name('users.index');
@@ -68,8 +57,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth', 'PreventB
 
 
 /* ============================== Registrar ================================ */
-Route::group(['prefix' => 'registrar', 'middleware' => ['isRegistrar', 'auth', 'PreventBackMiddleware']], function () {
-    Route::get('/dashboard', [RegistrarDashboardController::class, 'index'])->name('registrar.dashboard.index');
+Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], function () {
+    Route::get('/dashboard', 'RegistrarDashboardController@index')->name('registrar.dashboard.index');
     /* registrar|student */
     Route::get('/students/enrolled', 'EnrolledStudentController@index')->name('enrolled.index');
     Route::get('/students/create', 'EnrolledStudentController@create')->name('enrollees.create');

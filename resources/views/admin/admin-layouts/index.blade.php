@@ -11,10 +11,9 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">{{ Auth::user()->roles }} dashboard</div>
+            <div class="sidebar-brand-text mx-3">{{ Auth::user()->role }} dashboard</div>
         </a>
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+        <!-- Divider -->        <hr class="sidebar-divider my-0">
         <!-- Nav Item - Dashboard -->
         <li class="{{ Request::is('admin') ? 'active' : '' }} nav-item ">
             <a class="nav-link" href="{{ route('admin.dashboard.index') }}">

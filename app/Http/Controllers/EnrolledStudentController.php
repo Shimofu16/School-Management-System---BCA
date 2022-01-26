@@ -8,121 +8,129 @@ use App\Student;
 use App\Enrollee;
 use App\Year_level;
 use App\Account_student;
+use App\Grade_level;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-class EnrolledStudentController extends Controller {
+class EnrolledStudentController extends Controller
+{
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-    public function index() {
-        $students = Student::with( 'section', 'yearlevel' )->orderBy( 'id', 'asc' )
-        ->get();
-        $yl = Year_level::all();
+    public function index()
+    {
+        $students = Student::with('section', 'gradeLevel')->orderBy('id', 'asc')
+            ->get();
+        $gradeLevels = Grade_level::all();
         $sections = Section::all();
-        return view( 'admin.registrar-layouts.students.Enrolled.index', compact( 'students', 'yl', 'sections' ) );
+        return view('admin.registrar-layouts.students.Enrolled.index', compact('students', 'gradeLevels', 'sections'));
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-    public function create() {
+    public function create()
+    {
         $sections = Section::all();
-        return view( 'admin.registrar-layouts.students.create', compact( 'sections', 'yl' ) );
+        return view('admin.registrar-layouts.students.create', compact('sections', 'yl'));
     }
 
     /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
 
-    public function store( Request $request ) {
+    public function store(Request $request)
+    {
 
-        if ( $request->url() == 'http://127.0.0.1:8000/students' ) {
-            Student::create(
+        if (Auth::user()->role == "Registrar") {
+            /*   Student::create(
                 $request->all()
-            );
-            $account = new Account_student;
+            ); */
+            /*   $account = new Account_student;
             $account->student_lrn = $request->input( 'student_lrn' );
             $account->name = $request->input( 'first_name' ).' '.$request->input( 'middle_name' ).', '.$request->input( 'last_name' );
-            $account->email = $request->input( 'email' );
+            $account->email = $request->input( 'email' ); */
             /* get the first letter of first, middle and last name and lower case it */
             /* concatinate first middle and last */
-            $concat = $first = Str::lower( $request->input( 'first_name' ) ).$middle = Str::lower( $request->input( 'middle_name' ) ). $last = Str::lower( $request->input( 'last_name' ) );
+            /*  $concat = $first = Str::lower( $request->input( 'first_name' ) ).$middle = Str::lower( $request->input( 'middle_name' ) ). $last = Str::lower( $request->input( 'last_name' ) ); */
             /* get first 10 first 10 shuffled string of concatinated first, middle and last name */
-            $password = substr( str_replace( ' ', '', str_shuffle( $concat ) ), 0, 10 );
+            /*     $password = substr( str_replace( ' ', '', str_shuffle( $concat ) ), 0, 10 );
             $account->password = 'bcaStudent'.$password;
             $account->role = 'Student';
             $account->gender = $request->input( 'gender' );
-
-            $account->save();
-
-            $id = $request->input( 'id' );
-            $enrollee = Enrollee::findOrFail( $id );
-            $enrollee->delete();
+            $account->save(); */
+            /*    $id = $request->input('id');
+            $enrollee = Enrollee::findOrFail($id);
+            $enrollee->delete(); */
         } else {
             Student::create(
                 $request->all()
             );
         }
-        return redirect()->route( 'enrolled.index' )->with( 'success', 'Student Added successfully.' );
+        return redirect()->route('enrolled.index')->with('success', 'Student Added successfully.');
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
-    public function show( $id ) {
-        $student = Student::findOrFail( $id );
-        return view( 'admin.registrar-layouts.students.enrolled.show', compact( 'student' ) );
+    public function show($id)
+    {
+        $student = Student::findOrFail($id);
+        return view('admin.registrar-layouts.students.enrolled.show', compact('student'));
     }
 
     /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
-    public function edit( $id ) {
+    public function edit($id)
+    {
         //
     }
 
     /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
-    public function update( Request $request, $id ) {
-        $student = Student::findOrFail( $id );
+    public function update(Request $request, $id)
+    {
+        $student = Student::findOrFail($id);
         $student->update(
             $request->all()
         );
-        return redirect()->route( 'enrolled.index' );
+        return redirect()->route('enrolled.index');
     }
 
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
-    public function destroy( $id ) {
+    public function destroy($id)
+    {
         //
     }
 }

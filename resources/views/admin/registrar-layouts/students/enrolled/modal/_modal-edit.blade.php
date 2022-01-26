@@ -92,9 +92,9 @@
                             <div class="form-group mr-4">
                                 <label for="year_level" class="text-dark text-black font-weight-bold">Year
                                     Level:</label>
-                                <select name="yearlevel_id" id="year_level" class="form-control w-100">
-                                    @foreach ($yl as $ylevel)
-                                        <option value="{{ $ylevel->id }}">{{ $ylevel->yearlevel_name }}</option>
+                                <select name="grade_level_id" id="year_level" class="form-control w-100">
+                                    @foreach ($gradeLevels as $gradeLevel)
+                                        <option value="{{ $gradeLevel->id }}">{{ $gradeLevel->grade_name }}</option>
                                     @endforeach
                                 </select>
                             </div>

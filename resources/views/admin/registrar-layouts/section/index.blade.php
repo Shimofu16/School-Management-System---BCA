@@ -32,18 +32,18 @@
                     <tbody>
                         @foreach ($sections as $section)
                             <tr>
-                                <td>{{ $section->id }}</td>
-                                <td>{{ $section->section_name }}</td>
+                                <td class="text-center">{{ $section->id }}</td>
+                                <td class="text-center">{{ $section->section_name }}</td>
                                 @if ($section->students->count() == null)
-                                    <td>No Student</td>
+                                    <td class="text-center">No Student</td>
                                 @else
 
-                                    <td>{{ $section->students->count() }}</td>
+                                    <td class="text-center">{{ $section->students->count() }}</td>
                                 @endif
                                 @if ($section->advicer == null)
-                                    <td>No Advicer</td>
+                                    <td class="text-center">No Advicer</td>
                                 @else
-                                    <td>{{ $section->advicer }}</td>
+                                    <td class="text-center">{{ $section->advicer }}</td>
                                 @endif
 
                                 <td class="d-flex justify-content-center align-items-center">

@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Grade_level;
+use App\Section;
 class Student extends Model
 {
-    protected $table = 'enrolled_student';
+    protected $table = 'enrolled_students';
     public $timestamps = false;
     /* kung ano yung hind lagyan ng data */
     /* but if naka set ang gouded ng empty ibigsabihin lahat ng nasa database table ay pwede lagyan*/
@@ -15,9 +16,9 @@ class Student extends Model
     /* for ralation of section and student table*/
 
      public function section(){
-        return $this->belongsTo('App\Section');
+        return $this->belongsTo(Section::class);
     }
-    public function yearlevel(){
-        return $this->belongsTo('App\Year_level');
+    public function gradeLevel(){
+        return $this->belongsTo(Grade_level::class);
     }
 }
