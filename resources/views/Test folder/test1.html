@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/hover.css">
+    <link rel="stylesheet" href="/public/css/admin-css/custom.css">
+    <link rel="stylesheet" href="/public/css/home/custom.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row p-5 justify-content-center align-content-center mt-5">
+            <div class="col-sm-4 col-lg-3  mx-4 shadow">
+                <div class="row justify-content-center align-content-center">
+                    <a href="" class="btn pt-4 px-5 ">
+                        <i class="fas fa-user-graduate m-icons"></i>
+                    </a>
+                    <div class="my-5 d-flex justify-content-center align-content-center">
+                        <a class="btn btn-lg btn-outline-primary" data-bs-toggle="modal" data-bs-target="#grade">Year
+                            Level</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-lg-3  mx-4 shadow">
+                <div class="row justify-content-center align-content-center">
+                    <a href="" class="btn pt-4 px-5 ">
+                        <i class="fas fa-clock m-icons"></i>
+                    </a>
+                    <div class="my-5 d-flex justify-content-center align-content-center">
+                        <a href="" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal"
+                            data-bs-target="#class">Class Hour</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-lg-3  mx-4 shadow">
+                <div class="row justify-content-center align-content-center">
+                    <a href="" class="btn pt-4 px-5 ">
+                        <i class="far fa-calendar-alt m-icons"></i>
+                    </a>
+                    <div class="my-5 d-flex justify-content-center align-content-center">
+                        <a href="" class="btn btn-lg btn-outline-primary" data-bs-toggle="modal"
+                            data-bs-target="#sy">School
+                            Year</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="grade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row px-3 my-3">
+                        <div class="col">
+                            <h2>Add Year level</h2>
+                        </div>
+                        <div class="col">
+                            <form action="#" method="post">
+                                <div class="row">
+                                    <div class="col-6 px-0">
+                                        <input type="text" class="form-control-lg w-100" name="" placeholder="Year level">
+                                    </div>
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-lg btn-primary">Add</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">#</th>
+                                        <th scope="col" class="text-center">Year Level</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">JHS</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="class" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="sy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -13,7 +13,7 @@ class Enrollee extends Model
     public $guarded = [];
     /* kapag fillable naman selected fields langs ex. "section_name","section shit" */
     /* Year level connection | relation. */
-    public function yearLevel(){
+    public function gradeLevel(){
         return $this->belongsTo(Grade_level::class);
     }
 }

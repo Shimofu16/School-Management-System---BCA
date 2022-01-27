@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Section;
 use App\Enrollee;
-use App\Year_level;
+use App\Grade_level;
+
 
 
 class HomeController extends Controller
@@ -36,7 +37,7 @@ class HomeController extends Controller
     public function enroll()
     {
         $sections = Section::all();
-        $yl = Year_level::all();
+        $yl = Grade_level::all();
         return view('BCA.pages.enrollment form.index', compact('sections', 'yl'));
     }
     public function portal()

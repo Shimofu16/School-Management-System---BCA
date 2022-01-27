@@ -47,10 +47,10 @@ body{
     background-color: var(--bca) !important;
 }
 .btn-bca {
-    background-color: var(--bca);
+    background-color: var(--bca) !important;
 }
 .btn-bca-outline {
-    border: 1px solid var(--bca);
+    border: 1px solid var(--bca) !important;
 }
 .text-bca {
     color: var(--bca) !important;
