@@ -7,7 +7,7 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
     {{-- bootstrap --}}
-    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     {{-- custom css --}}
     <link rel="stylesheet" href="{{ asset('css/home/custom.css') }}" />
     {{-- hover effects --}}
@@ -29,9 +29,9 @@
     <!-- footer -->
     @include('BCA.layouts._footer')
     <!-- JS Libraies -->
-    <script src="{{ asset('vendor/bootstrap/js/dist/popover.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap copy/js/dist/popover.js')}}"></script>
+    <script src="{{ asset('vendor/bootstrap copy/dist/js/bootstrap.min.js' )}}"></script>
     @yield('page_level_js')
 </body>
 

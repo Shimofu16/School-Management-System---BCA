@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
 :root {
     --bca: #0b2090;
+    --bca-hover:#041470;
     --text-color: #2b3233;
 }
 ::-webkit-scrollbar {
@@ -48,6 +49,9 @@ body{
 }
 .btn-bca {
     background-color: var(--bca) !important;
+}
+.btn-bca:hover{
+    background-color: #041470 !important;
 }
 .btn-bca-outline {
     border: 1px solid var(--bca) !important;
