@@ -37,8 +37,8 @@ class HomeController extends Controller
     public function enroll()
     {
         $sections = Section::all();
-        $yl = Grade_level::all();
-        return view('BCA.pages.enrollment form.index', compact('sections', 'yl'));
+        $gradelevels = Grade_level::all();
+        return view('BCA.pages.enrollment form.index', compact('sections', 'gradelevels'));
     }
     public function portal()
     {

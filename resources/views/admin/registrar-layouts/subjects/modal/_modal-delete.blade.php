@@ -15,9 +15,9 @@
                 <form action="{{ route('subject.destroy', $subject->id) }}" method="post">
                     @csrf
                     @method('DELETE')
+                    <input type="hidden" value="{{ $subject->id }}">
                     <button class="btn btn-danger" type="submit">Yes</button>
                 </form>
-
             </div>
         </div>
     </div>

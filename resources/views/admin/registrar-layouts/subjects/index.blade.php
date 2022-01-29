@@ -30,10 +30,10 @@
                                 <td class="text-center">{{ $subject->id }}</td>
                                 <td class="text-center">{{ $subject->subject }}</td>
                                 <td class="d-flex justify-content-center align-items-center">
-                                    <button type="submit" class="btn btn-primary btn-sm mr-1" data-toggle="modal"
-                                        data-target="#edit{{ $subject->id }}">Edit</button>
-                                    <button type="submit" class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#delete{{ $subject->id }}">Delete</button>
+                                    <a class="btn btn-primary btn-sm mr-1" data-toggle="modal"
+                                        data-target="#edit{{ $subject->id }}">Edit</a>
+                                    <a  class="btn btn-sm btn-danger" data-toggle="modal"
+                                        data-target="#delete{{ $subject->id }}">Delete</a>
                                     @include('admin.registrar-layouts.subjects.modal._modal-edit')
                                     @include('admin.registrar-layouts.subjects.modal._modal-delete')
                                 </td>

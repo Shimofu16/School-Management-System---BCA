@@ -28,7 +28,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item nav-line mx-1 dropdown {{ Request::is('academics/') ? 'active' : '' }}">
+                    <li class="nav-item nav-line mx-1 dropdown {{ Request::is('academics') ? 'active' : '' }}">
                         <a href="#" class="nav-link hover-bca  p-3 text-bca">Academics</a>
                         <ul class="dropdown-menu bg-bca" id="dd">
                             <li><a href="#" class="dropdown-item p-3 text-light hover-bca-dd">Primary</a>
@@ -49,10 +49,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item nav-line mx-1 dropdown ">
+                    <li class="nav-item nav-line mx-1 dropdown {{ Request::is('enroll','calendar') ? 'active' : '' }}">
                         <a href="#" class="nav-link  hover-bca p-3 text-bca">Student</a>
                         <ul class="dropdown-menu bg-bca" id="dd">
                             <li><a href="{{ route('portal.index') }}" class="dropdown-item p-3 text-light hover-bca-dd">Portal</a>
+                            </li>
+                            <li><a href="{{ route('enroll.index') }}" class="dropdown-item p-3 text-light hover-bca-dd">Enroll</a>
                             </li>
                             <li><a href="{{ route('calendar.index') }}" class="dropdown-item p-3 text-light hover-bca-dd">Academic Calendar</a>
                             </li>

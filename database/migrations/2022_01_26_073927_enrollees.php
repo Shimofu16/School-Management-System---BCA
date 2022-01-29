@@ -23,11 +23,9 @@ class Enrollees extends Migration
             $table->string('gender', 5);
             $table->integer('age');
             $table->string('email')->unique();
-            $table->string('contact', 11);
             $table->date('birthdate')->useCurrent();
             $table->string('birthplace');
             $table->string('address');
-            $table->string('payment')->nullable();
             $table->unsignedBigInteger('grade_level_id');
             $table->foreign('grade_level_id')
                 ->references('id')

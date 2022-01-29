@@ -20,6 +20,8 @@ class RTeachersController extends Controller
 
     public function index()
     {
+       /*  date */
+     /*    dd(date('m'.'/'.'d'.'/'.'Y')); */
         /* $teachers = Teacher::with( 'subjects', 'sections' )->get();
         */
         /* $teachers = Teacher::all()->orderBy( 'id', 'asc' )->get(); */
@@ -53,8 +55,9 @@ class RTeachersController extends Controller
     public function store(Request $request)
     {
 
+        dd($request->all());
         $timeOne = Carbon::createFromFormat('H:i:s', $request->timeOne)->format('h:i:s a');
-        dd($timeOne);
+
         if (Auth::user()->role == "registrar") {
             $teacher = new subject_teacher;
             $teacher->teacher_id = $request->input('teacher_id');

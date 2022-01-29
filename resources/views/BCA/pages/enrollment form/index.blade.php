@@ -1,9 +1,10 @@
 @extends('BCA.layouts.mainLayout')
 @section('contents')
-    <div class="container px-5">
-        <form action="{{ route('enroll.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <h1 class="h3 mb-4 text-gray-800 text-center">Student’s Info </h1>
+<div class="container px-5">
+    <form action="{{ route('enroll.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <h1 class="h3 mb-4 text-gray-800 text-center text-light bg-bca py-3">Student’s Info </h1>
+        <div class="container mb-3">
             <div class="form-row">
                 <div class="col-md-4">
                     <label for="student_lrn" class="text-dark text-black font-weight-bold">Learner Reference Number
@@ -87,14 +88,16 @@
                 <div class="col-md-4">
                     <label for="year_level" class="text-dark text-black font-weight-bold">Year Level <span class="text-danger">(Required)</span>:</label>
                     <select name="grade" id="year_level" class="form-control w-50">
-                        <!--  @foreach ($yl as $ylevel)
-                                        <option value="{{ $ylevel->id }}">{{ $ylevel->yearlevel_name }}</option>
-                                        @endforeach -->
+                        @foreach ($gradelevels as $gradelevel)
+                            <option value="{{ $gradelevel->id }}">{{ $gradelevel->grade_name }}</option>
+                        @endforeach
+
                     </select>
                 </div>
             </div>
-            <hr>
-            <h1 class="h3 mb-4 text-gray-800 text-center">Father’s Information</h1>
+        </div>
+        <h1 class="h3 mb-4 text-gray-800 text-center text-light bg-bca py-3">Father’s Information</h1>
+        <div class="container mb-3">
             <div class="form-row">
                 <div class="col-md-4 mr-3">
                     <label for="father_name" class="text-dark text-black font-weight-bold">Full name:</label>
@@ -139,8 +142,9 @@
                         value="{{ old('father_contact') }}">
                 </div>
             </div>
-            <hr>
-            <h1 class="h3 mb-4 text-gray-800 text-center">Mother’s Information</h1>
+        </div>
+        <h1 class="h3 mb-4 text-gray-800 text-center text-light bg-bca py-3">Mother’s Information</h1>
+        <div class="container mb-3">
             <div class="form-row">
                 <div class="col-md-4 mr-3">
                     <label for="mother_name" class="text-dark text-black font-weight-bold">Full name:</label>
@@ -185,8 +189,9 @@
                         value="{{ old('mother_contact') }}">
                 </div>
             </div>
-            <hr>
-            <h1 class="h3 mb-4 text-gray-800 text-center">Guardian’s Information</h1>
+        </div>
+        <h1 class="h3 mb-4 text-gray-800 text-center text-light bg-bca py-3">Guardian’s Information</h1>
+        <div class="container mb-3">
             <div class="form-row">
                 <div class="col-md-4 mr-3">
                     <label for="guardian_name" class="text-dark text-black font-weight-bold">Full name:</label>
@@ -218,11 +223,12 @@
                         value="{{ old('guardian_contact') }}">
                 </div>
             </div>
-            <div class="row justify-content-end align-content-end my-4">
-                <div class="d-flex justify-content-end">
-                    <button class="btn btn-bca btn-lg text-light" type="submit">Enroll</button>
-                </div>
+        </div>
+        <div class="row justify-content-end align-content-end my-4">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-bca btn-lg text-light" type="submit">Enroll</button>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
 @endsection
