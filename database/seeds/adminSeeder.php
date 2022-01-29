@@ -13,19 +13,13 @@ class adminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::create([
-            'name' => 'admin',
-            'email' => 'admin@app.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
-            'gender' => 'Male',
-        ]);
-        Admin::create([
-            'name' => 'registrar',
-            'email' => 'registrar@app.com',
-            'password' => Hash::make('password'),
-            'role' => 'registrar',
-            'gender' => 'Male',
-        ]);
+        $users = [
+            ['name' => 'admin', 'email' => 'admin@app.com', 'password' => Hash::make('password'), 'role' => 'admin', 'gender' => 'Male',],
+            ['name' => 'registrar', 'email' => 'registrar@app.com', 'password' => Hash::make('password'), 'role' => 'registrar', 'gender' => 'Male',],
+        ];
+        foreach ($users as $user) {
+            Admin::create($user);
+        }
+
     }
 }

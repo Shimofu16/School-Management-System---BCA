@@ -24,26 +24,32 @@ class newStudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'student_lrn' => 'required',
-            'last_name' => 'required',
-            'first_name' => 'required',
-            'middle_name' => 'required',
-            'ext_name' => 'required',
-            'gender' => 'required',
-            'age' => 'required',
-            'birthdate'=> 'required',
-            'birthplace' => 'required',
-            'address' => 'required',
-            'section_id' => 'required'
+            'student_lrn' => ['required','max:11'],
+            'first_name' => ['required'],
+            'middle_name' => ['required'],
+            'last_name' => ['required'],
+            'gender' => ['required'],
+            'age' => ['required'],
+            'email' => ['required', 'email'],
+            'birthdate' => ['required'],
+            'birthplace' => ['required'],
+            'address' => ['required'],
+            'grade_level_id' => ['required'],
         ];
     }
-  /*   public function attributes()
+    public function attributes()
     {
         return [
-            'last_name' = 'Last Name',
-            'last_name' = 'Last Name',
-            'last_name' = 'Last Name',
-            'last_name' = 'Last Name'
+            'student_lrn' => 'Learner Reference Number (LRN)',
+            'first_name' => 'First Name',
+            'middle_name' => 'Middle Name',
+            'last_name' => 'Last Name',
+            'gender' => 'Gender',
+            'age' => 'Age',
+            'email' => 'Email Address',
+            'birthdate' => 'Birthdate',
+            'address' => 'Address',
+            'grade_level_id ' => 'Grade Level',
         ];
-    } */
+    }
 }

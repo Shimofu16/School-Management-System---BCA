@@ -16,6 +16,7 @@ class GradeLevels extends Migration
         Schema::create('grade_levels', function (Blueprint $table) {
             $table->id();
             $table->string('grade_name');
+            $table->string('grade_level');
             $table->string('description')->nullable();
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Subject;
+
 class subjectsSeeder extends Seeder
 {
     /**
@@ -11,14 +12,15 @@ class subjectsSeeder extends Seeder
      */
     public function run()
     {
-        Subject::create([
-            'subject' => 'Math',
-        ]);
-        Subject::create([
-            'subject' => 'English',
-        ]);
-        Subject::create([
-            'subject' => 'P.E',
-        ]);
+        $subjects = [
+            ['subject' => 'Math'],
+            ['subject' => 'English'],
+            ['subject' => 'English',]
+        ];
+        foreach ($subjects as $subject) {
+            Subject::create($subject);
+        }
+
+
     }
 }

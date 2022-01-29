@@ -54,14 +54,6 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {
-  /*       User::create([
-            'name'=> 'registrar',
-            'email'=> 'registrar@app.com',
-            'password'=> Hash::make('password'),
-            'role'=>'registrar',
-            'gender'=>'Male',
-        ]);
-dd(User::all()); */
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],

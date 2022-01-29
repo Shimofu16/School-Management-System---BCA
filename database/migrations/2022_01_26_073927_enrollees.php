@@ -20,7 +20,7 @@ class Enrollees extends Migration
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('ext_name')->nullable();
-            $table->string('gender', 5);
+            $table->string('gender', 6);
             $table->integer('age');
             $table->string('email')->unique();
             $table->date('birthdate')->useCurrent();
