@@ -23,13 +23,8 @@ body{
     font-family: 'Open Sans', sans-serif !important;
 }
 /* global custom css */
-.max-width {
-    max-width: 1400px;
-    margin: auto;
-    background-color: #f2f7fb;
-}
 .pt-home {
-    padding-top: 11vh;
+    padding-top: 100px;
     background-color: #f2f7fb;
     padding-left: 0;
     padding-right: 0;

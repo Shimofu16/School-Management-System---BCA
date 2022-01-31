@@ -1,5 +1,17 @@
+:root {
+    --bca: #0b2090;
+    --bca-hover: #041470;
+    --text-color: #2b3233;
+}
 /* manage | icons */
-.m-icons{
+.m-icons {
     font-size: 170px;
     color: #0b2090;
+}
+.bg-bca {
+    background-color: var(--bca) !important;
+}
+.student-picture {
+    height: 300px;
+    width: 300px;
 }

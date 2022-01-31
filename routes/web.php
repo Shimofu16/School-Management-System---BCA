@@ -58,15 +58,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','isAdmin']], function
 
 /* ============================== Registrar ================================ */
 Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], function () {
+    /* Dashboard */
     Route::get('/dashboard', 'RegistrarDashboardController@index')->name('registrar.dashboard.index');
     /* registrar|student */
-    Route::get('/students/enrolled', 'EnrolledStudentController@index')->name('enrolled.index');
+    //Enrollee
     Route::get('/students/create', 'EnrolledStudentController@create')->name('enrollees.create');
     Route::post('/students', 'EnrolledStudentController@store')->name('enrollees.store');
     Route::get('/students/enrollee', 'EnrolleesController@index')->name('enrollees.index');
+    //Enrolled
     Route::get('/students/enrollee/{id}', 'EnrolleesController@show')->name('enrollees.show');
+    Route::get('/students/enrolled', 'EnrolledStudentController@index')->name('enrolled.index');
     Route::get('/students/enrolled/{id}', 'EnrolledStudentController@show')->name('enrolled.show');
     Route::put('/students/enrollee/{id}', 'EnrolledStudentController@update')->name('enrolled.update');
+    Route::put('/medical/{id}', 'EnrolledStudentController@update')->name('enrolled.update');
     /* Registrar|teacher */
     Route::get('/teachers', 'RTeachersController@index')->name('teachers.index');
     Route::get('/teachers/create', 'RTeachersController@create')->name('teachers.create');

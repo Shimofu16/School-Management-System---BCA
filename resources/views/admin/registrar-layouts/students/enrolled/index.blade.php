@@ -4,7 +4,7 @@
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endsection
 @section('contents')
-    <h1 class="h3 mb-4 text-gray-800">@yield('page-title')</h1>
+    <h1 class="h3 mb-4 text-gray-800 ">@yield('page-title')</h1>
     @include('admin.alert-msgs._success')
     <div class="row">
         <div class="col-12">
@@ -38,10 +38,13 @@
                                 <td class="text-center">{{ $student->section->section_name }}</td>
                                 <td class="text-center">{{ $student->gradeLevel->grade_name }}</td>
                                 <td class="text-center">
-                                    {{--< a class="btn btn-sm btn-info" href="{{ route('enrolled.show', $student) }}">View</> --}}
-                                    <a class="btn btn-sm btn-info" href="" data-toggle="modal"
-                                    data-target="#view{{ $student->id }}">View</a>
-                                    @include('admin.registrar-layouts.students.enrolled.modal._show')
+                                    {{-- < a class="btn btn-sm btn-info" href="{{ route('enrolled.show', $student) }}">View</> --}}
+                                    <form action="{{ route('enrolled.show', $student->id) }}" method="get">
+                                        <button type="submit" class="btn btn-sm btn-info">View</button>
+                                    </form>
+                                    {{-- <a class="btn btn-sm btn-info" href="" data-toggle="modal"
+                                    data-target="#view{{ $student->id }}">View</a> --}}
+                                    {{-- @include('admin.registrar-layouts.students.enrolled.modal._show') --}}
                                 </td>
                                 <td class="d-flex justify-content-center align-items-center">
                                     <button type="submit" class="btn btn-primary btn-sm mr-1" data-toggle="modal"
