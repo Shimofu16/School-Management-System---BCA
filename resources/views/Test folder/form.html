@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div
-                    class="container d-flex flex-column justify-content-center align-content-center shadow-lg mt-4 mb-5"
+                    class="container d-flex flex-column justify-content-center align-content-center shadow-lg mt-4 mb-5 "
                 >
                     <h4 class="text-primary text-center mb-3 mt-3">Action</h4>
                     <div
@@ -59,30 +59,30 @@
                 </div>
             </div>
             <div class="col-7 shadow-lg mb-5">
-                <div class="row">
+                <div class="row header-bg">
                     <div
-                        class="col bg-primary d-flex justify-content-center py-1"
+                        class="col d-flex justify-content-center py-1 bg-bca"
                     >
                         <a href="{{ route('') }}" class="btn text-white"
                             >Student</a
                         >
                     </div>
                     <div
-                        class="col bg-black d-flex justify-content-center py-1"
+                        class="col  d-flex justify-content-center py-1"
                     >
                         <a href="#" class="btn text-white"
                             >Parents & Guardian</a
                         >
                     </div>
                     <div
-                        class="col bg-primary d-flex justify-content-center py-1"
+                        class="col d-flex justify-content-center py-1"
                     >
                         <a href="#" class="btn text-white">Requirements</a>
                     </div>
                 </div>
                 <div class="row px-2" id="student">
                     <div class="form-text">
-                        <h4 class="text-dark">Name: {{ $record->name }}</h4>
+                        <h4 class="text-dark"><span class="fw-bolder">Name: </span> {{ $record->name }}</h4>
                     </div>
                     <div class="form-text">
                         <h4 class="text-dark">Address: {{ $record->address }}</h4>

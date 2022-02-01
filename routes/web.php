@@ -70,7 +70,6 @@ Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], 
     Route::get('/students/enrolled', 'EnrolledStudentController@index')->name('enrolled.index');
     Route::get('/students/enrolled/{id}', 'EnrolledStudentController@show')->name('enrolled.show');
     Route::put('/students/enrollee/{id}', 'EnrolledStudentController@update')->name('enrolled.update');
-    Route::put('/medical/{id}', 'EnrolledStudentController@update')->name('enrolled.update');
     /* Registrar|teacher */
     Route::get('/teachers', 'RTeachersController@index')->name('teachers.index');
     Route::get('/teachers/create', 'RTeachersController@create')->name('teachers.create');

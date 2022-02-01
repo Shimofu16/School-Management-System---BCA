@@ -8,7 +8,9 @@ use App\Student;
 use App\Enrollee;
 use App\Year_level;
 use App\Account_student;
+use App\Family;
 use App\Grade_level;
+use App\Guardian;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -89,8 +91,10 @@ class EnrolledStudentController extends Controller
 
     public function show($id)
     {
-        $student = Student::findOrFail($id);
-        return view('admin.registrar-layouts.students.enrolled.show', compact('student'));
+        $student = Student::with('gradeLevel')->findOrFail($id);
+        $parents = Family::all();
+        $guardians = Guardian::all();
+        return view('admin.registrar-layouts.students.enrolled.show', compact('student','parents','guardians'));
     }
 
     /**

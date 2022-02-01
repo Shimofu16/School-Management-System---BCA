@@ -15,3 +15,9 @@
     height: 300px;
     width: 300px;
 }
+.header-bg {
+    background: #7b7b78;
+}
+.fw-bolder {
+    font-weight: bolder;
+}
