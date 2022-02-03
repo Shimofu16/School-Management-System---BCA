@@ -16,6 +16,7 @@
                             <th class="text-center">Last name</th>
                             <th class="text-center">First name</th>
                             <th class="text-center">Middle name</th>
+                            <th class="text-center">Ext, name</th>
                             <th class="text-center">Gender</th>
                             <th class="text-center">Age</th>
                             <th class="text-center">Section</th>
@@ -33,6 +34,11 @@
                                 <td class="text-center">{{ $student->last_name }}</td>
                                 <td class="text-center">{{ $student->first_name }}</td>
                                 <td class="text-center">{{ $student->middle_name }}</td>
+                                @if ($student->ext_name !== null)
+                                    <td class="text-center">{{ $student->ext_name }}</td>
+                                @else
+                                    <td class="text-center">None</td>
+                                @endif
                                 <td class="text-center">{{ $student->gender }}</td>
                                 <td class="text-center">{{ $student->age }}</td>
                                 <td class="text-center">{{ $student->section->section_name }}</td>

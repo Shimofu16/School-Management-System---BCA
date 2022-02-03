@@ -9,12 +9,13 @@
         <div class="col-12 d-flex justify-content-between align-items-center">
             <h1 class="h3 mb-4 text-gray-800 mr-auto pt-3">@yield('page-title')</h1>
             <div class="col-2 d-flex">
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addSection">
+                <a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addSection">
                     <span class="d-flex align-items-center"><i class="fas fa-plus-circle"></i>&#160; Add Section</span>
-                </button>
+                </a>
             </div>
         </div>
     </div>
+    @include('admin.registrar-layouts.section.modal._modal-section')
     <hr>
     <div class="row">
         <div class="col-12">

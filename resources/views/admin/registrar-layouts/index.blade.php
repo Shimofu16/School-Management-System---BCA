@@ -61,7 +61,7 @@
             </div>
         </li>
         <!-- Nav Item - Sections -->
-        <li class="{{ Request::is('registrar/sections/*') ? 'active' : '' }} nav-item ">
+        <li class="{{ Request::is('registrar/sections') ? 'active' : '' }} nav-item ">
             <a class="nav-link" href="{{ route('section.index') }}">
                 <i class="fas fa-fw fa-object-ungroup"></i>
                 <span>Sections</span></a>
@@ -79,7 +79,7 @@
             </a>
         </li>
         <!-- Nav Item - Teachers Collapse Me -->
-        <li class="nav-item {{ Request::is('registrar/manage/*') ? 'active' : '' }}">
+       {{--   <li class="nav-item {{ Request::is('registrar/manage/*') ? 'active' : '' }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"
                 aria-controls="collapseTwo">
                 <i class="fa-fw fas fa-cogs"></i>
@@ -92,7 +92,7 @@
                     <a class="collapse-item" href="#">School Year</a>
                 </div>
             </div>
-        </li>
+        </li>  --}}
         <hr class="sidebar-divider mb-0">
         <li class="nav-item {{ Request::is('teachers', 'teachers/add') ? 'active' : '' }}">
             <a class="nav-link" data-toggle="modal" data-target="#logoutModal">

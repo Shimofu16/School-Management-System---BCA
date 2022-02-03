@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\newSectionRequest;
 use App\Section;
+use App\Teacher;
 use Illuminate\Http\Request;
 class RSectionsController extends Controller
 {
@@ -16,7 +17,8 @@ class RSectionsController extends Controller
     {
         $sections = Section::with('students')->orderBy( 'id', 'asc' )
         ->get();
-        return view('admin.registrar-layouts.section.index', compact('sections'));
+        $teachers = Teacher::all();
+        return view('admin.registrar-layouts.section.index', compact('sections','teachers'));
     }
 
     /**
@@ -80,7 +82,9 @@ class RSectionsController extends Controller
         $section->update(
             $request->all()
         );
-        return redirect()->route('section.show', $id);
+ /*        $section->section_name = $request->input('section_name');
+        $section->advicer = $request->input('advicer'); */
+        return redirect()->route('section.index');
     }
 
     /**

@@ -20,11 +20,11 @@ class RTeachersController extends Controller
 
     public function index()
     {
-       /*  date */
-     /*    dd(date('m'.'/'.'d'.'/'.'Y')); */
+        /*  date */
+        /*    dd(date('m'.'/'.'d'.'/'.'Y')); */
         /* $teachers = Teacher::with( 'subjects', 'sections' )->get();
         */
-        /* $teachers = Teacher::all()->orderBy( 'id', 'asc' )->get(); */
+        $teachers = Teacher::orderBy('id', 'asc')->get();
         $teachers = Teacher::all();
         $sections = Section::all();
         $subjects = Subject::all();
@@ -55,10 +55,11 @@ class RTeachersController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
-        $timeOne = Carbon::createFromFormat('H:i:s', $request->timeOne)->format('h:i:s a');
-
-        if (Auth::user()->role == "registrar") {
+        if (url()->previous() == 'http://127.0.0.1:8000/registrar/teachers/create') {
+            Teacher::create(
+                $request->all()
+            );
+        } else {
             $teacher = new subject_teacher;
             $teacher->teacher_id = $request->input('teacher_id');
             $teacher->subject = $request->input('subject');
@@ -68,10 +69,6 @@ class RTeachersController extends Controller
             $timeOne;
             $teacher->time = $timeOne . '-' . $timeTwo;
             $teacher->save();
-        } else {
-            Teacher::create(
-                $request->all()
-            );
         }
         return redirect()->route('teachers.index')->with('success', 'Teacher added successfully.');
     }

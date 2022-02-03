@@ -13,6 +13,7 @@ use App\Grade_level;
 use App\Guardian;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class EnrolledStudentController extends Controller
@@ -54,10 +55,14 @@ class EnrolledStudentController extends Controller
     public function store(Request $request)
     {
 
-        if (Auth::user()->role == "Registrar") {
-            /*   Student::create(
-                $request->all()
-            ); */
+        if (Auth::user()->role == "registrar") {
+            
+            /*$name = request()->input('first_name');
+            $fname = DB::table('enrolled_students')
+                ->where('first_name', '=', $name)
+                ->get();
+            $temp = $fname->f;
+            dd();  */
             /*   $account = new Account_student;
             $account->student_lrn = $request->input( 'student_lrn' );
             $account->name = $request->input( 'first_name' ).' '.$request->input( 'middle_name' ).', '.$request->input( 'last_name' );
@@ -94,7 +99,7 @@ class EnrolledStudentController extends Controller
         $student = Student::with('gradeLevel')->findOrFail($id);
         $parents = Family::all();
         $guardians = Guardian::all();
-        return view('admin.registrar-layouts.students.enrolled.show', compact('student','parents','guardians'));
+        return view('admin.registrar-layouts.students.enrolled.show', compact('student', 'parents', 'guardians'));
     }
 
     /**

@@ -57,7 +57,7 @@
             </div>
             @if (Request::is('registrar/students/enrolled/1'))
                 <div class="row px-3 pt-4 flex-column" id="student">
-                    <div class="mb-1">
+                    <div class="col-6 mb-1">
                         <h5 class="text-dark"><span class="fw-bolder">Name:</span> {{ $student->first_name }}
                             {{ $student->middle_name }},
                             {{ $student->last_name }}
@@ -66,41 +66,41 @@
                             @endif
                         </h5>
                     </div>
-                    <div class="d-flex">
-                        <div class="">
-                            <h5 class="text-dark"><span class="fw-bolder">Gender:</span> {{ $student->gender }}
-                            </h5>
-                        </div>
-                        <div class="">
-                            <h5 class="text-dark"><span class="fw-bolder">Age:</span> {{ $student->age }}</h5>
-                        </div>
+                    <div class="col d-flex flex-row mb-1">
+                        <h5 class="text-dark mr-5"><span class="fw-bolder">Gender:</span> {{ $student->gender }}
+                        </h5>
+                        <h5 class="text-dark"><span class="fw-bolder">Age:</span> {{ $student->age }}</h5>
                     </div>
-                    <div class="mb-1">
-                        <h5 class="text-dark"><span class="fw-bolder">Email:</span> {{ $student->email }}</h5>
-                    </div>
-                    <div class="mb-1">
+                    <div class="col d-flex flex-row mb-1">
+                        <h5 class="text-dark mr-5"><span class="fw-bolder">Email:</span> {{ $student->email }}
+                        </h5>
                         <h5 class="text-dark"><span class="fw-bolder">Contact no.:</span>
                             {{ $student->contact }}</h5>
                     </div>
-                    <div class="mb-1">
+                    <div class="col mb-1">
                         <h5 class="text-dark"><span class="fw-bolder">Birthdate:</span>
                             {{ date('m/d/Y', strtotime($student->birthdate)) }}</h5>
                     </div>
-                    <div class="mb-1">
-                        <h5 class="text-dark"><span class="fw-bolder">Birthplace:</span> {{ $student->birthplace }}</h5>
+                    <div class="col mb-1">
+                        <h5 class="text-dark"><span class="fw-bolder">Birthplace:</span>
+                            {{ $student->birthplace }}</h5>
                     </div>
-                    <div class="mb-1">
-                        <h5 class="text-dark"><span class="fw-bolder">Address:</span> {{ $student->address }}</h5>
+                    <div class="col mb-1">
+                        <h5 class="text-dark"><span class="fw-bolder">Address:</span> {{ $student->address }}
+                        </h5>
                     </div>
-                    <div class="mb-1">
-                        <h5 class="text-dark"><span class="fw-bolder">Section:</span> {{ $student->section->section_name }}</h5>
+                    <div class="col mb-1">
+                        <h5 class="text-dark"><span class="fw-bolder">Section:</span>
+                            {{ $student->section->section_name }}</h5>
                     </div>
-                    <div class="mb-1">
-                        <h5 class="text-dark"><span class="fw-bolder">Grade:</span> {{ $student->gradeLevel->grade_name }}</h5>
+                    <div class="col mb-1">
+                        <h5 class="text-dark"><span class="fw-bolder">Grade:</span>
+                            {{ $student->gradeLevel->grade_name }}</h5>
                     </div>
                     <hr class="border w-100 h-50">
-                    <div class="mb-1">
-                        <h5 class="text-dark"><span class="fw-bolder">Grade:</span> {{ $student->gradeLevel->grade_name }}</h5>
+                    <div class="col mb-1">
+                        <h5 class="text-dark"><span class="fw-bolder">Grade:</span>
+                            {{ $student->gradeLevel->grade_name }}</h5>
                     </div>
                 </div>
             @endif

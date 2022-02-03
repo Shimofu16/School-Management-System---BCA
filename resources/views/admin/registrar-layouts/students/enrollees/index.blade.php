@@ -19,29 +19,31 @@
                             <th class="text-center">Gender</th>
                             <th class="text-center">Age</th>
                             <th class="text-center">More details</th>
-                            <th class="text-center">Proof of payment</td>
                             <th class="text-center">Action</td>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($students as $student)
                             <tr>
-                                <td>{{ $student->student_lrn }}</td>
-                                <td>{{ $student->last_name }}</td>
-                                <td>{{ $student->first_name }}</td>
-                                <td>{{ $student->middle_name }}</td>
-                                <td>{{ $student->ext_name }}</td>
-                                <td>{{ $student->gender }}</td>
-                                <td>{{ $student->age }}</td>
-                                <td class="text-center"><a class="btn btn-sm btn-info"
-                                        href="{{ route('enrollees.show', $student->id) }}">View</a></td>
+                                <td class="text-center">{{ $student->student_lrn }}</td>
+                                <td class="text-center">{{ $student->last_name }}</td>
+                                <td class="text-center">{{ $student->first_name }}</td>
+                                <td class="text-center">{{ $student->middle_name }}</td>
+                                @if ($student->ext_name !== null)
+                                    <td class="text-center">{{ $student->ext_name }}</td>
+                                @else
+                                    <td class="text-center">None</td>
+                                @endif
+                                <td class="text-center">{{ $student->gender }}</td>
+                                <td class="text-center">{{ $student->age }}</td>
                                 <td class="text-center">
-                                    <a class="btn btn-sm btn-primary" href="#" data-toggle="modal"
-                                        data-target="#payment{{ $student->id }}">View</a></td>
-                                <td class="d-flex">
+                                    <a class="btn btn-sm btn-info"
+                                        href="{{ route('enrollees.show', $student->id) }}">View</a>
+                                </td>
+                                <td class="d-flex justify-content-center">
                                     <a class="btn btn-sm btn-success mr-1" href="#" data-toggle="modal"
-                                    data-target="#accept{{ $student->id }}">Accept</a>
-                                    <a class="btn btn-sm btn-danger" href="#">Resubmit</a>
+                                        data-target="#accept{{ $student->id }}">Accept</a>
+                                    <a class="btn btn-sm btn-danger" href="#">Decline</a>
                                 </td>
                             </tr>
                             @include('admin.registrar-layouts.students.enrollees.modal._modal-payment')

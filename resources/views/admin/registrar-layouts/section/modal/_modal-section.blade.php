@@ -16,15 +16,20 @@
                         <input class="form-control w-50" type="text" name="section_name" id="section_name"
                             placeholder="Section name">
                     </div>
-                    <button class="btn btn-primary" type="submit">Add Student</button>
+                    <div class="form-group mb-3">
+                        <label for="adviser" class="text-dark text-black font-weight-bold">Adviser:</label>
+                        <select class="custom-select" id="inputGroupSelect01">
+                            <option selected>Choose...</option>
+                            @foreach ($teachers as $teacher)
+                            <option value="{{ $teacher->name }}">{{ $teacher->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit">Add Section</button>
+                    </div>
                 </form>
-
-            </div>
-            <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
-
             </div>
         </div>
     </div>
 </div>
-

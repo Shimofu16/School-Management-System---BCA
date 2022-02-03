@@ -59,9 +59,9 @@ class EnrolleesController extends Controller
 
     public function show($id)
     {
-        $student = Student::findOrFail($id);
-        dd($student);
-        return view('admin.registrar-layouts.students.enrollees.show', compact('student'));
+        $student = Enrollee::findOrFail($id);
+        $gradeLevels = Grade_level::all();
+        return view('admin.registrar-layouts.students.enrollees.show', compact('student','gradeLevels'));
     }
 
     /**
