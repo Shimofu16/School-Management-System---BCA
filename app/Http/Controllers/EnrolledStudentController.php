@@ -54,36 +54,9 @@ class EnrolledStudentController extends Controller
 
     public function store(Request $request)
     {
-
-        if (Auth::user()->role == "registrar") {
-            
-            /*$name = request()->input('first_name');
-            $fname = DB::table('enrolled_students')
-                ->where('first_name', '=', $name)
-                ->get();
-            $temp = $fname->f;
-            dd();  */
-            /*   $account = new Account_student;
-            $account->student_lrn = $request->input( 'student_lrn' );
-            $account->name = $request->input( 'first_name' ).' '.$request->input( 'middle_name' ).', '.$request->input( 'last_name' );
-            $account->email = $request->input( 'email' ); */
-            /* get the first letter of first, middle and last name and lower case it */
-            /* concatinate first middle and last */
-            /*  $concat = $first = Str::lower( $request->input( 'first_name' ) ).$middle = Str::lower( $request->input( 'middle_name' ) ). $last = Str::lower( $request->input( 'last_name' ) ); */
-            /* get first 10 first 10 shuffled string of concatinated first, middle and last name */
-            /*     $password = substr( str_replace( ' ', '', str_shuffle( $concat ) ), 0, 10 );
-            $account->password = 'bcaStudent'.$password;
-            $account->role = 'Student';
-            $account->gender = $request->input( 'gender' );
-            $account->save(); */
-            /*    $id = $request->input('id');
-            $enrollee = Enrollee::findOrFail($id);
-            $enrollee->delete(); */
-        } else {
-            Student::create(
-                $request->all()
-            );
-        }
+        Student::create(
+            $request->all()
+        );
         return redirect()->route('enrolled.index')->with('success', 'Student Added successfully.');
     }
 

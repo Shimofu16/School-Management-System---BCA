@@ -1,9 +1,9 @@
-<div class="modal fade" id="accept{{ $student->id }}" tabindex="-1" role="dialog"
+<div class="modal" id="accept{{ $student->id }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content ">
             <div class="modal-header bg-success">
-                <h5 class="modal-title text-light font-weight-bold" id="exampleModalLabel">WARNING</h5>
+                <h5 class="modal-title text-light font-weight-bold" id="exampleModalLabel">Assign section</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -25,14 +25,14 @@
                     <input type="hidden" name="birthplace" value="{{ $student->birthplace }}">
                     <input type="hidden" name="address" value="{{ $student->address }}">
                     <input type="hidden" name="yearlevel_id" value="{{ $student->yearlevel_id }}">
+
                     <div class="form-group">
-                        <label for="section" class="text-dark text-black font-weight-bold">Assign Section for
-                            {{ $student->last_name }}, {{ $student->first_name }}:</label>
+                        <label for="section" class="text-dark text-black font-weight-bold">Section:</label>
                         <select name="section_id" id="section" class="form-control w-50">
+                            <option selected >---- Select section ----</option>
                             @foreach ($sections as $section)
                                 <option value="{{ $section->id }}">{{ $section->section_name }}</option>
                             @endforeach
-
                         </select>
                     </div>
                     <div class="modal-footer">

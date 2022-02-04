@@ -17,8 +17,7 @@ class CreateGuardiansTable extends Migration
             $table->increments('id');
             $table->string('student_lrn');/* ilalagay dito yung student lrn */ /* then mag condition nalang for view ng family and guardian */
             $table->string('name');
-            $table->date('birthdate')->useCurrent();
-            $table->string('landline', 20)->nullable();
+            $table->string('relationship');
             $table->string('contact_no', 11);
             $table->timestamps();
         });

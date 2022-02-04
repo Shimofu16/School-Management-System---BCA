@@ -63,7 +63,7 @@ Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], 
     /* registrar|student */
     //Enrollee
     Route::get('/students/create', 'EnrolledStudentController@create')->name('enrollees.create');
-    Route::post('/students', 'EnrolledStudentController@store')->name('enrollees.store');
+    Route::post('/students', 'EnrolleesController@store')->name('enrollees.store');
     Route::get('/students/enrollee', 'EnrolleesController@index')->name('enrollees.index');
     //Enrolled
     Route::get('/students/enrollee/{id}', 'EnrolleesController@show')->name('enrollees.show');

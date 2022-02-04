@@ -7,7 +7,11 @@ use App\Section;
 use App\Student;
 use App\Enrollee;
 use App\Grade_level;
-
+use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class EnrolleesController extends Controller
 {
@@ -47,7 +51,26 @@ class EnrolleesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        /*     $password = Str::lower(substr($request->input('first_name'),0,1)) . Str::lower(substr($request->input('middle_name'),0,1)) . Str::lower(substr($request->input('last_name'),0,1));
+        dd($password); */
+        $account = new User;
+        $account->student_lrn = $request->input('student_lrn');
+        if ($request->input('ext_name') !== null) {
+            $account->name = $request->input('first_name') . ' ' . $request->input('middle_name') . ', ' . $request->input('last_name') . ' ' . $request->input('ext_name');
+        } else {
+            $account->name = $request->input('first_name') . ' ' . $request->input('middle_name') . ', ' . $request->input('last_name');
+        }
+        $account->email = $request->input('email');
+        /* get the first letter of first, middle and last name and lower case it */
+        /* concatinate first middle and last */
+        $password = Str::lower(substr($request->input('first_name'), 0, 1)) . Str::lower(substr($request->input('middle_name'), 0, 1)) . Str::lower(substr($request->input('last_name'), 0, 1));
+        $account->password = 'bcastudent' . $password;
+        $account->role = 'Student';
+        $account->gender = $request->input('gender');
+        $account->save();
+        $id = $request->input('id');
+        $enrollee=Enrollee::findOrFail($id);
+        $enrollee->delete();
     }
 
     /**
@@ -61,7 +84,7 @@ class EnrolleesController extends Controller
     {
         $student = Enrollee::findOrFail($id);
         $gradeLevels = Grade_level::all();
-        return view('admin.registrar-layouts.students.enrollees.show', compact('student','gradeLevels'));
+        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'gradeLevels'));
     }
 
     /**

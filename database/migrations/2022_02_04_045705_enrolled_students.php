@@ -23,7 +23,6 @@ class EnrolledStudents extends Migration
             $table->string('gender', 5);
             $table->integer('age');
             $table->string('email')->unique();
-            $table->string('contact', 11);
             $table->date('birthdate')->useCurrent();
             $table->string('birthplace');
             $table->string('address');
@@ -36,6 +35,11 @@ class EnrolledStudents extends Migration
             $table->foreign('grade_level_id')
                 ->references('id')
                 ->on('grade_levels')
+                ->onDelete('restrict')->onUpdate('cascade');
+            $table->unsignedBigInteger('sy_id');
+            $table->foreign('sy_id')
+                ->references('id')
+                ->on('school_years')
                 ->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });

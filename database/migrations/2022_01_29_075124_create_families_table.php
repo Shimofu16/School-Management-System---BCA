@@ -24,7 +24,7 @@ class CreateFamiliesTable extends Migration
             $table->string('occupation')->nullable();
             $table->string('office_address')->nullable();
             $table->string('office_contact_no', 11)->nullable();
-            $table->string('role')->nullable();
+            $table->string('relationship')->nullable();
             $table->timestamps();
         });
     }

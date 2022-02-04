@@ -16,10 +16,12 @@ class DatabaseSeeder extends Seeder
             subjectsSeeder::class,
             sectionSeeder::class,
             gradelevelSeeder::class,
+            sySeeder::class,
             enrolledSeeder::class,
             enrolleeSeeder::class,
             userSeeder::class,
             adminSeeder::class,
+
         ]);
     }
 }
