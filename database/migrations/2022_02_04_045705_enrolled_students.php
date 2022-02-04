@@ -41,7 +41,7 @@ class EnrolledStudents extends Migration
                 ->references('id')
                 ->on('school_years')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->timestamps();
+
         });
     }
 

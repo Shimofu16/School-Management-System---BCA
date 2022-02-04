@@ -19,7 +19,6 @@ class CreateGuardiansTable extends Migration
             $table->string('name');
             $table->string('relationship');
             $table->string('contact_no', 11);
-            $table->timestamps();
         });
     }
 
