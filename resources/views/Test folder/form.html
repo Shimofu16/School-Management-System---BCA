@@ -17,97 +17,244 @@
     </head>
 
     <body>
-        <h1 class="h3 mb-4 text-gray-800 text-center">Student`s information</h1>
-        <div class="row">
-            <div class="col-3 mr-3">
-                <div
-                    class="container d-flex flex-column justify-content-center align-content-center shadow-lg"
-                >
-                    <div class="mb-3 mt-5 d-flex justify-content-center">
-                        <img
-                            class="student-picture border"
-                            src="/public/img/icons/user-male.png"
-                            alt=""
-                        />
-                    </div>
-                    <div class="text-center">
-                        <h4>FULL NAME HERE</h4>
-                        <h5>EMAIL HERE</h5>
-                    </div>
-                    <div class="text-center border py-3 mb-3">
-                        <h5 class="text-primary">Grade</h5>
-                        <h6>Grade 6</h6>
-                    </div>
-                    <div class="text-center border py-3 mb-5">
-                        <h5 class="text-primary">Section</h5>
-                        <h6>Eros Atalia</h6>
-                    </div>
-                </div>
-                <div
-                    class="container d-flex flex-column justify-content-center align-content-center shadow-lg mt-4 mb-5"
-                >
-                    <h4 class="text-primary text-center mb-3 mt-3">Action</h4>
-                    <div
-                        class="px-5 mb-5 d-flex flex-column justify-content-center align-content-center"
-                    >
-                        <a href="#" class="btn btn-bca text-white mb-1">a</a>
-                        <a href="#" class="btn btn-bca text-white mb-1">a</a>
-                        <a href="#" class="btn btn-bca text-white">a</a>
-                    </div>
-                </div>
+        <div class="container">
+            <div class="row">
+                <h1 class="home-title py-4 mx-3">Latest News & Events</h1>
             </div>
-            <div class="col-7 shadow-lg mb-5">
-                <div class="row header-bg">
-                    <div class="col d-flex justify-content-center py-1 bg-bca">
-                        <a href="{{ route('') }}" class="btn text-white"
-                            >Student</a
-                        >
-                    </div>
-                    <div class="col d-flex justify-content-center py-1">
-                        <a href="#" class="btn text-white"
-                            >Parents & Guardian</a
-                        >
-                    </div>
-                    <div class="col d-flex justify-content-center py-1">
-                        <a href="#" class="btn text-white">Requirements</a>
-                    </div>
+            <div class="row overflow-x flex-nowrap">
+                <div class="col-sm-4 col-md-5">
+                    <article class="border news-hover">
+                        <div class="container my-2">
+                            <div class="row mt-2">
+                                <a
+                                    href="#"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img
+                                        src="{{ asset('img/announcements/1.jpg') }}"
+                                        alt=""
+                                        class="img-fluid border"
+                                    />
+                                </a>
+                            </div>
+                            <div class="row px-3">
+                                <div class="d-flex flex-column">
+                                    <h2 class="news-title my-2">title</h2>
+                                    <i class="fas fa-clock my-2">
+                                        <time>October 28, 2021</time></i
+                                    >
+                                </div>
+                                <div class="my-2">
+                                    <p class="text-justify">
+                                        Lorem ipsum dolor sit, amet consectetur
+                                        adipisicing elit. Nesciunt modi culpa
+                                        quaerat maiores, quos exercitationem
+                                        sapiente aut odio deleniti tempora
+                                        consectetur blanditiis ad voluptatum
+                                        ipsum. Commodi ullam perspiciatis
+                                        corrupti voluptatem molestiae
+                                        reiciendis. Lorem ipsum dolor sit, amet
+                                        consectetur adipisicing elit. Nesciunt
+                                        modi culpa quaerat maiores, quos
+                                        exercitationem sapiente aut odio
+                                        deleniti tempora consectetur blanditiis
+                                        ad voluptatum ipsum. Commodi ullam
+                                        perspiciatis corrupti voluptatem
+                                        molestiae reiciendis.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <div class="row px-2" id="student">
-                    <div class="form-text">
-                        <h4 class="text-dark">
-                            <span class="fw-bolder">Name: </span> {{
-                            $record->name }}
-                        </h4>
-                    </div>
-                    <div class="form-text">
-                        <h4 class="text-dark">
-                            Address: {{ $record->address }}
-                        </h4>
-                    </div>
+                <div class="col-sm-4 col-md-5">
+                    <article class="border news-hover">
+                        <div class="container my-2">
+                            <div class="row mt-2">
+                                <a
+                                    href="#"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img
+                                        src="{{ asset('img/announcements/1.jpg') }}"
+                                        alt=""
+                                        class="img-fluid border"
+                                    />
+                                </a>
+                            </div>
+                            <div class="row px-3">
+                                <div class="d-flex flex-column">
+                                    <h2 class="news-title my-2">title</h2>
+                                    <i class="fas fa-clock my-2">
+                                        <time>October 28, 2021</time></i
+                                    >
+                                </div>
+                                <div class="my-2">
+                                    <p class="text-justify">
+                                        Lorem ipsum dolor sit, amet consectetur
+                                        adipisicing elit. Nesciunt modi culpa
+                                        quaerat maiores, quos exercitationem
+                                        sapiente aut odio deleniti tempora
+                                        consectetur blanditiis ad voluptatum
+                                        ipsum. Commodi ullam perspiciatis
+                                        corrupti voluptatem molestiae
+                                        reiciendis. Lorem ipsum dolor sit, amet
+                                        consectetur adipisicing elit. Nesciunt
+                                        modi culpa quaerat maiores, quos
+                                        exercitationem sapiente aut odio
+                                        deleniti tempora consectetur blanditiis
+                                        ad voluptatum ipsum. Commodi ullam
+                                        perspiciatis corrupti voluptatem
+                                        molestiae reiciendis.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <div class="d-flex">
-                    <div class="col-5">
-                        <h6 class="text-danger"><span class="fw-bolder">asdasdasdasdasd</span></h6>
-                    </div>
-                    <div class="col-5">
-                        <h6 class="text-danger"><span class="fw-bolder">asdasdasdasdasd</span></h6>
-                    </div>
-                    <div class="col-5">
-                        <h6 class="text-danger"><span class="fw-bolder">asdasdasdasdasd</span></h6>
-                    </div>
+                <div class="col-sm-4 col-md-5">
+                    <article class="border news-hover">
+                        <div class="container my-2">
+                            <div class="row mt-2">
+                                <a
+                                    href="#"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img
+                                        src="{{ asset('img/announcements/1.jpg') }}"
+                                        alt=""
+                                        class="img-fluid border"
+                                    />
+                                </a>
+                            </div>
+                            <div class="row px-3">
+                                <div class="d-flex flex-column">
+                                    <h2 class="news-title my-2">title</h2>
+                                    <i class="fas fa-clock my-2">
+                                        <time>October 28, 2021</time></i
+                                    >
+                                </div>
+                                <div class="my-2">
+                                    <p class="text-justify">
+                                        Lorem ipsum dolor sit, amet consectetur
+                                        adipisicing elit. Nesciunt modi culpa
+                                        quaerat maiores, quos exercitationem
+                                        sapiente aut odio deleniti tempora
+                                        consectetur blanditiis ad voluptatum
+                                        ipsum. Commodi ullam perspiciatis
+                                        corrupti voluptatem molestiae
+                                        reiciendis. Lorem ipsum dolor sit, amet
+                                        consectetur adipisicing elit. Nesciunt
+                                        modi culpa quaerat maiores, quos
+                                        exercitationem sapiente aut odio
+                                        deleniti tempora consectetur blanditiis
+                                        ad voluptatum ipsum. Commodi ullam
+                                        perspiciatis corrupti voluptatem
+                                        molestiae reiciendis.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-              
-                <!--  <div class="row px-2" id="parent">Parents & Guardian</div>
-                <div class="row px-2" id="req">Requirements</div> -->
+                <div class="col-sm-4 col-md-5">
+                    <article class="border news-hover">
+                        <div class="container my-2">
+                            <div class="row mt-2">
+                                <a
+                                    href="#"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img
+                                        src="{{ asset('img/announcements/1.jpg') }}"
+                                        alt=""
+                                        class="img-fluid border"
+                                    />
+                                </a>
+                            </div>
+                            <div class="row px-3">
+                                <div class="d-flex flex-column">
+                                    <h2 class="news-title my-2">title</h2>
+                                    <i class="fas fa-clock my-2">
+                                        <time>October 28, 2021</time></i
+                                    >
+                                </div>
+                                <div class="my-2">
+                                    <p class="text-justify">
+                                        Lorem ipsum dolor sit, amet consectetur
+                                        adipisicing elit. Nesciunt modi culpa
+                                        quaerat maiores, quos exercitationem
+                                        sapiente aut odio deleniti tempora
+                                        consectetur blanditiis ad voluptatum
+                                        ipsum. Commodi ullam perspiciatis
+                                        corrupti voluptatem molestiae
+                                        reiciendis. Lorem ipsum dolor sit, amet
+                                        consectetur adipisicing elit. Nesciunt
+                                        modi culpa quaerat maiores, quos
+                                        exercitationem sapiente aut odio
+                                        deleniti tempora consectetur blanditiis
+                                        ad voluptatum ipsum. Commodi ullam
+                                        perspiciatis corrupti voluptatem
+                                        molestiae reiciendis.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-sm-4 col-md-5">
+                    <article class="border news-hover">
+                        <div class="container my-2">
+                            <div class="row mt-2">
+                                <a
+                                    href="#"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <img
+                                        src="{{ asset('img/announcements/1.jpg') }}"
+                                        alt=""
+                                        class="img-fluid border"
+                                    />
+                                </a>
+                            </div>
+                            <div class="row px-3 d-flex flex-column">
+                                <div class="d-flex flex-column">
+                                    <h2 class="news-title my-2">title</h2>
+                                    <i class="fas fa-clock my-2">
+                                        <time>October 28, 2021</time></i
+                                    >
+                                </div>
+                                <div class="my-2">
+                                    <p class="text-justify">
+                                        Lorem ipsum dolor sit, amet consectetur
+                                        adipisicing elit. Nesciunt modi culpa
+                                        quaerat maiores, quos exercitationem
+                                        sapiente aut odio deleniti tempora
+                                        consectetur blanditiis ad voluptatum
+                                        ipsum. Commodi ullam perspiciatis
+                                        corrupti voluptatem molestiae
+                                        reiciendis. Lorem ipsum dolor sit, amet
+                                        consectetur adipisicing elit. Nesciunt
+                                        modi culpa quaerat maiores, quos
+                                        exercitationem sapiente aut odio
+                                        deleniti tempora consectetur blanditiis
+                                        ad voluptatum ipsum. Commodi ullam
+                                        perspiciatis corrupti voluptatem
+                                        molestiae reiciendis.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
         </div>
 
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-            crossorigin="anonymous"
-        />
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

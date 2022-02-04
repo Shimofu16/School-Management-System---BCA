@@ -29,20 +29,6 @@ class enrolledSeeder extends Seeder
                 'section_id' => '1',
                 'grade_level_id' => '1',
                 'sy_id' => '1',
-            ], [
-                'student_lrn' => '012345678912',
-                'last_name' => 'Tamad',
-                'first_name' => 'Juan',
-                'middle_name' => 'Dy',
-                'gender' => 'Male',
-                'age' => '3',
-                'email' => 'jdyt@gmail.com',
-                'birthdate' => '2019-05-23',
-                'birthplace' => 'calauan,laguna',
-                'address' => 'calauan,laguna',
-                'section_id' => '1',
-                'grade_level_id' => '1',
-                'sy_id' => '1',
             ]
         ];
         foreach ($students as $student) {
@@ -50,21 +36,21 @@ class enrolledSeeder extends Seeder
         }
         $families = [
             [
-                'student_lrn' => '012345678910',
-                'name' => 'Dino Sy Tamad',
+                'student_lrn' => '123456789101',
+                'name' => 'Rolando L. Latayan',
                 'birthdate' => '2000-05-23',
                 'contact_no' => '09123456782',
-                'email' => 'dinosyt@gmail.com',
+                'email' => 'rll@gmail.com',
                 'relationship' => 'Father',
-                'occupation' => 'Teacher',
+                'occupation' => 'Driver',
                 'office_contact_no' => '09123456785',
             ],
             [
-                'student_lrn' => '012345678910',
-                'name' => 'Gina Dy Tamad',
+                'student_lrn' => '123456789101',
+                'name' => 'Fe M. Latayan',
                 'birthdate' => '2000-05-23',
                 'contact_no' => '09123456789',
-                'email' => 'ginadyt@gmail.com',
+                'email' => 'fml@gmail.com',
                 'relationship' => 'Mother',
                 'occupation' => 'Teacher',
                 'office_contact_no' => '09123456785',
@@ -76,7 +62,7 @@ class enrolledSeeder extends Seeder
         }
         $guardians = [
             [
-                'student_lrn' => '012345678910',
+                'student_lrn' => '123456789101',
                 'name' => 'Gina Dy Tamad',
                 'relationship' => 'Guardian',
                 'contact_no' => '09123456789',

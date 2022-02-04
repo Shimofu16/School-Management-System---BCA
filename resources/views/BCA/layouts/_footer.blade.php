@@ -4,7 +4,7 @@
             <div class="col-sm col-md">
                 <div class="container">
                     <h4 class="footer-title">CONTACT US</h4>
-                    <div class="row mt-3 px-2">
+                    <div class="d-flex flex-column justify-content-center mt-3 px-2">
                         <div class="row mb-2">
                             <span>
                                 <i class="fas fa-map-marker-alt footer-icon-o"></i>
@@ -18,7 +18,7 @@
                                 <span class="footer-text">(02) 990 5970</span>
                             </span>
                         </div>
-                        <div class="row">
+                        <div class="row mb-2">
                             <span>
                                 <i class="fas fa-envelope footer-icon-o"></i>
                                 <span class="footer-text">breakthru_christian@yahoo.com</span>

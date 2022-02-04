@@ -38,7 +38,9 @@ body{
         padding-top: 12vh;
     }
 }
-
+.overflow-x{
+    overflow-x: scroll;
+}
 .bg-bca {
     background-color: var(--bca) !important;
 }

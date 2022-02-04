@@ -24,7 +24,7 @@
                     <input type="hidden" name="birthdate" value="{{ $student->birthdate }}">
                     <input type="hidden" name="birthplace" value="{{ $student->birthplace }}">
                     <input type="hidden" name="address" value="{{ $student->address }}">
-                    <input type="hidden" name="yearlevel_id" value="{{ $student->yearlevel_id }}">
+                    <input type="hidden" name="grade_level_id" value="{{ $student->grade_level_id }}">
 
                     <div class="form-group">
                         <label for="section" class="text-dark text-black font-weight-bold">Section:</label>

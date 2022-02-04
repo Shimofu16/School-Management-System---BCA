@@ -12,7 +12,7 @@ class sySeeder extends Seeder
      */
     public function run()
     {
-        $sys = [['school_year'=>'SY 2022 - 2023']];
+        $sys = [['school_year'=>'2022 - 2023']];
         foreach ($sys as $sy) {
             School_year::create($sy);
         }

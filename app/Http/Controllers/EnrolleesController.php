@@ -51,10 +51,23 @@ class EnrolleesController extends Controller
 
     public function store(Request $request)
     {
-        /*     $password = Str::lower(substr($request->input('first_name'),0,1)) . Str::lower(substr($request->input('middle_name'),0,1)) . Str::lower(substr($request->input('last_name'),0,1));
-        dd($password); */
+        $student = new Student;
+        $student->student_lrn = $request->input('student_lrn');
+        $student->first_name = $request->input('first_name');
+        $student->middle_name = $request->input('middle_name');
+        $student->last_name = $request->input('last_name');
+        $student->ext_name = $request->input('ext_name');
+        $student->gender = $request->input('gender');
+        $student->age = $request->input('age');
+        $student->email = $request->input('email');
+        $student->birthdate = $request->input('birthdate');
+        $student->birthplace = $request->input('birthplace');
+        $student->address = $request->input('address');
+        $student->section_id = $request->input('section_id');
+        $student->grade_level_id = $request->input('grade_level_id');
+        $student->sy_id = 1;
+        $student->save();
         $account = new User;
-        $account->student_lrn = $request->input('student_lrn');
         if ($request->input('ext_name') !== null) {
             $account->name = $request->input('first_name') . ' ' . $request->input('middle_name') . ', ' . $request->input('last_name') . ' ' . $request->input('ext_name');
         } else {
@@ -71,6 +84,7 @@ class EnrolleesController extends Controller
         $id = $request->input('id');
         $enrollee=Enrollee::findOrFail($id);
         $enrollee->delete();
+        return redirect()->route('enrolled.index');
     }
 
     /**
