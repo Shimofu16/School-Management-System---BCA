@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Grade_level;
+use App\Enrollee_Student_Family;
 class Enrollee extends Model
 {
     protected $table = 'enrollees';
@@ -15,5 +16,9 @@ class Enrollee extends Model
     /* Year level connection | relation. */
     public function gradeLevel(){
         return $this->belongsTo(Grade_level::class);
+    }
+    public function families()
+    {
+        return $this->hasMany(Enrollee_Student_Family::class);
     }
 }

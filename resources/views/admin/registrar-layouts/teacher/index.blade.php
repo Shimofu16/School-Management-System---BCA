@@ -57,7 +57,9 @@
     <script>
         // Call the dataTables jQuery plugin
         $(document).ready(function() {
-            $('#teacher-table').DataTable();
+            $('#teacher-table').DataTable(
+                "ordering": false
+            );
         });
     </script>
 @endsection

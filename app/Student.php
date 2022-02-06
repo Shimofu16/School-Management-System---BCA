@@ -21,4 +21,11 @@ class Student extends Model
     public function gradeLevel(){
         return $this->belongsTo(Grade_level::class);
     }
+    public function sy(){
+        return $this->belongsTo(School_year::class);
+    }
+    public function families()
+    {
+        return $this->hasMany(Enrollee_Student_Family::class);
+    }
 }

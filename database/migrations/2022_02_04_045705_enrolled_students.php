@@ -14,7 +14,8 @@ class EnrolledStudents extends Migration
     public function up()
     {
         Schema::create('enrolled_students', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
+            /* $table->increments('id'); */
             $table->string('student_lrn', 12)->unique();
             $table->string('last_name');
             $table->string('first_name');
@@ -26,6 +27,7 @@ class EnrolledStudents extends Migration
             $table->date('birthdate')->useCurrent();
             $table->string('birthplace');
             $table->string('address');
+
             $table->unsignedBigInteger('section_id');
             $table->foreign('section_id')
                 ->references('id')

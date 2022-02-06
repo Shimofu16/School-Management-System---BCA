@@ -14,7 +14,7 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::all();
+        $subjects = Subject::orderBy('id', 'asc')->get();
         return view('admin.registrar-layouts.subjects.index', compact('subjects'));
     }
 

@@ -53,7 +53,10 @@
     <script>
         // Call the dataTables jQuery plugin
         $(document).ready(function() {
-            $('#subject-table').DataTable();
+            $('#subject-table').DataTable(
+                "ordering": false
+            );
+
         });
     </script>
 @endsection

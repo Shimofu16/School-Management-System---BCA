@@ -58,7 +58,7 @@
                 <div class="form-row">
                     <div class="col-md-4">
                         <label for="student_lrn" class="text-dark text-black font-weight-bold">Learner Reference Number
-                            (LRN) <span class="text-danger">(Required)</span>:</label>
+                            (LRN) <span class="text-danger">*</span>:</label>
                         <input class="form-control w-50" type="text" name="student_lrn" id="student_lrn"
                             placeholder="Student LRN" value="{{ old('student_lrn') }}">
                     </div>
@@ -66,13 +66,13 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3 mr-3">
                         <label for="first_name" class="text-dark text-black font-weight-bold">First name <span
-                                class="text-danger">(Required)</span>:</label>
+                                class="text-danger">*</span>:</label>
                         <input class="form-control" type="text" name="first_name" id="first_name" placeholder="First name"
                             value="{{ old('first_name') }}">
                     </div>
                     <div class="col-md-4 mb-3 mr-3">
                         <label for="middle_name" class="text-dark text-black font-weight-bold">Middle name <span
-                                class="text-danger">(Required)</span>:</label>
+                                class="text-danger">*</span>:</label>
                         <input class="form-control " type="text" name="middle_name" id="middle_name"
                             placeholder="Middle name" value="{{ old('middle_name') }}">
                     </div>
@@ -80,7 +80,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3 mr-3">
                         <label for="last_name" class="text-dark text-black font-weight-bold">Last name <span
-                                class="text-danger">(Required)</span>:</label>
+                                class="text-danger">*</span>:</label>
                         <input class="form-control" type="text" name="last_name" id="last_name" placeholder="Last name"
                             value="{{ old('last_name') }}">
                     </div>
@@ -94,7 +94,7 @@
                     <div class="col-md-2 mb-3 mr-3">
 
                         <label for="Male" class="text-dark text-black font-weight-bold">Gender <span
-                                class="text-danger">(Required)</span>:</label>
+                                class="text-danger">*</span>:</label>
                         <div>
                             @if (old('gender') == 'Male')
                                 <label for="male" class="radio-inline py-2 mr-1"><input type="radio" name="gender" id="male"
@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-md-4 mb-3 mr-3">
                         <label for="age" class="text-dark text-black font-weight-bold">Age <span
-                                class="text-danger">(Required)</span>:</label>
+                                class="text-danger">*</span>:</label>
                         <input class="form-control w-50" type="number" name="age" id="age" placeholder="Age"
                             value="{{ old('age') }}">
                     </div>
@@ -128,13 +128,13 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3 mr-3">
                         <label for="email" class="text-dark text-black font-weight-bold">Email <span
-                                class="text-danger">(Required)</span>:</label>
+                                class="text-danger">*</span>:</label>
                         <input class="form-control" type="email" name="email" id="email"
                             placeholder="Ex. student@email.com" value="{{ old('email') }}">
                     </div>
                     <div class="col-md-4 mb-3 mr-3">
                         <label for="birthdate" class="text-dark text-black font-weight-bold">Birthdate <span
-                                class="text-danger">(Required)</span>:</label>
+                                class="text-danger">*</span>:</label>
                         <input class="form-control " type="date" name="birthdate" id="birthdate" placeholder="birthdate"
                             value="{{ old('birthdate') }}">
                     </div>
@@ -147,7 +147,7 @@
                     </div>
                     <div class="col-md-4 mb-3 mr-3">
                         <label for="address" class="text-dark text-black font-weight-bold">Address <span
-                                class="text-danger">(Required)</span>:</label>
+                                class="text-danger">*</span>:</label>
                         <input class="form-control" type="text" name="address" id="address"
                             placeholder="Ex. Brgy Lamot 2, Calauan Laguna" value="{{ old('address') }}">
                     </div>
@@ -155,7 +155,7 @@
                 <div class="form-row">
                     <div class="col-md-4">
                         <label for="grade_level_id " class="text-dark text-black font-weight-bold">Year Level <span
-                                class="text-danger">(Required)</span>:</label>
+                                class="text-danger">*</span>:</label>
                         <select name="grade_level_id" id="grade_level_id " class="form-control w-75">
                             <option selected>--- Select grade level ---</option>
                             @foreach ($gradelevels as $gradelevel)
@@ -193,7 +193,7 @@
                             value="{{ old('father_landline') }}">
                     </div>
                     <div class="col-md-4 mr-3 mb-3">
-                        <label for="father_contact_no" class="text-dark text-black font-weight-bold">Office Contact
+                        <label for="father_contact_no" class="text-dark text-black font-weight-bold">Contact
                             no.:</label>
                         <input class="form-control" type="text" name="father_contact_no" id="father_contact_no"
                             placeholder="" value="{{ old('father_contact_no') }}">
@@ -248,7 +248,7 @@
                             placeholder="" value="{{ old('mother_landline') }}">
                     </div>
                     <div class="col-md-4 mr-3 mb-3">
-                        <label for="mother_contact_no" class="text-dark text-black font-weight-bold">Office Contact
+                        <label for="mother_contact_no" class="text-dark text-black font-weight-bold">Contact
                             no.:</label>
                         <input class="form-control" type="text" name="mother_contact_no" id="mother_contact_no"
                             placeholder="" value="{{ old('mother_contact_no') }}">
@@ -279,31 +279,16 @@
             <div class="container mb-3">
                 <div class="form-row">
                     <div class="col-md-4 mr-3 mb-3">
-                        <label for="guardian_name" class="text-dark text-black font-weight-bold">Full name:</label>
+                        <label for="guardian_name" class="text-dark text-black font-weight-bold">Full name <span
+                            class="text-danger">*</span>:</label>
                         <input class="form-control" type="text" name="guardian_name" id="guardian_name"
                             placeholder="Ex. Maria S. Dela Cruz" value="{{ old('guardian_name') }}">
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="col-md-3 mr-3 mb-3">
-                        <label for="guardian_birthdate" class="text-dark text-black font-weight-bold">Birthdate:</label>
-                        <input class="form-control" type="date" name="guardian_birthdate" id="guardian_birthdate"
-                            value="{{ old('guardian_birthdate') }}">
-                    </div>
                     <div class="col-md-4 mr-3 mb-3">
-                        <label for="guardian_email" class="text-dark text-black font-weight-bold">Email:</label>
-                        <input class="form-control" type="text" name="guardian_email" id="guardian_email" placeholder=""
-                            value="{{ old('guardian_email') }}">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-3 mr-3 mb-3">
-                        <label for="guardian_landline" class="text-dark text-black font-weight-bold">Landline:</label>
-                        <input class="form-control" type="text" name="guardian_landline" id="guardian_landline"
-                            placeholder="" value="{{ old('guardian_landline') }}">
-                    </div>
-                    <div class="col-md-4 mr-3 mb-3">
-                        <label for="guardian_contact" class="text-dark text-black font-weight-bold">Contact No.:</label>
+                        <label for="guardian_contact" class="text-dark text-black font-weight-bold">Contact No. <span
+                            class="text-danger">*</span>:</label>
                         <input class="form-control" type="text" name="guardian_contact" id="guardian_contact"
                             value="{{ old('guardian_contact') }}">
                     </div>

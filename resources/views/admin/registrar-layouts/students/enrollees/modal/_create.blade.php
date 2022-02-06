@@ -25,7 +25,48 @@
                     <input type="hidden" name="birthplace" value="{{ $student->birthplace }}">
                     <input type="hidden" name="address" value="{{ $student->address }}">
                     <input type="hidden" name="grade_level_id" value="{{ $student->grade_level_id }}">
+                    {{--  fam   --}}
 
+                    @foreach ($families as $family)
+                    @if ($family->student_id == $student->id)
+
+                        @if ($family->relationship == 'Father')
+                        <input type="hidden" name="father_name" value="{{ $family->name }}">
+                        <input type="hidden" name="father_birthdate" value="{{ $family->birthdate }}">
+                        <input type="hidden" name="father_email" value="{{ $family->email }}">
+                        <input type="hidden" name="father_landline" value="{{ $family->landline }}">
+                        <input type="hidden" name="father_contact_no" value="{{ $family->contact_no }}">
+                        <input type="hidden" name="father_occupation" value="{{ $family->occupation }}">
+                        <input type="hidden" name="father_office_address" value="{{ $family->office_address }}">
+                        <input type="hidden" name="father_office_contact" value="{{ $family->office_contact_no }}">
+                            @break
+                        @endif
+                    @endif
+                    @endforeach
+                    @foreach ($families as $family)
+                    @if ($family->student_id == $student->id)
+                        @if ($family->relationship == 'Mother')
+                        <input type="hidden" name="mother_name" value="{{ $family->name }}">
+                        <input type="hidden" name="mother_birthdate" value="{{ $family->birthdate }}">
+                        <input type="hidden" name="mother_email" value="{{ $family->email }}">
+                        <input type="hidden" name="mother_landline" value="{{ $family->landline }}">
+                        <input type="hidden" name="mother_contact_no" value="{{ $family->contact_no }}">
+                        <input type="hidden" name="mother_occupation" value="{{ $family->occupation }}">
+                        <input type="hidden" name="mother_office_address" value="{{ $family->office_address }}">
+                        <input type="hidden" name="mother_office_contact" value="{{ $family->office_contact_no }}">
+                            @break
+                        @endif
+                    @endif
+                    @endforeach
+                    @foreach ($families as $family)
+                    @if ($family->student_id == $student->id)
+                        @if ($family->relationship == 'Guardian')
+                        <input type="hidden" name="guardian_name" value="{{ $family->name }}">
+                        <input type="hidden" name="guardian_contact" value="{{ $family->contact_no }}">
+                            @break
+                        @endif
+                    @endif
+                    @endforeach
                     <div class="form-group">
                         <label for="section" class="text-dark text-black font-weight-bold">Section:</label>
                         <select name="section_id" id="section" class="form-control w-50">

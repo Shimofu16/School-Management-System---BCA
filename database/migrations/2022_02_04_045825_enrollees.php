@@ -14,7 +14,7 @@ class Enrollees extends Migration
     public function up()
     {
         Schema::create('enrollees', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('student_lrn', 12)->unique();
             $table->string('last_name');
             $table->string('first_name');

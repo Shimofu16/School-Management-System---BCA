@@ -1,6 +1,7 @@
 <?php
 
 use App\Enrollee;
+use App\Enrollee_Student_Family;
 use App\Family;
 use App\Guardian;
 use Illuminate\Database\Seeder;
@@ -14,20 +15,7 @@ class enrolleeSeeder extends Seeder
      */
     public function run()
     {
-        $students=[
-            [
-                'student_lrn' => '123456789102',
-                'last_name' => 'Tamad',
-                'first_name' => 'Juan',
-                'middle_name' => 'Dy',
-                'gender' => 'Male',
-                'age' => '3',
-                'email' => 'jdyt@gmail.com',
-                'birthdate' => '2019-05-23',
-                'birthplace' => 'calauan,laguna',
-                'address' => 'calauan,laguna',
-                'grade_level_id' => '1',
-            ],
+        $students = [
             [
                 'student_lrn' => '123456789103',
                 'last_name' => 'Albayter',
@@ -60,8 +48,8 @@ class enrolleeSeeder extends Seeder
         }
         $families = [
             [
-                'student_lrn' => '123456789102',
-                'name' => 'Dino Sy Tamad',
+                'student_id' => '1',
+                'name' => 'Dino Sy Tamad 1',
                 'birthdate' => '2000-05-23',
                 'contact_no' => '09123456782',
                 'email' => 'dinosyt@gmail.com',
@@ -70,29 +58,50 @@ class enrolleeSeeder extends Seeder
                 'office_contact_no' => '09123456785',
             ],
             [
-                'student_lrn' => '123456789102',
-                'name' => 'Gina Dy Tamad',
+                'student_id' => '1',
+                'name' => 'Gina Dy Tamad 1',
                 'birthdate' => '2000-05-23',
                 'contact_no' => '09123456789',
                 'email' => 'ginadyt@gmail.com',
                 'relationship' => 'Mother',
                 'occupation' => 'Teacher',
                 'office_contact_no' => '09123456785',
-            ]
-        ];
-        foreach ($families as $family) {
-            Family::create($family);
-        }
-        $guardians = [
+            ],
             [
-                'student_lrn' => '123456789102',
-                'name' => 'Gina Dy Tamad',
+                'student_id' => '1',
+                'name' => 'Gina Dy Tamad 1',
+                'relationship' => 'Guardian',
+                'contact_no' => '09123456789',
+            ],
+            [
+                'student_id' => '2',
+                'name' => 'Dino Sy Tamad 2',
+                'birthdate' => '2000-05-23',
+                'contact_no' => '09123456782',
+                'email' => 'dinosyt@gmail.com',
+                'relationship' => 'Father',
+                'occupation' => 'Teacher',
+                'office_contact_no' => '09123456785',
+            ],
+            [
+                'student_id' => '2',
+                'name' => 'Gina Dy Tamad 2',
+                'birthdate' => '2000-05-23',
+                'contact_no' => '09123456789',
+                'email' => 'ginadyt@gmail.com',
+                'relationship' => 'Mother',
+                'occupation' => 'Teacher',
+                'office_contact_no' => '09123456785',
+            ],
+            [
+                'student_id' => '2',
+                'name' => 'Gina Dy Tamad 2',
                 'relationship' => 'Guardian',
                 'contact_no' => '09123456789',
             ]
         ];
-        foreach ($guardians as $guardian) {
-            Guardian::create($guardian);
+        foreach ($families as $family) {
+            Enrollee_Student_Family::create($family);
         }
     }
 }

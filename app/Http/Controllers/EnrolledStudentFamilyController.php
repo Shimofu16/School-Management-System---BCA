@@ -2,31 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Enrolled_Student_Family;
 use Illuminate\Http\Request;
-use App\Section;
-use App\Student;
-use App\Teacher;
-use App\Enrollee;
 
-
-
-class RegistrarDashboardController extends Controller
+class EnrolledStudentFamilyController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-
-        $enrolleeCount = Enrollee::count();
-        $enrolledCount = Student::count();
-        $sectionCount = Section::count();
-        $teacherCount = Teacher::count();
-        return view('admin.registrar-layouts.dashboard.index', compact('enrolleeCount', 'enrolledCount', 'sectionCount', 'teacherCount'));
+        //
     }
 
     /**
@@ -34,7 +22,6 @@ class RegistrarDashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function create()
     {
         //
@@ -46,7 +33,6 @@ class RegistrarDashboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     public function store(Request $request)
     {
         //
@@ -55,11 +41,10 @@ class RegistrarDashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Enrolled_Student_Family  $enrolled_Student_Family
      * @return \Illuminate\Http\Response
      */
-
-    public function show($id)
+    public function show(Enrolled_Student_Family $enrolled_Student_Family)
     {
         //
     }
@@ -67,11 +52,10 @@ class RegistrarDashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Enrolled_Student_Family  $enrolled_Student_Family
      * @return \Illuminate\Http\Response
      */
-
-    public function edit($id)
+    public function edit(Enrolled_Student_Family $enrolled_Student_Family)
     {
         //
     }
@@ -80,11 +64,10 @@ class RegistrarDashboardController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Enrolled_Student_Family  $enrolled_Student_Family
      * @return \Illuminate\Http\Response
      */
-
-    public function update(Request $request, $id)
+    public function update(Request $request, Enrolled_Student_Family $enrolled_Student_Family)
     {
         //
     }
@@ -92,11 +75,10 @@ class RegistrarDashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Enrolled_Student_Family  $enrolled_Student_Family
      * @return \Illuminate\Http\Response
      */
-
-    public function destroy($id)
+    public function destroy(Enrolled_Student_Family $enrolled_Student_Family)
     {
         //
     }

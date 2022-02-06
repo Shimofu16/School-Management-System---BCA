@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Section;
 use App\Enrollee;
+use App\Enrollee_Student_Family;
 use App\Family;
 use App\Grade_level;
 use App\Http\Requests\newStudentRequest;
+use Illuminate\Support\Arr;
 
 use function PHPUnit\Framework\isNull;
 
@@ -69,7 +71,7 @@ class HomeController extends Controller
 
         /* dd(request()->all()); */
         $validate  = $request->validate([
-            'student_lrn' => ['required','max:11'],
+            'student_lrn' => ['required', 'max:11'],
             'first_name' => ['required'],
             'middle_name' => ['required'],
             'last_name' => ['required'],
@@ -98,30 +100,49 @@ class HomeController extends Controller
             $student->address = $request->input('address');
             $student->grade_level_id  = $request->input('grade_level_id');
             $student->save();
-
-            if ($request->filled('father_name')) {
-                $family = new Family;
-                $family->name = $request->input('father_name');
-                $family->birthdate = $request->input('father_birthdate');
-                $family->landline = $request->input('father_email');
-                $family->email = $request->input('father_landline');
-                $family->contact_no = $request->input('father_contact_no');
-                $family->occupation = $request->input('father_occupation');
-                $family->office_address = $request->input('father_office_address');
-                $family->office_contact_no = $request->input('father_office_contact');
-                $family->role = "Father";
-                $family->name = $request->input('mother_name');
-                $family->birthdate = $request->input('mother_birthdate');
-                $family->landline = $request->input('mother_email');
-                $family->email = $request->input('mother_landline');
-                $family->contact_no = $request->input('mother_contact_no');
-                $family->occupation = $request->input('mother_occupation');
-                $family->office_address = $request->input('mother_office_address');
-                $family->office_contact_no = $request->input('mother_office_contact');
-                $family->role = "Mother";
-                $family->save();
+            $students = Enrollee::all();
+            $c = 0;
+            foreach ($students as $student) {
+                $c++;
+                $id[$c] = $student->id;
             }
-        }else{
+            $lastId = Arr::last($id);
+            if ($request->filled('father_name')) {
+                $families =[
+                    [
+                        'student_id' => $lastId,
+                        'name' => $request->input('father_name'),
+                        'birthdate' => $request->input('father_birthdate'),
+                        'email' => $request->input('father_email'),
+                        'landline' => $request->input('father_landline'),
+                        'contact_no' => $request->input('father_contact_no'),
+                        'occupation' => $request->input('father_occupation'),
+                        'office_address' => $request->input('father_office_address'),
+                        'office_contact_no' => $request->input('father_office_contact'),
+                        'relationship' => 'Father',
+                    ],[
+                        'student_id' => $lastId,
+                        'name' => $request->input('mother_name'),
+                        'birthdate' => $request->input('mother_birthdate'),
+                        'email' => $request->input('mother_email'),
+                        'landline' => $request->input('mother_landline'),
+                        'contact_no' => $request->input('mother_contact_no'),
+                        'occupation' => $request->input('mother_occupation'),
+                        'office_address' => $request->input('mother_office_address'),
+                        'office_contact_no' => $request->input('mother_office_contact'),
+                        'relationship' => 'Mother',
+                    ],[
+                        'student_id' => $lastId,
+                        'name' => $request->input('guardian_name'),
+                        'contact_no' => $request->input('guardian_contact'),
+                        'relationship' => 'Guardian',
+                    ]
+                ];
+                foreach ($families as $family) {
+                    Enrollee_Student_Family::create($family);
+                }
+            }
+        } else {
             return redirect()->route('enroll.index')->withInput();
         }
 
