@@ -1,48 +1,64 @@
-<div class="modal fade" id="add{{ $teacher->id }}" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-dark" id="exampleModalLongTitle">Add Section & subject to
-                    {{ $teacher->name }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title  text-white" id="exampleModalLongTitle">Add Teacher</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('teachers.store', $teacher->id) }}" method="POST">
+                <form action="{{ route('teachers.store') }}" method="POST">
+                    {{-- {{ route('add_teacher') }} --}}
                     @csrf
                     <div class="form-group">
-                        <label for="section" class="text-dark text-black font-weight-bold">Section:</label>
-                        <select name="section" id="section" class="form-control w-50">
-                            @foreach ($sections as $section)
-                                <option value="{{ $section->section_name }}">{{ $section->section_name }}</option>
-                            @endforeach
-
-                        </select>
+                        <label for="name" class="text-dark text-black font-weight-bold">Name:</label>
+                        <input class="form-control w-75" type="text" name="name" id="name" placeholder="Name"
+                            value="{{ old('name') }}">
                     </div>
                     <div class="form-group">
-                        <label for="subject" class="text-dark text-black font-weight-bold">Subject:</label>
-                        <select name="subject" id="subject" class="form-control w-50">
-                            @foreach ($subjects as $subject)
-                                <option value="{{ $subject->subject }}">{{ $subject->subject }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="time" class="text-dark text-black font-weight-bold">Student LRN:</label>
-                        <time datetime="08:00">
-                        <div class="d-flex">
-                            <input class="form-control w-25" type="time" name="timeOne" id="time" placeholder="2:00pm"
-                                value="{{ old('time') }}">
-                            <h2>&#160;-&#160;</h2>
-                            <input class="form-control w-25" type="time" name="timeTwo" id="time" placeholder="2:00pm"
-                                value="{{ old('time') }}">
+                        <label for="Extname" class="text-dark text-black font-weight-bold">Gender:</label>
+                        <div>
+                            @if (old('gender') == 'Male')
+                                <label for="male" class="radio-inline"><input type="radio" name="gender" id="Gender"
+                                        value="Male" checked value="{{ old('gender') }}">
+                                    Male</label>
+                                <label for="female" class="radio-inline"><input type="radio" name="gender" id="Gender"
+                                        value="Female" value="{{ old('gender') }}">
+                                    Female</label>
+                            @elseif (old('gender') == 'Female')
+                                <label for="male" class="radio-inline"><input type="radio" name="gender" id="Gender"
+                                        value="Male" value="{{ old('gender') }}">
+                                    Male</label>
+                                <label for="female" class="radio-inline"><input type="radio" name="gender" id="Gender"
+                                        checked value="Female" value="{{ old('gender') }}">
+                                    Female</label>
+                            @endif
+                            <label for="male" class="radio-inline"><input type="radio" name="gender" id="male"
+                                    value="Male" value="{{ old('gender') }}">
+                                Male</label>
+                            <label for="female" class="radio-inline"><input type="radio" name="gender" id="female"
+                                    value="Female" value="{{ old('gender') }}">
+                                Female</label>
                         </div>
                     </div>
-                    <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
-                    <hr>
-                    <div class="d-flex justify-content-end">
+                    <div class="form-group">
+                        <label for="Age" class="text-dark text-black font-weight-bold">Age:</label>
+                        <input class="form-control w-25" type="number" name="age" id="Age" placeholder="Age"
+                            value="{{ old('age') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact" class="text-dark text-black font-weight-bold">Phone No:</label>
+                        <input class="form-control" type="tel" name="contact" id="contact"
+                            placeholder="Phone Number" value="{{ old('contact') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="text-dark text-black font-weight-bold">Email:</label>
+                        <input class="form-control" type="text" name="email" id="email" placeholder="Email"
+                            value="{{ old('email') }}">
+                    </div>
+                    <div class="modal-footer">
                         <button class="btn btn-primary" type="submit">Add</button>
                     </div>
                 </form>

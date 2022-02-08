@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\StudentDashboardController;
 use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Controllers\UsersController;
+use App\Mail\acceptedMessage;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,6 @@ use App\Http\Controllers\UsersController;
  */
 
 /* ============================== Home Page ================================ */
-
 Route::middleware(['middleware' => 'PreventBackMiddleware'])->group(function () {
     Auth::routes();
 });
@@ -45,17 +46,12 @@ Route::group(['prefix' => 'student', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'teacher', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', [TeacherDashboardController::class, 'index'])->name('teacher.dashboard.index');
 });
-
-
-
 /* ============================== Admin ================================ */
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','isAdmin']], function () {
     Route::get('/dashboard',  [AdminController::class, 'index'])->name('admin.dashboard.index');
     /* users */
     Route::get('/user', [UsersController::class, 'index'])->name('users.index');
 });
-
-
 /* ============================== Registrar ================================ */
 Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], function () {
     /* Dashboard */
@@ -87,3 +83,7 @@ Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], 
     Route::post('/subjects', 'SubjectController@store')->name('subject.store');
     Route::delete('/subjects/{id}', 'SubjectController@destroy')->name('subject.destroy');
 });
+Route::get('email', function(){
+    Mail::to('royjosephlatayan0816@gmail.com')->send(new acceptedMessage);
+    return new acceptedMessage();
+})->name('user');

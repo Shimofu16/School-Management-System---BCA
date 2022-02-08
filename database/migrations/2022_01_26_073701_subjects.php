@@ -16,7 +16,7 @@ class Subjects extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string('subject');
-            $table->timestamps();
+
         });
     }
 

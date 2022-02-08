@@ -2822,11 +2822,11 @@ input[type="submit"].btn-block {
 .fade {
     transition: opacity 0.15s linear;
 }
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
     .fade {
         transition: none;
     }
-}
+} */
 .fade:not(.show) {
     opacity: 0;
 }

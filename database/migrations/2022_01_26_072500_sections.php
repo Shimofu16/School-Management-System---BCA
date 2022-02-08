@@ -16,8 +16,7 @@ class Sections extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('section_name');
-            $table->string('advicer')->nullable();
-            $table->timestamps();
+            $table->string('adviser')->nullable();
         });
     }
 

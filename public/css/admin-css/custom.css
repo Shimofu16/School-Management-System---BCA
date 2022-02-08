@@ -21,3 +21,25 @@
 .fw-bolder {
     font-weight: bolder;
 }
+.custom-alert {
+    position: absolute;
+    top: 30px;
+    width: 300px;
+    right: 10px;
+    z-index: 10000;
+}
+
+.alert {
+    opacity: 1;
+
+}
+ .alert.fade {
+    opacity: 0;
+    -webkit-transition: opacity 0.15s linear;
+    -moz-transition: opacity 0.15s linear;
+    -o-transition: opacity 0.15s linear;
+    transition: opacity 0.15s linear;
+}
+.alert.fade.in {
+    opacity: 1;
+}

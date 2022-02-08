@@ -74,7 +74,9 @@ class EnrolledStudentController extends Controller
         $families = Enrolled_Student_Family::all();
         return view('admin.registrar-layouts.students.enrolled.show', compact('student','families'));
     }
+    public function showRequirements($id){
 
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -98,9 +100,22 @@ class EnrolledStudentController extends Controller
     public function update(Request $request, $id)
     {
         $student = Student::findOrFail($id);
-        $student->update(
-            $request->all()
-        );
+        $student->student_lrn = request()->input('student_lrn');
+        $student->first_name = request()->input('first_name');
+        $student->middle_name = request()->input('middle_name');
+        $student->last_name = request()->input('last_name');
+        $student->gender = request()->input('gender');
+        $student->age = request()->input('age');
+        $student->email = request()->input('email');
+        $student->birthdate = request()->input('birthdate');
+        $student->birthplace = request()->input('birthplace');
+        $student->address = request()->input('address');
+        $student->section_id = request()->input('section_id');
+        $student->grade_level_id = request()->input('grade_level_id');
+        $student->update();
+        if ($student->wasChanged()) {
+            return redirect()->route('enrolled.index')->with('success','Update Successfully');
+        }
         return redirect()->route('enrolled.index');
     }
 

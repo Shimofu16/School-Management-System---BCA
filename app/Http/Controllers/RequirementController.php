@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\requirement;
 use Illuminate\Http\Request;
-use Auth;
 
-class AdminController extends Controller
+class RequirementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +14,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.admin-layouts.dashboard.index');
+        //
     }
 
     /**
@@ -45,10 +41,10 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\requirement  $requirement
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(requirement $requirement)
     {
         //
     }
@@ -56,10 +52,10 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\requirement  $requirement
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(requirement $requirement)
     {
         //
     }
@@ -68,10 +64,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\requirement  $requirement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, requirement $requirement)
     {
         //
     }
@@ -79,10 +75,10 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\requirement  $requirement
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(requirement $requirement)
     {
         //
     }

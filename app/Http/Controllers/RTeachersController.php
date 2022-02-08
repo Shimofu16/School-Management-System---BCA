@@ -54,22 +54,9 @@ class RTeachersController extends Controller
 
     public function store(Request $request)
     {
-
-        if (url()->previous() == 'http://127.0.0.1:8000/registrar/teachers/create') {
             Teacher::create(
                 $request->all()
             );
-        } else {
-            $teacher = new subject_teacher;
-            $teacher->teacher_id = $request->input('teacher_id');
-            $teacher->subject = $request->input('subject');
-            $teacher->section = $request->input('section');
-            $timeOne = date('h:i:s a', $request->input('timeOne'));
-            $timeTwo = date('h:i:s a', $request->input('timeTwo'));
-            $timeOne;
-            $teacher->time = $timeOne . '-' . $timeTwo;
-            $teacher->save();
-        }
         return redirect()->route('teachers.index')->with('success', 'Teacher added successfully.');
     }
 
@@ -105,13 +92,36 @@ class RTeachersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //$article->isDirty(); // true
+    //$article->isDirty('article_title'); // true
+    //$article->isDirty('article_type'); // false
 
+    //$article->isClean(); // false
+    //$article->isClean('article_title'); // false
+    //$article->isClean('article_type'); // true
+
+    //$article->save();
+
+    //$article->wasChanged('article_title'); // true
+    //$article->wasChanged('article_type'); // false
+
+    // isDirty [determines if any attributes have been changed since the model was loaded]
+    //$article->isDirty(); // false
+
+    // isClean [opposite of isDirty]
+    //$article->isClean(); // true
+
+    // wasChanged [determines if any attributes were changed when the model was last saved within the current request cycle]
+    //$article->wasChanged(); // true
     public function update(Request $request, $id)
     {
         $teacher = Teacher::findOrFail($id);
         $teacher->update(
             $request->all()
         );
+        if ($teacher->wasChanged()) {
+            return redirect()->route('teachers.index')->with('success', 'Update Successfully.');
+        }
         return redirect()->route('teachers.index');
     }
 

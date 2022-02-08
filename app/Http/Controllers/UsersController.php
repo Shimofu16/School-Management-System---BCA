@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller {
     /**
@@ -46,7 +47,7 @@ class UsersController extends Controller {
             'password' => Hash::make($request->password),
         ]);
         $user->attachRole($request->role_id);
-        $user-save();
+        $user->save();
         return back()->with('success', 'User added successfully.');
     }
 

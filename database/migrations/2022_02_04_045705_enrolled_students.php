@@ -27,7 +27,6 @@ class EnrolledStudents extends Migration
             $table->date('birthdate')->useCurrent();
             $table->string('birthplace');
             $table->string('address');
-
             $table->unsignedBigInteger('section_id');
             $table->foreign('section_id')
                 ->references('id')

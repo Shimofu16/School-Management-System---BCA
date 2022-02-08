@@ -102,6 +102,14 @@
         <script src="{{ asset('js/sb-admin/sb-admin-2.min.js') }}"></script>
 
         @yield('dashboard-javascript')
+        <script>
+            $(document).ready(function() {
+                $("#success-alert").hide();
+                $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+                    $("#success-alert").slideUp(500);
+                });
+            });
+        </script>
     </body>
 
     </html>

@@ -43,8 +43,8 @@
                         <input class="form-control w-25" type="number" name="age" id="Age" placeholder="Age" value="{{ old('age') }}">
                     </div>
                     <div class="form-group">
-                        <label for="phone_no" class="text-dark text-black font-weight-bold">Phone No:</label>
-                        <input class="form-control w-25" type="tel" name="contact" id="phone_no" placeholder="Phone Number" value="{{ old('phone_no') }}">
+                        <label for="contact" class="text-dark text-black font-weight-bold">Phone No:</label>
+                        <input class="form-control w-25" type="tel" name="contact" id="contact" placeholder="Phone Number" value="{{ old('contact') }}">
                     </div>
                     <div class="form-group">
                         <label for="email" class="text-dark text-black font-weight-bold">Email:</label>

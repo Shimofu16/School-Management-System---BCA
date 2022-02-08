@@ -22,7 +22,6 @@ class CreateAdminsTable extends Migration
             $table->string('gender');
             $table->boolean('active')->default(0);
             $table->rememberToken();
-            $table->timestamps();
         });
     }
 

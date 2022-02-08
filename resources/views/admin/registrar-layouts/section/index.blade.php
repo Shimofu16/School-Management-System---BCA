@@ -6,16 +6,18 @@
 @section('contents')
     @include('admin.alert-msgs._success')
     <div class="row">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h1 class="h3 mb-4 text-gray-800 mr-auto pt-3">@yield('page-title')</h1>
-            <div class="col-2 d-flex">
-                <a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addSection">
+        <div class="col">
+            <h1 class="h3 mb-4 text-gray-800">@yield('page-title')</h1>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-end">
+                <a type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#add">
                     <span class="d-flex align-items-center"><i class="fas fa-plus-circle"></i>&#160; Add Section</span>
                 </a>
+                @include('admin.registrar-layouts.section.modal._modal-section')
             </div>
         </div>
     </div>
-    @include('admin.registrar-layouts.section.modal._modal-section')
     <hr>
     <div class="row">
         <div class="col-12">

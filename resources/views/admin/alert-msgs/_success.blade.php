@@ -1,7 +1,7 @@
 @if (Session::has('success'))
 <div class="custom-alert">
     <div class="col-12">
-        <div class="alert alert-success alert-dismissable">
+        <div id="success-alert" class="alert alert-success">
             <button type="button" class="close btn" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -13,7 +13,6 @@
 
 @endif
 @if ($errors->any())
-
     <div class="custom-alert">
         <div class="col-12">
             <div class="alert alert-danger alert-dismissable">

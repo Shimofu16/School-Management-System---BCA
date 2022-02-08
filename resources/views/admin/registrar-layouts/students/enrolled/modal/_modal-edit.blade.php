@@ -97,20 +97,20 @@
                     </div>
                     <div class="form-row mb-2">
                         <div class="col-4">
-                            <label for="section_id" class="text-dark text-black font-weight-bold">section:</label>
-                            <select name="section_id" id="section_id " class="form-control w-75">
-                                <option selected="">{{ $student->section->section_name }}</option>
+                            <label for="section_id" class="text-dark text-black font-weight-bold">Section:</label>
+                            <select name="section_id" id="section_id" class="form-control w-75">
+                                <option selected value="{{ $student->section_id }}">{{ $student->section->section_name }}</option>
                                 @foreach ($sections as $section)
                                 <option value="{{ $section->id }}">{{ $section->section_name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-4">
-                            <label for="grade_level" class="text-dark text-black font-weight-bold">grade_level:</label>
-                            <select name="grade_level_id" id="grade_level_id " class="form-control w-75">
-                                <option selected="">{{ $student->gradeLevel->grade_name }}</option>
-                                @foreach ($gradeLevels as $gradeLevel)
-                                <option value="{{ $gradeLevel->grade_level }}">{{ $gradeLevel->grade_name }}</option>
+                            <label for="grade_level" class="text-dark text-black font-weight-bold">Grade level:</label>
+                            <select name="grade_level_id" id="grade_level_id" class="form-control w-75">
+                                <option selected value="{{ $student->grade_level_id }}">{{ $student->gradeLevel->grade_name }}</option>
+                                @foreach ($gradeLevels as $gl)
+                                <option value="{{ $gl->id }}">{{ $gl->grade_name }}</option>
                                 @endforeach
                             </select>
                         </div>

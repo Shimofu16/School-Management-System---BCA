@@ -18,7 +18,6 @@ class GradeLevels extends Migration
             $table->string('grade_name');
             $table->string('grade_level');
             $table->string('description')->nullable();
-            $table->timestamps();
         });
     }
 
