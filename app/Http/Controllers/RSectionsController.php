@@ -82,8 +82,9 @@ class RSectionsController extends Controller
         $section->update(
             $request->all()
         );
- /*        $section->section_name = $request->input('section_name');
-        $section->advicer = $request->input('advicer'); */
+        if ($section->wasChanged()) {
+            return redirect()->route('section.index')->with('success', 'Update Successfully.');
+        }
         return redirect()->route('section.index');
     }
 

@@ -72,7 +72,9 @@
                         <select name="section_id" id="section" class="form-control w-50">
                             <option selected >---- Select section ----</option>
                             @foreach ($sections as $section)
+                                @if ($student->grade_level_id == $section->grade_level_id)
                                 <option value="{{ $section->id }}">{{ $section->section_name }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>

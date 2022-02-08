@@ -25,8 +25,8 @@
                 <table class="table table-bordered table-hover" id="section-table">
                     <thead class="thead-light">
                         <tr>
-                            <th class="text-center">No.</th>
                             <th class="text-center">Section name</th>
+                            <th class="text-center">Grade level</th>
                             <th class="text-center">Number of students</th>
                             <th class="text-center">Adviser</th>
                             <th class="text-center">Action</th>
@@ -35,18 +35,17 @@
                     <tbody>
                         @foreach ($sections as $section)
                             <tr>
-                                <td class="text-center">{{ $section->id }}</td>
                                 <td class="text-center">{{ $section->section_name }}</td>
+                                <td class="text-center">{{ $section->gradeLevel->grade_name }}</td>
                                 @if ($section->students->count() == null)
                                     <td class="text-center">No Student</td>
                                 @else
-
                                     <td class="text-center">{{ $section->students->count() }}</td>
                                 @endif
-                                @if ($section->advicer == null)
-                                    <td class="text-center">No Advicer</td>
+                                @if ($section->adviser == null)
+                                    <td class="text-center">No Adviser</td>
                                 @else
-                                    <td class="text-center">{{ $section->advicer }}</td>
+                                    <td class="text-center">{{ $section->adviser }}</td>
                                 @endif
 
                                 <td class="d-flex justify-content-center align-items-center">

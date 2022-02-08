@@ -48,17 +48,16 @@
 
         <!-- Nav Item - Teachers Collapse Me -->
         <li class="nav-item {{ Request::is('registrar/teachers/*') ? 'active' : '' }}">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                aria-controls="collapseTwo">
+            <a class="nav-link collapsed" href="{{ route('teachers.index') }}">
                 <i class="fa-fw fas fa-chalkboard-teacher"></i>
                 <span>Teachers</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+  {{--            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('teachers.index') }}">Teachers</a>
                     <a class="collapse-item" href="{{ route('teachers.create') }}">Add Teacher</a>
                 </div>
-            </div>
+            </div>  --}}
         </li>
         <!-- Nav Item - Sections -->
         <li class="{{ Request::is('registrar/sections') ? 'active' : '' }} nav-item ">

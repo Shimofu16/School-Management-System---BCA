@@ -12,4 +12,7 @@ class Section extends Model
     public function students(){
         return $this->hasMany(Student::class);
     }
+    public function gradeLevel(){
+        return $this->belongsTo(Grade_level::class);
+    }
 }

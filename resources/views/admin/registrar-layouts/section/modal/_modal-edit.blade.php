@@ -18,9 +18,9 @@
                             placeholder="Section name" value="{{ $section->section_name }}">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="advicer" class="text-dark text-black font-weight-bold">advicer:</label>
-                        <select name="advicer" class="custom-select" id="advicer">
-                            <option selected>Choose...</option>
+                        <label for="adviser" class="text-dark text-black font-weight-bold">Adviser:</label>
+                        <select name="adviser" class="custom-select" id="adviser">
+                            <option selected>-- Select Adviser --</option>
                             @foreach ($teachers as $teacher)
                                 <option value="{{ $teacher->name }}">{{ $teacher->name }}</option>
                             @endforeach

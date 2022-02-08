@@ -16,7 +16,11 @@ class Subjects extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string('subject');
-
+            $table->unsignedBigInteger('grade_level_id');
+            $table->foreign('grade_level_id')
+                ->references('id')
+                ->on('grade_levels')
+                ->onDelete('restrict')->onUpdate('cascade');
         });
     }
 

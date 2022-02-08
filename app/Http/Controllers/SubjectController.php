@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Grade_level;
 use Illuminate\Http\Request;
 use App\Subject;
 use DB;
@@ -15,7 +16,8 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = Subject::orderBy('id', 'asc')->get();
-        return view('admin.registrar-layouts.subjects.index', compact('subjects'));
+        $gradeLevels = Grade_level::all();
+        return view('admin.registrar-layouts.subjects.index', compact('subjects','gradeLevels'));
     }
 
     /**
@@ -36,10 +38,32 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        Subject::create(
-            $request->all()
-        );
-        return redirect()->route('subject.index')->with('success', 'Subject added successfully.');
+        //Get graded level id from request and store it to $gl
+        $gl = $request->input('grade_level_id');
+        //Get all fields of subjects table
+        $subjects = Subject::all();
+        //Grade level counter
+        $glCount = 0;
+
+        foreach ($subjects as $subject) {
+            // check if there are same grade level in subjects table
+            if ($subject->grade_level_id == $gl) {
+                // If the condition is true add 1 to glCount
+                $glCount++;
+            }
+        }
+        // Check if glCount is >= 5
+        // If true then redirect to subjects table in registrar with error message
+        // else return wuth success message :)
+        if ($glCount >= 5) {
+            return redirect()->route('subject.index')->with('error', 'Overloaded.');
+        }else{
+            $subject = new Subject;
+            $subject->subject = request()->input('subject');
+            $subject->grade_level_id = request()->input('grade_level_id');
+            $subject->save();
+            return redirect()->route('subject.index')->with('success', 'Subject added successfully.');
+        }
     }
 
     /**
@@ -73,7 +97,14 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+        $subject->update(
+            $request->all()
+        );
+        if ($subject->wasChanged()) {
+            return redirect()->route('subject.index')->with('success', 'Update Successfully.');
+        }
+        return redirect()->route('subject.index');
     }
 
     /**

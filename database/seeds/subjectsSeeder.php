@@ -13,9 +13,9 @@ class subjectsSeeder extends Seeder
     public function run()
     {
         $subjects = [
-            ['subject' => 'Math'],
-            ['subject' => 'English'],
-            ['subject' => 'English',]
+            ['subject' => 'Math','grade_level_id'=>1],
+            ['subject' => 'English','grade_level_id'=>1],
+            ['subject' => 'English','grade_level_id'=>1],
         ];
         foreach ($subjects as $subject) {
             Subject::create($subject);

@@ -81,6 +81,7 @@ Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], 
     /* Registrar|subject */
     Route::get('/subjects', 'SubjectController@index')->name('subject.index');
     Route::post('/subjects', 'SubjectController@store')->name('subject.store');
+    Route::put('/subjects/{id}', 'SubjectController@update')->name('subject.update');
     Route::delete('/subjects/{id}', 'SubjectController@destroy')->name('subject.destroy');
 });
 Route::get('email', function(){
