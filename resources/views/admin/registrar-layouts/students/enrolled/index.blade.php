@@ -16,7 +16,6 @@
                             <th class="text-center">Last name</th>
                             <th class="text-center">First name</th>
                             <th class="text-center">Middle name</th>
-                            <th class="text-center">Ext, name</th>
                             <th class="text-center">Gender</th>
                             <th class="text-center">Age</th>
                             <th class="text-center">Section</th>
@@ -34,20 +33,14 @@
                                 <td class="text-center">{{ $student->last_name }}</td>
                                 <td class="text-center">{{ $student->first_name }}</td>
                                 <td class="text-center">{{ $student->middle_name }}</td>
-                                @if ($student->ext_name !== null)
-                                    <td class="text-center">{{ $student->ext_name }}</td>
-                                @else
-                                    <td class="text-center">None</td>
-                                @endif
                                 <td class="text-center">{{ $student->gender }}</td>
                                 <td class="text-center">{{ $student->age }}</td>
                                 <td class="text-center">{{ $student->section->section_name }}</td>
                                 <td class="text-center">{{ $student->gradeLevel->grade_name }}</td>
                                 <td class="text-center">
                                     {{-- < a class="btn btn-sm btn-info" href="{{ route('enrolled.show', $student) }}">View</> --}}
-                                    <form action="{{ route('enrolled.show', $student->id) }}" method="get">
-                                        <button type="submit" class="btn btn-sm btn-info">View</button>
-                                    </form>
+                                    <a href="{{ route('enrolled.show', $student->id) }}"
+                                        class="btn btn-sm btn-info">View</a>
                                     {{-- <a class="btn btn-sm btn-info" href="" data-toggle="modal"
                                     data-target="#view{{ $student->id }}">View</a> --}}
                                     {{-- @include('admin.registrar-layouts.students.enrolled.modal._show') --}}

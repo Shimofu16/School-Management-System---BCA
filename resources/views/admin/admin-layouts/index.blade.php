@@ -43,13 +43,13 @@
                 </div>
             </div>
         </li>
-        <li class="nav-item">
+   {{--       <li class="nav-item">
             <a class="nav-link" href="{{ route('users.index') }}">
                 <i class="fas fa-fw fa-users"></i>
                 <span>Users</span>
             </a>
 
-        </li>
+        </li>  --}}
 
 
         <hr class="sidebar-divider mb-0">

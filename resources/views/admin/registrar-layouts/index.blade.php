@@ -41,7 +41,7 @@
                     {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                     <a class="collapse-item" href="{{ route('enrolled.index') }}">Enrolled Student</a>
                     <a class="collapse-item" href="{{ route('enrollees.index') }}">Enrollees</a>
-                    <a class="collapse-item" href="{{ route('enrollees.create') }}">Add Student</a>
+                    {{--  <a class="collapse-item" href="{{ route('enrollees.create') }}">Add Student</a>  --}}
                 </div>
             </div>
         </li>

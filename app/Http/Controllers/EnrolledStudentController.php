@@ -43,7 +43,8 @@ class EnrolledStudentController extends Controller
     public function create()
     {
         $sections = Section::all();
-        return view('admin.registrar-layouts.students.create', compact('sections', 'yl'));
+        $gradelevels = Grade_level::all();
+        return view('admin.registrar-layouts.students.create', compact('sections', 'gradelevels'));
     }
 
     /**

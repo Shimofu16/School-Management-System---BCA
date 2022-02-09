@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRequirementsTable extends Migration
+class CreateEnrolleeRequirementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateRequirementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requirements', function (Blueprint $table) {
+        Schema::create('enrollee_requirements', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('student_id')->nullable();
             $table->foreign('student_id')
                 ->references('id')
                 ->on('enrollees')
-                ->onDelete('cascade')->onUpdate('cascade');
-            
+                ->onDelete('restrict')->onUpdate('cascade');
+            $table->string('filename')->nullable();
+            $table->string('filepath')->nullable();
+            $table->boolean('isSubmitted')->default(0)->nullable();
         });
     }
 
@@ -31,6 +33,6 @@ class CreateRequirementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requirements');
+        Schema::dropIfExists('enrollee_requirements');
     }
 }

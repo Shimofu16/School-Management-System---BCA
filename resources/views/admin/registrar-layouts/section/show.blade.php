@@ -4,19 +4,18 @@
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @endsection
 @section('contents')
-    <div class="row">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h1 class="h3 mb-4 text-gray-800 mr-auto pt-3">{{ $sections->section_name }}</h1>
-            <div class="col-1 d-flex">
-                <a href="{{ route('section.index') }}" class="btn btn-primary btn-sm d-flex align-items-center mr-1">
-
+    <div class="row align-items-center mb-3">
+        <div class="col">
+            <h1 class="h3 text-gray-800 py-2">{{ $sections->section_name }}</h1>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-end">
+                <a href="{{ route('section.index') }}" class="btn btn-primary mr-5">
                     <span class="d-flex align-items-center"><i class="fas fa-chevron-circle-left"></i>&#160;Back</span>
                 </a>
             </div>
         </div>
     </div>
-
-    <hr>
     <div class="row">
         <div class="col-12">
             <div class="table-responsive">

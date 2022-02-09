@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Grade_level;
 use App\Enrollee_Student_Family;
+use App\Enrollee_Requirement;
 class Enrollee extends Model
 {
     protected $table = 'enrollees';
@@ -20,5 +21,9 @@ class Enrollee extends Model
     public function families()
     {
         return $this->hasMany(Enrollee_Student_Family::class);
+    }
+    public function requirements()
+    {
+        return $this->hasMany(Enrollee_Requirement::class);
     }
 }

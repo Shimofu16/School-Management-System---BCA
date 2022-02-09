@@ -89,16 +89,16 @@
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                    @if (Auth::user()->roles == 'Admin')
+                    @if (Auth::user()->role == 'Admin')
                         @if (Auth::user()->gender == 'Male')
-                            <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile_3.svg') }}">
+                            <img class="img-profile rounded-circle" src="{{ asset('img/illustrations/icons/undraw_profile_3.svg') }}">
                             @else
-                            <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
+                            <img class="img-profile rounded-circle" src="{{ asset('img/illustrations/icons/undraw_profile.svg') }}">
                         @endif
                     @endif
-                    @if (Auth::user()->roles == 'Registrar' || Auth::user()->roles == 'registrar')
+                    @if (Auth::user()->role == 'Registrar' || Auth::user()->role == 'registrar')
                         {{-- <img class="img-profile rounded-circle" src="{{ asset('img/icons/user.png') }}"> --}}
-                        <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
+                        <img class="img-profile rounded-circle" src="{{ asset('img/illustrations/icons/undraw_profile.svg') }}">
                     @endif
                     @if (Auth::user()->roles == 'Student')
                         @if (Auth::user()->gender == 'Male')
@@ -112,10 +112,10 @@
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">
+                 {{--<a class="dropdown-item" href="#">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                         Profile
-                    </a>
+                    </a>--}}
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

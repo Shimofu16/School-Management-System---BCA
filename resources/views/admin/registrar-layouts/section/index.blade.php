@@ -5,9 +5,9 @@
 @endsection
 @section('contents')
     @include('admin.alert-msgs._success')
-    <div class="row">
+    <div class="row align-items-center mb-3">
         <div class="col">
-            <h1 class="h3 mb-4 text-gray-800">@yield('page-title')</h1>
+            <h1 class="h3 text-gray-800 py-2">@yield('page-title')</h1>
         </div>
         <div class="col">
             <div class="d-flex justify-content-end">
@@ -69,7 +69,6 @@
 
 @endsection
 @section('dashboard-javascript')
-    {{-- bakit wala to pota --}}
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script type="text/javascript">

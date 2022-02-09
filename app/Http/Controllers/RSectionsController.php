@@ -97,7 +97,11 @@ class RSectionsController extends Controller
     public function destroy($id)
     {
         $section = Section::findOrFail($id);
-        $section->delete();
-        return redirect()->route('section.index');
+        if ($section->students->count() == null) {
+            $secName = $section->section_name;
+            $section->delete();
+            return redirect()->route('section.index')->with('success','Section '.$secName.' Successfully deleted');
+        }
+        return redirect()->route('section.index')->with('error','Section '.$section->section_name.' can`t be deleted');
     }
 }

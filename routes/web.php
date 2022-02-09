@@ -61,8 +61,11 @@ Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], 
     Route::get('/students/create', 'EnrolledStudentController@create')->name('enrollees.create');
     Route::post('/students', 'EnrolleesController@store')->name('enrollees.store');
     Route::get('/students/enrollee', 'EnrolleesController@index')->name('enrollees.index');
+    Route::get('/students/enrollee/{id}/show', 'EnrolleesController@show')->name('enrollees.show');
+    Route::get('/students/enrollee/{id}/requirements', 'EnrolleesController@show')->name('enrollees.show.requirements');
+    Route::post('/students/requirements', 'EnrolleeRequirementController@store')->name('enrollees.store.requirements');
+    Route::get('/students/requirements/download/{filename}', 'EnrolleeRequirementController@download')->name('enrollees.download.requirements');
     //Enrolled
-    Route::get('/students/enrollee/{id}', 'EnrolleesController@show')->name('enrollees.show');
     Route::get('/students/enrolled', 'EnrolledStudentController@index')->name('enrolled.index');
     Route::get('/students/enrolled/{id}', 'EnrolledStudentController@show')->name('enrolled.show');
     Route::put('/students/enrollee/{id}', 'EnrolledStudentController@update')->name('enrolled.update');

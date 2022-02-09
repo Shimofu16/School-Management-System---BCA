@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Section;
 use App\Student;
 use App\Enrollee;
+use App\Enrollee_Requirement;
 use App\Enrollee_Student_Family;
 use App\Grade_level;
 use App\User;
@@ -143,8 +144,12 @@ class EnrolleesController extends Controller
     public function show($id)
     {
         $student = Enrollee::with('gradeLevel')->findOrFail($id);
+        $requirements = Enrollee_Requirement::all();
+        foreach ($requirements as $requirement) {
+
+        }
         $families = Enrollee_Student_Family::all();
-        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'families'));
+        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'families','requirements'));
     }
 
     /**

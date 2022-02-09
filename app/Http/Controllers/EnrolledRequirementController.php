@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\requirement;
+use App\Enrolled_Requirement;
 use Illuminate\Http\Request;
 
-class RequirementController extends Controller
+class EnrolledRequirementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class RequirementController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\requirement  $requirement
+     * @param  \App\Enrolled_Requirement  $enrolled_Requirement
      * @return \Illuminate\Http\Response
      */
-    public function show(requirement $requirement)
+    public function show(Enrolled_Requirement $enrolled_Requirement)
     {
         //
     }
@@ -52,10 +52,10 @@ class RequirementController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\requirement  $requirement
+     * @param  \App\Enrolled_Requirement  $enrolled_Requirement
      * @return \Illuminate\Http\Response
      */
-    public function edit(requirement $requirement)
+    public function edit(Enrolled_Requirement $enrolled_Requirement)
     {
         //
     }
@@ -64,10 +64,10 @@ class RequirementController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\requirement  $requirement
+     * @param  \App\Enrolled_Requirement  $enrolled_Requirement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, requirement $requirement)
+    public function update(Request $request, Enrolled_Requirement $enrolled_Requirement)
     {
         //
     }
@@ -75,10 +75,10 @@ class RequirementController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\requirement  $requirement
+     * @param  \App\Enrolled_Requirement  $enrolled_Requirement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(requirement $requirement)
+    public function destroy(Enrolled_Requirement $enrolled_Requirement)
     {
         //
     }

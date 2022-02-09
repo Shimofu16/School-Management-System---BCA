@@ -15,9 +15,9 @@
                             <th class="text-center">Last name</th>
                             <th class="text-center">First name</th>
                             <th class="text-center">Middle name</th>
-                            <th class="text-center">Ext, name</th>
                             <th class="text-center">Gender</th>
                             <th class="text-center">Age</th>
+                            <th class="text-center">Grade</th>
                             <th class="text-center">More details</th>
                             <th class="text-center">Action</td>
                         </tr>
@@ -29,13 +29,9 @@
                                 <td class="text-center">{{ $student->last_name }}</td>
                                 <td class="text-center">{{ $student->first_name }}</td>
                                 <td class="text-center">{{ $student->middle_name }}</td>
-                                @if ($student->ext_name !== null)
-                                    <td class="text-center">{{ $student->ext_name }}</td>
-                                @else
-                                    <td class="text-center">None</td>
-                                @endif
                                 <td class="text-center">{{ $student->gender }}</td>
                                 <td class="text-center">{{ $student->age }}</td>
+                                <td class="text-center">{{ $student->gradeLevel->grade_name }}</td>
                                 <td class="text-center">
                                     <a class="btn btn-sm btn-info"
                                         href="{{ route('enrollees.show', $student->id) }}">View</a>
@@ -46,7 +42,6 @@
                                     <a class="btn btn-sm btn-danger" href="#">Decline</a>
                                 </td>
                             </tr>
-                            @include('admin.registrar-layouts.students.enrollees.modal._modal-payment')
                             @include('admin.registrar-layouts.students.enrollees.modal._create')
                         @endforeach
                     </tbody>
