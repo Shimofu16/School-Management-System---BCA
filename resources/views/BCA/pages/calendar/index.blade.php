@@ -1,6 +1,9 @@
 @extends('BCA.layouts.mainLayout')
-@section('page-title')
+@section('title')
     Calendar
+@endsection
+@section('page-title')
+    <li class="breadcrumb-item" aria-current="page">Calendar</li>
 @endsection
 @section('page_level_css')
     <link rel="stylesheet" href="{{ asset('css/plainAdmin/fullcalendar.css') }}" />

@@ -28,6 +28,7 @@ Route::middleware(['middleware' => 'PreventBackMiddleware'])->group(function () 
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/about us', 'HomeController@about')->name('about.index');
 Route::get('/academics', 'HomeController@academics')->name('academics.index');
+Route::get('/academics/primary', 'HomeController@primary')->name('primary.index');
 Route::get('/calendar', 'HomeController@calendar')->name('calendar.index');
 Route::get('/enroll', 'HomeController@enroll')->name('enroll.index');
 Route::post('/enroll', 'HomeController@store')->name('enroll.store');

@@ -29,9 +29,9 @@
                         </ul>
                     </li>
                     <li class="nav-item nav-line mx-1 dropdown {{ Request::is('academics') ? 'active' : '' }}">
-                        <a href="#" class="nav-link hover-bca  p-3 text-bca">Academics</a>
+                        <a href="{{ route('academics.index') }}" class="nav-link hover-bca  p-3 text-bca">Academics</a>
                         <ul class="dropdown-menu bg-bca" id="dd">
-                            <li><a href="#" class="dropdown-item p-3 text-light hover-bca-dd">Primary</a>
+                            <li><a href="{{ route('primary.index') }}" class="dropdown-item p-3 text-light hover-bca-dd">Primary</a>
                                 <ul class="submenu dropdown-menu bg-bca">
                                     <li><a href="#" class="dropdown-item p-3 text-light hover-bca-dd">Nursery</a>
                                     </li>
@@ -45,7 +45,7 @@
                             </li>
                             <li><a href="#" class="dropdown-item p-3 text-light hover-bca-dd">Elementary</a>
                             </li>
-                            <li><a href="#" class="dropdown-item p-3 text-light hover-bca-dd">Juior High School</a>
+                            <li><a href="#" class="dropdown-item p-3 text-light hover-bca-dd">Juior Highschool</a>
                             </li>
                         </ul>
                     </li>

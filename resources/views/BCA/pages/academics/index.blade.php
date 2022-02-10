@@ -1,54 +1,83 @@
 @extends('BCA.layouts.mainLayout')
-@section('page-title')
+@section('title')
     Academics
 @endsection
-@section('page_level_css')
-    <link rel="stylesheet" href="{{ asset('css/home/pages/academics.css') }}" />
+@section('page-title')
+    <li class="breadcrumb-item" aria-current="page">Academics</li>
 @endsection
 @section('contents')
-
     @include('BCA.pages.partials._pageTitle')
-    <section id="academics">
-        <div class="acad-container">
-            <div class="acad-con-bottom">
-                <div class="acad-con-items">
-                    <a href="">
-                        <h2>Nursery</h2>
-                        <img src="{{ asset('./img/samplePictures/nursery.jpg') }}" alt="">
-                    </a>
-                </div>
-                <div class="acad-con-items">
-                    <a href="">
-                        <h2> Kindergarten</h2>
-                        <img src="{{ asset('./img/samplePictures/kindergarten.jpg') }}" alt="">
-                    </a>
-                </div>
-                <div class="acad-con-items">
-                    <a href="">
-                        <h2>Preparatory</h2>
-                        <img src="{{ asset('./img/samplePictures/prep.jpg') }}" alt="">
-                    </a>
-
-                </div>
-                <div class="acad-con-items">
-                    <a href="">
-                        <h2>Elementary</h2>
-
-                        <img src="{{ asset('./img/samplePictures/elem.jpg') }}" alt="">
-                    </a>
-
-                </div>
-                <div class="acad-con-items">
-                    <a href="">
-                        <h2>Junior High School</h2>
-                        <img src="{{ asset('./img/samplePictures/JuniorHighSchool.jpg') }}" alt="">
-                    </a>
-
+    <div class="container my-3">
+        <div class="d-flex">
+            <div class="col-md-4">
+                <div class="card border text-left ">
+                    <div class=" d-flex flex-column justify-content-center align-items-center mt-3">
+                        <img class="acad-img" src="{{ asset('/img/samplePictures/nursery.jpg') }}" alt="primary">
+                    </div>
+                    <div class="card-body text-center ">
+                        <h4 class="card-title">Primary</h4>
+                        <p class="card-text text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                            Necessitatibus
+                            quo
+                            similique consequatur dicta sunt eius ex repudiandae quae, sint velit rem vitae accusamus.
+                            Dolorem, quis magni natus esse minus voluptate!</p>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center mb-5">
+                        <a href="{{ route('primary.index') }}" class="btn btn-bca-outline text-bca hvr-sweep-to-bottom">
+                            <i class="fa-solid fa-angle-right"></i>
+                            <span class="text-uppercase">
+                                See more
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="enroll-btn">
-                <a href="{{ route('enroll.index') }}">Enroll Now!</a>
+            <div class="col-md-4">
+                <div class="card border text-left ">
+                    <div class=" d-flex flex-column justify-content-center align-items-center mt-3">
+                        <img class="acad-img" src="{{ asset('/img/samplePictures/elem.jpg') }}" alt="primary">
+                    </div>
+                    <div class="card-body text-center ">
+                        <h4 class="card-title">Elementary</h4>
+                        <p class="card-text text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                            Necessitatibus
+                            quo
+                            similique consequatur dicta sunt eius ex repudiandae quae, sint velit rem vitae accusamus.
+                            Dolorem, quis magni natus esse minus voluptate!</p>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center mb-5">
+                        <a href="#" class="btn btn-bca-outline text-bca hvr-sweep-to-bottom">
+                            <i class="fa-solid fa-angle-right"></i>
+                            <span class="text-uppercase">
+                                See more
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border text-left ">
+                    <div class=" d-flex flex-column justify-content-center align-items-center mt-3">
+                        <img class="acad-img" src="{{ asset('/img/samplePictures/JuniorHighSchool.jpg') }}" alt="primary">
+                    </div>
+                    <div class="card-body text-center ">
+                        <h4 class="card-title">Junior Highschool</h4>
+                        <p class="card-text text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                            Necessitatibus
+                            quo
+                            similique consequatur dicta sunt eius ex repudiandae quae, sint velit rem vitae accusamus.
+                            Dolorem, quis magni natus esse minus voluptate!</p>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center mb-5">
+                        <a href="#" class="btn btn-bca-outline text-bca hvr-sweep-to-bottom">
+                            <i class="fa-solid fa-angle-right"></i>
+                            <span class="text-uppercase">
+                                See more
+                            </span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection

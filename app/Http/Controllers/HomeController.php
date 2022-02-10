@@ -33,6 +33,10 @@ class HomeController extends Controller
     {
         return view('BCA.pages.academics.index');
     }
+    public function primary()
+    {
+        return view('BCA.pages.academics.primary.index');
+    }
     public function calendar()
     {
         return view('BCA.pages.calendar.index');
