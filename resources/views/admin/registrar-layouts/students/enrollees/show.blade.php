@@ -482,7 +482,7 @@
                 @endif
             @endforeach
             @if ($validForm137)
-                <h5><span class="text-dark text-black font-weight-bold">PSA:</span> Submitted</h5>
+                <h5><span class="text-dark text-black font-weight-bold">Form 137:</span> Submitted</h5>
             @else
                 <form action="{{ route('enrollees.store.requirements') }}" method="post" enctype="multipart/form-data">
                     @csrf

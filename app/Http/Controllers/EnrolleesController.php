@@ -34,7 +34,7 @@ class EnrolleesController extends Controller
         $sections = Section::all();
         $requirements = Enrollee_Requirement::all();
         $gradeLevels = Grade_level::all();
-        return view('admin.registrar-layouts.students.enrollees.index', compact('students', 'sections', 'gradeLevels','families','requirements'));
+        return view('admin.registrar-layouts.students.enrollees.index', compact('students', 'sections', 'gradeLevels', 'families', 'requirements'));
     }
 
     /**
@@ -137,20 +137,6 @@ class EnrolleesController extends Controller
         foreach ($requirements as $requirement) {
             Enrolled_Requirement::create($requirement);
         }
-        $account = new User;
-        if ($request->input('ext_name') !== null) {
-            $account->name = $request->input('first_name') . ' ' . $request->input('middle_name') . ', ' . $request->input('last_name') . ' ' . $request->input('ext_name');
-        } else {
-            $account->name = $request->input('first_name') . ' ' . $request->input('middle_name') . ', ' . $request->input('last_name');
-        }
-        $account->email = $request->input('email');
-        /* get the first letter of first, middle and last name and lower case it */
-        /* concatinate first middle and last */
-        $password = Str::lower(substr($request->input('first_name'), 0, 1)) . Str::lower(substr($request->input('middle_name'), 0, 1)) . Str::lower(substr($request->input('last_name'), 0, 1));
-        $account->password = 'bcastudent' . $password;
-        $account->role = 'Student';
-        $account->gender = $request->input('gender');
-        $account->save();
         $id = $request->input('id');
         $enrollee = Enrollee::findOrFail($id);
         $fam = Enrollee_Student_Family::findOrFail($id);
@@ -174,7 +160,7 @@ class EnrolleesController extends Controller
         $requirements = Enrollee_Requirement::all();
         $families = Enrollee_Student_Family::all();
         $isEmpty = $requirements->isEmpty();
-        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'families','requirements','isEmpty','id'));
+        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'families', 'requirements', 'isEmpty', 'id'));
     }
 
     /**
