@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enrolled_Requirement;
 use App\Enrolled_Student_Family;
 use Illuminate\Http\Request;
 use App\Section;
@@ -31,8 +32,9 @@ class EnrolleesController extends Controller
             ->get();
         $families = Enrollee_Student_Family::all();
         $sections = Section::all();
+        $requirements = Enrollee_Requirement::all();
         $gradeLevels = Grade_level::all();
-        return view('admin.registrar-layouts.students.enrollees.index', compact('students', 'sections', 'gradeLevels','families'));
+        return view('admin.registrar-layouts.students.enrollees.index', compact('students', 'sections', 'gradeLevels','families','requirements'));
     }
 
     /**
@@ -112,6 +114,29 @@ class EnrolleesController extends Controller
         foreach ($families as $family) {
             Enrolled_Student_Family::create($family);
         }
+        $enrolledStudents = Student::all();
+        foreach ($enrolledStudents as $enrolledStudent) {
+            if ($enrolledStudent->student_lrn == $request->input('student_lrn')) {
+                $studentID =  $enrolledStudent->id;
+            }
+        }
+        $requirements = [
+            [
+                'student_id' => $studentID,
+                'filename' => request()->input('form137_filename'),
+                'filepath' => request()->input('form137_filepath'),
+                'isSubmitted' => request()->input('form137_isSubmitted'),
+            ],
+            [
+                'student_id' => $studentID,
+                'filename' => request()->input('psa_filename'),
+                'filepath' => request()->input('psa_filepath'),
+                'isSubmitted' => request()->input('psa_isSubmitted'),
+            ],
+        ];
+        foreach ($requirements as $requirement) {
+            Enrolled_Requirement::create($requirement);
+        }
         $account = new User;
         if ($request->input('ext_name') !== null) {
             $account->name = $request->input('first_name') . ' ' . $request->input('middle_name') . ', ' . $request->input('last_name') . ' ' . $request->input('ext_name');
@@ -129,6 +154,8 @@ class EnrolleesController extends Controller
         $id = $request->input('id');
         $enrollee = Enrollee::findOrFail($id);
         $fam = Enrollee_Student_Family::findOrFail($id);
+        $req = Enrollee_Requirement::findOrFail($id);
+        $req->delete();
         $enrollee->delete();
         $fam->delete();
         return redirect()->route('enrolled.index');
@@ -145,11 +172,9 @@ class EnrolleesController extends Controller
     {
         $student = Enrollee::with('gradeLevel')->findOrFail($id);
         $requirements = Enrollee_Requirement::all();
-        foreach ($requirements as $requirement) {
-
-        }
         $families = Enrollee_Student_Family::all();
-        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'families','requirements'));
+        $isEmpty = $requirements->isEmpty();
+        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'families','requirements','isEmpty','id'));
     }
 
     /**

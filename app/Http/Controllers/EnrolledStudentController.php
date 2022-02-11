@@ -8,6 +8,7 @@ use App\Student;
 use App\Enrollee;
 use App\Year_level;
 use App\Account_student;
+use App\Enrolled_Requirement;
 use App\Enrolled_Student_Family;
 use App\Family;
 use App\Grade_level;
@@ -73,7 +74,9 @@ class EnrolledStudentController extends Controller
     {
         $student = Student::with('gradeLevel','section','sy')->findOrFail($id);
         $families = Enrolled_Student_Family::all();
-        return view('admin.registrar-layouts.students.enrolled.show', compact('student','families'));
+        $requirements = Enrolled_Requirement::all();
+        $isEmpty = $requirements->isEmpty();
+        return view('admin.registrar-layouts.students.enrolled.show', compact('student','families','requirements','isEmpty','id'));
     }
     public function showRequirements($id){
 

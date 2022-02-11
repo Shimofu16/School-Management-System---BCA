@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enrolled_Requirement;
 use Illuminate\Http\Request;
 use App\Section;
 use App\Enrollee;
@@ -9,6 +10,8 @@ use App\Enrollee_Student_Family;
 use App\Family;
 use App\Grade_level;
 use App\Http\Requests\newStudentRequest;
+use App\Student;
+use EnrolledStudents;
 use Illuminate\Support\Arr;
 
 
@@ -36,6 +39,18 @@ class HomeController extends Controller
     public function primary()
     {
         return view('BCA.pages.academics.primary.index');
+    }
+    public function nursery()
+    {
+        return view('BCA.pages.academics.primary.nursery.index');
+    }
+    public function elementary()
+    {
+        return view('BCA.pages.academics.elementary.index');
+    }
+    public function juniorhighschool()
+    {
+        return view('BCA.pages.academics.junior highschool.index');
     }
     public function calendar()
     {
@@ -111,7 +126,7 @@ class HomeController extends Controller
             }
             $lastId = Arr::last($id);
             if ($request->filled('father_name')) {
-                $families =[
+                $families = [
                     [
                         'student_id' => $lastId,
                         'name' => $request->input('father_name'),
@@ -123,7 +138,7 @@ class HomeController extends Controller
                         'office_address' => $request->input('father_office_address'),
                         'office_contact_no' => $request->input('father_office_contact'),
                         'relationship' => 'Father',
-                    ],[
+                    ], [
                         'student_id' => $lastId,
                         'name' => $request->input('mother_name'),
                         'birthdate' => $request->input('mother_birthdate'),
@@ -134,7 +149,7 @@ class HomeController extends Controller
                         'office_address' => $request->input('mother_office_address'),
                         'office_contact_no' => $request->input('mother_office_contact'),
                         'relationship' => 'Mother',
-                    ],[
+                    ], [
                         'student_id' => $lastId,
                         'name' => $request->input('guardian_name'),
                         'contact_no' => $request->input('guardian_contact'),
@@ -145,6 +160,8 @@ class HomeController extends Controller
                     Enrollee_Student_Family::create($family);
                 }
             }
+     
+
         } else {
             return redirect()->route('enroll.index')->withInput();
         }

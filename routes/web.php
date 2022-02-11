@@ -29,6 +29,9 @@ Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/about us', 'HomeController@about')->name('about.index');
 Route::get('/academics', 'HomeController@academics')->name('academics.index');
 Route::get('/academics/primary', 'HomeController@primary')->name('primary.index');
+Route::get('/academics/primary/nursery', 'HomeController@nursery')->name('nursery.index');
+Route::get('/academics/Elementary', 'HomeController@elementary')->name('elementary.index');
+Route::get('/academics/Junior Highschool', 'HomeController@juniorhighschool')->name('juniorhighschool.index');
 Route::get('/calendar', 'HomeController@calendar')->name('calendar.index');
 Route::get('/enroll', 'HomeController@enroll')->name('enroll.index');
 Route::post('/enroll', 'HomeController@store')->name('enroll.store');
@@ -52,6 +55,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','isAdmin']], function
     Route::get('/dashboard',  [AdminController::class, 'index'])->name('admin.dashboard.index');
     /* users */
     Route::get('/user', [UsersController::class, 'index'])->name('users.index');
+    /* Manage | Photo Gallery */
+    Route::get('manage/photo gallery', 'PhotoGalleryController@index')->name('gallery.index');
+    Route::post('manage/photo gallery', 'PhotoGalleryController@store')->name('gallery.store');
 });
 /* ============================== Registrar ================================ */
 Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], function () {
@@ -68,8 +74,9 @@ Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], 
     Route::get('/students/requirements/download/{filename}', 'EnrolleeRequirementController@download')->name('enrollees.download.requirements');
     //Enrolled
     Route::get('/students/enrolled', 'EnrolledStudentController@index')->name('enrolled.index');
-    Route::get('/students/enrolled/{id}', 'EnrolledStudentController@show')->name('enrolled.show');
-    Route::put('/students/enrollee/{id}', 'EnrolledStudentController@update')->name('enrolled.update');
+    Route::get('/students/enrolled/{id}/show', 'EnrolledStudentController@show')->name('enrolled.show');
+    Route::get('/students/enrolled/{id}/requirements', 'EnrolledStudentController@show')->name('enrolled.show.requirements');
+    Route::put('/students/enrolled/{id}', 'EnrolledStudentController@update')->name('enrolled.update');
     /* Registrar|teacher */
     Route::get('/teachers', 'RTeachersController@index')->name('teachers.index');
     Route::get('/teachers/create', 'RTeachersController@create')->name('teachers.create');

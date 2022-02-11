@@ -19,7 +19,7 @@
                     <li class="nav-item nav-line mx-1 {{ Request::is('/') ? 'active' : '' }}">
                         <a href="{{ route('home.index') }}" class="nav-link hover-bca p-3 text-bca">Home</a>
                     </li>
-                    <li class="nav-item nav-line mx-1 dropdown {{ Request::is('about us') ? 'active' : '' }}">
+                    <li class="nav-item nav-line mx-1 dropdown {{ Request::is('about us/*') ? 'active' : '' }}">
                         <a class="nav-link  hover-bca p-3 text-bca" href="#">About us</a>
                         <ul class="dropdown-menu bg-bca" id="dd">
                             <li><a href="{{ route('about.index') }}" class="dropdown-item p-3 text-light hover-bca-dd">Mission and Vision</a>
@@ -28,24 +28,24 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item nav-line mx-1 dropdown {{ Request::is('academics') ? 'active' : '' }}">
+                    <li class="nav-item nav-line mx-1 dropdown {{ Request::is('academics/*') ? 'active' : '' }}">
                         <a href="{{ route('academics.index') }}" class="nav-link hover-bca  p-3 text-bca">Academics</a>
                         <ul class="dropdown-menu bg-bca" id="dd">
                             <li><a href="{{ route('primary.index') }}" class="dropdown-item p-3 text-light hover-bca-dd">Primary</a>
                                 <ul class="submenu dropdown-menu bg-bca">
-                                    <li><a href="#" class="dropdown-item p-3 text-light hover-bca-dd">Nursery</a>
+                                    <li><a href="{{ route('primary.index') }}" class="dropdown-item p-3 text-light hover-bca-dd">Nursery</a>
                                     </li>
-                                    <li><a href="#"
+                                    <li><a href="{{ route('primary.index') }}"
                                             class="dropdown-item p-3 text-light hover-bca-dd">Kindergarten</a>
                                     </li>
-                                    <li><a href="#"
+                                    <li><a href"{{ route('primary.index') }}"
                                             class="dropdown-item p-3 text-light hover-bca-dd">Preparatory</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="#" class="dropdown-item p-3 text-light hover-bca-dd">Elementary</a>
+                            <li><a href="{{ route('elementary.index') }}" class="dropdown-item p-3 text-light hover-bca-dd">Elementary</a>
                             </li>
-                            <li><a href="#" class="dropdown-item p-3 text-light hover-bca-dd">Juior Highschool</a>
+                            <li><a href="{{ route('juniorhighschool.index') }}" class="dropdown-item p-3 text-light hover-bca-dd">Juior Highschool</a>
                             </li>
                         </ul>
                     </li>

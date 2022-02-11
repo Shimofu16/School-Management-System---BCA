@@ -42,73 +42,103 @@ class EnrolleeRequirementController extends Controller
     {
         $id = $request->input('id');
         $student = Enrollee::find($id);
-        $select = Enrollee_Requirement::find($id);
+        $requirements = Enrollee_Requirement::all();
         $requirement = new Enrollee_Requirement;
 
-            //Check if request has a psa with a extension of csv,txt,xlx,xls,pdf,jpg,jpeg,png,docx,pptx
-          /*   if ($request->validate(['psa' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,jpeg,png,docx,pptx|max:8192',])) { */
-                if ($request->hasFile('psa')) {
-                    $name = $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name;
-                    $path = public_path() . '/uploads/requirements/' . $name;
-                    $psa = $request->file('psa');
-                    $extenstion = $psa->getClientOriginalExtension();
-                    $filename = 'psa' . '.' . $extenstion;
-                    if (!file_exists($path)) {
-                        Storage::disk('local')->makeDirectory($path);
-                        $psa->move($path, $filename);
-                        $requirement->student_id = $id;
-                        $requirement->filename = 'psa';
-                        $requirement->filepath = $path . $filename;
-                        $requirement->isSubmitted = 1;
-                        $requirement->save();
-                        return redirect()->back()->with('success', 'Uploaded Successfully');
-                    } else {
-                        if (!file_exists($path . $filename)) {
+        //Check if request has a psa with a extension of csv,txt,xlx,xls,pdf,jpg,jpeg,png,docx,pptx
+        /*   if ($request->validate(['psa' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,jpeg,png,docx,pptx|max:8192',])) { */
+        if ($request->hasFile('psa')) {
+            $name = $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name;
+            $path = public_path() . '/uploads/requirements/' . $name;
+            $psa = $request->file('psa');
+            $extenstion = $psa->getClientOriginalExtension();
+            $filename = 'psa' . '.' . $extenstion;
+            if (!file_exists($path)) {
+                Storage::disk('local')->makeDirectory($path);
+                $psa->move($path, $filename);
+                Enrollee_Requirement::create([
+                    'student_id' => $id,
+                    'filename' => 'psa',
+                    'filepath' => $path . $filename,
+                    'isSubmitted' => 1,
+                ]);
+                return redirect()->back()->with('success', 'Uploaded Successfully');
+            } else {
+                if (!$requirements->isEmpty()) {
+                    foreach ($requirements as $requirement) {
+                        if ($requirement->isSubmitted == 1 && $requirement->filename == 'psa') {
                             return redirect()->back()->with('error', 'File exist');
                         } else {
                             $psa->move($path, $filename);
-                            $requirement->filename = 'psa';
-                            $requirement->filepath = $path . $filename;
-                            $requirement->isSubmitted = 1;
-                            $requirement->save();
+                            Enrollee_Requirement::create([
+                                'student_id' => $id,
+                                'filename' => 'psa',
+                                'filepath' => $path . $filename,
+                                'isSubmitted' => 1,
+                            ]);
                             return redirect()->back()->with('success', 'Uploaded Successfully');
                         }
                     }
+                } else {
+                    $psa->move($path, $filename);
+                    Enrollee_Requirement::create([
+                        'student_id' => $id,
+                        'filename' => 'psa',
+                        'filepath' => $path . $filename,
+                        'isSubmitted' => 1,
+                    ]);
+                    return redirect()->back()->with('success', 'Uploaded Successfully');
                 }
-           /*  } */
+            }
+        }
+        /*  } */
 
 
         /* if ($request->validate(['form_137' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,jpeg,png,docx,pptx|max:8192',])) { */
-            if ($request->hasFile('form_137')) {
-                $name = $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name;
-                $path = public_path() . '/uploads/requirements/' . $name;
-                $form137 = $request->file('form_137');
-                $extenstion = $form137->getClientOriginalExtension();
-                $filename = 'form_137' . '.' . $extenstion;
-                if (!file_exists($path)) {
-                    Storage::disk('local')->makeDirectory($path);
-                    $form137->move($path, $filename);
-                    $requirement->student_id = $id;
-                    $requirement->filename = 'form_137';
-                    $requirement->filepath = $path . $filename;
-                    $requirement->isSubmitted = 1;
-                    $requirement->save();
-                    return redirect()->back()->with('success', 'Uploaded Successfully');
-                } else {
-                    if (!file_exists($path . $filename)) {
-                        return redirect()->back()->with('error', 'File exist');
-                    } else {
-                        $form137->move($path, $filename);
-                        $requirement->student_id = $id;
-                        $requirement->filename = 'form_137';
-                        $requirement->filepath = $path . $filename;
-                        $requirement->isSubmitted = 1;
-                        $requirement->save();
-                        return redirect()->back()->with('success', 'Uploaded Successfully');
+        if ($request->hasFile('form_137')) {
+            $name = $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name;
+            $path = public_path() . '/uploads/requirements/' . $name;
+            $form137 = $request->file('form_137');
+            $extenstion = $form137->getClientOriginalExtension();
+            $filename = 'form_137' . '.' . $extenstion;
+            if (!file_exists($path)) {
+                Storage::disk('local')->makeDirectory($path);
+                Enrollee_Requirement::create([
+                    'student_id' => $id,
+                    'filename' => 'form_137',
+                    'filepath' => $path . $filename,
+                    'isSubmitted' => 1,
+                ]);
+                return redirect()->back()->with('success', 'Uploaded Successfully');
+            } else {
+                if (!$requirements->isEmpty()) {
+                    foreach ($requirements as $requirement) {
+                        if ($requirement->isSubmitted == 1 && $requirement->filename == 'form_137') {
+                            return redirect()->back()->with('error', 'File exist');
+                        } else {
+                            $form137->move($path, $filename);
+                            Enrollee_Requirement::create([
+                                'student_id' => $id,
+                                'filename' => 'form_137',
+                                'filepath' => $path . $filename,
+                                'isSubmitted' => 1,
+                            ]);
+                            return redirect()->back()->with('success', 'Uploaded Successfully');
+                        }
                     }
+                } else {
+                    $form137->move($path, $filename);
+                    Enrollee_Requirement::create([
+                        'student_id' => $id,
+                        'filename' => 'form_137',
+                        'filepath' => $path . $filename,
+                        'isSubmitted' => 1,
+                    ]);
+                    return redirect()->back()->with('success', 'Uploaded Successfully');
                 }
             }
-       /*  } */
+        }
+        /*  } */
 
 
         /*

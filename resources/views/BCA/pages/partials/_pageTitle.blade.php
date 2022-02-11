@@ -9,6 +9,7 @@
                     <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
                     @yield('page-title')
                     @yield('subtitle')
+                    @yield('subtitlesub')
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->

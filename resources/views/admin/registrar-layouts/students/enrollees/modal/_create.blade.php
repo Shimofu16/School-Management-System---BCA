@@ -67,6 +67,22 @@
                         @endif
                     @endif
                     @endforeach
+                    @foreach ($requirements as $requirement)
+                        @if ($requirement->isSubmitted == 1 && $requirement->filename == 'form_137' && $requirement->student_id == $student->id)
+                            <input type="hidden" name="form137_student_id" value="{{ $requirement->student_id }}">
+                            <input type="hidden" name="form137_filename" value="{{ $requirement->filename }}">
+                            <input type="hidden" name="form137_filepath" value="{{ $requirement->filepath }}">
+                            <input type="hidden" name="form137_isSubmitted" value="{{ $requirement->isSubmitted }}">
+                        @endif
+                    @endforeach
+                    @foreach ($requirements as $requirement)
+                        @if ($requirement->isSubmitted == 1 && $requirement->filename == 'psa' && $requirement->student_id == $student->id)
+                            <input type="hidden" name="psa_student_id" value="{{ $requirement->student_id }}">
+                            <input type="hidden" name="psa_filename" value="{{ $requirement->filename }}">
+                            <input type="hidden" name="psa_filepath" value="{{ $requirement->filepath }}">
+                            <input type="hidden" name="psa_isSubmitted" value="{{ $requirement->isSubmitted }}">
+                        @endif
+                    @endforeach
                     <div class="form-group">
                         <label for="section" class="text-dark text-black font-weight-bold">Section:</label>
                         <select name="section_id" id="section" class="form-control w-50">

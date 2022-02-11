@@ -19,7 +19,7 @@ class CreateEnrolleeRequirementsTable extends Migration
             $table->foreign('student_id')
                 ->references('id')
                 ->on('enrollees')
-                ->onDelete('restrict')->onUpdate('cascade');
+                ->onDelete('cascade')->onUpdate('cascade');
             $table->string('filename')->nullable();
             $table->string('filepath')->nullable();
             $table->boolean('isSubmitted')->default(0)->nullable();

@@ -12,7 +12,7 @@
             <div class="col-md-4">
                 <div class="card border text-left ">
                     <div class=" d-flex flex-column justify-content-center align-items-center mt-3">
-                        <img class="acad-img" src="{{ asset('/img/samplePictures/nursery.jpg') }}" alt="primary">
+                        <img class="acad-img" src="{{ asset('img/students/Pre-School/nursery.jpg') }}" alt="primary">
                     </div>
                     <div class="card-body text-center ">
                         <h4 class="card-title">Primary</h4>
@@ -35,7 +35,7 @@
             <div class="col-md-4">
                 <div class="card border text-left ">
                     <div class=" d-flex flex-column justify-content-center align-items-center mt-3">
-                        <img class="acad-img" src="{{ asset('/img/samplePictures/elem.jpg') }}" alt="primary">
+                        <img class="acad-img" src="{{ asset('img/students/Elementary/Higher Elementary/higher elem 3.jpg') }}" alt="primary">
                     </div>
                     <div class="card-body text-center ">
                         <h4 class="card-title">Elementary</h4>
@@ -46,7 +46,7 @@
                             Dolorem, quis magni natus esse minus voluptate!</p>
                     </div>
                     <div class="d-flex flex-column justify-content-center align-items-center mb-5">
-                        <a href="#" class="btn btn-bca-outline text-bca hvr-sweep-to-bottom">
+                        <a href="{{ route('elementary.index') }}" class="btn btn-bca-outline text-bca hvr-sweep-to-bottom">
                             <i class="fa-solid fa-angle-right"></i>
                             <span class="text-uppercase">
                                 See more
@@ -58,7 +58,7 @@
             <div class="col-md-4">
                 <div class="card border text-left ">
                     <div class=" d-flex flex-column justify-content-center align-items-center mt-3">
-                        <img class="acad-img" src="{{ asset('/img/samplePictures/JuniorHighSchool.jpg') }}" alt="primary">
+                        <img class="acad-img" src="{{ asset('img/students/Junior high School/jhs.jpg') }}" alt="primary">
                     </div>
                     <div class="card-body text-center ">
                         <h4 class="card-title">Junior Highschool</h4>
@@ -69,7 +69,7 @@
                             Dolorem, quis magni natus esse minus voluptate!</p>
                     </div>
                     <div class="d-flex flex-column justify-content-center align-items-center mb-5">
-                        <a href="#" class="btn btn-bca-outline text-bca hvr-sweep-to-bottom">
+                        <a href="{{ route('juniorhighschool.index') }}" class="btn btn-bca-outline text-bca hvr-sweep-to-bottom">
                             <i class="fa-solid fa-angle-right"></i>
                             <span class="text-uppercase">
                                 See more
