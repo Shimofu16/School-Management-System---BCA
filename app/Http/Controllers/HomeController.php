@@ -56,6 +56,9 @@ class HomeController extends Controller
     {
         return view('BCA.pages.calendar.index');
     }
+    public function back(){
+        return redirect()->back();
+    }
     public function enroll()
     {
         $sections = Section::all();
@@ -160,7 +163,7 @@ class HomeController extends Controller
                     Enrollee_Student_Family::create($family);
                 }
             }
-     
+
 
         } else {
             return redirect()->route('enroll.index')->withInput();

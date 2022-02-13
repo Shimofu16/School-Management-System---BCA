@@ -7,8 +7,7 @@ use App\Section;
 use App\Student;
 use App\Teacher;
 use App\Enrollee;
-
-
+use App\Grade_level;
 
 class RegistrarDashboardController extends Controller
 {
@@ -26,7 +25,8 @@ class RegistrarDashboardController extends Controller
         $enrolledCount = Student::count();
         $sectionCount = Section::count();
         $teacherCount = Teacher::count();
-        return view('admin.registrar-layouts.dashboard.index', compact('enrolleeCount', 'enrolledCount', 'sectionCount', 'teacherCount'));
+        $gradeLevels = Grade_level::all();
+        return view('admin.registrar-layouts.dashboard.index', compact('enrolleeCount', 'enrolledCount', 'sectionCount', 'teacherCount','gradeLevels'));
     }
 
     /**

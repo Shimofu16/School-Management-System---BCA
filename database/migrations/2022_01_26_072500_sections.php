@@ -15,7 +15,7 @@ class Sections extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->string('section_name');
+            $table->string('section_name')->unique();
             $table->string('adviser')->nullable();
             $table->unsignedBigInteger('grade_level_id')->nullable();
             $table->foreign('grade_level_id')

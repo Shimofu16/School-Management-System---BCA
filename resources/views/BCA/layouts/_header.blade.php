@@ -31,7 +31,7 @@
                     <li class="nav-item nav-line mx-1 dropdown {{ Request::is('academics/*') ? 'active' : '' }}">
                         <a href="{{ route('academics.index') }}" class="nav-link hover-bca  p-3 text-bca">Academics</a>
                         <ul class="dropdown-menu bg-bca" id="dd">
-                            <li><a href="{{ route('primary.index') }}" class="dropdown-item p-3 text-light hover-bca-dd">Primary</a>
+                            <li><a href="{{ route('primary.index') }}" class="dropdown-item p-3 text-light hover-bca-dd">Primary &#160;&#160;&#160;&#160;&#160;&#160;<i class="fa-solid fa-angle-right"></i></a>
                                 <ul class="submenu dropdown-menu bg-bca">
                                     <li><a href="{{ route('primary.index') }}" class="dropdown-item p-3 text-light hover-bca-dd">Nursery</a>
                                     </li>

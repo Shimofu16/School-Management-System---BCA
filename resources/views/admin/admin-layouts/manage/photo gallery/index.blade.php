@@ -10,18 +10,21 @@
         </div>
         <div class="col">
             <div class="d-flex justify-content-end">
-                <a type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#add">
+                <a  class="btn btn-primary mr-5" data-toggle="modal" data-target="#add">
                     <span class="d-flex align-items-center"><i class="fas fa-plus-circle"></i>&#160; Add Photo</span>
                 </a>
                 @include('admin.admin-layouts.manage.photo gallery.modal._add')
             </div>
         </div>
     </div>
+    <a  class="btn btn-primary mr-5" href="{{ route('gallery.test') }}" >
+        <span class="d-flex align-items-center"><i class="fas fa-plus-circle"></i>&#160; Add Photo</span>
+    </a>
     @include('admin.alert-msgs._success')
     <div class="row">
         <div class="col-12">
             <div class="table-responsive">
-                <table class="table table-bordered table-hover" id="gallery-table">
+                <table class="table table-bordered table-hover" id="img-table">
                     <thead class="thead-light">
                         <tr>
                             <th class="text-center">Title</th>
@@ -31,19 +34,12 @@
                     </thead>
                     <tbody>
                         @foreach ($photos as $photo)
-                            <tr>
-                                <td class="text-center">{{ $photo->title }}</td>
-                                <td class="text-center">{{ $photo->img_name }}</td>
-                                <td class="text-center">{{ $photo->date }}</td>
-                            {{--     <td class="text-center">
-                                    <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#edit">
-                                        Edit
-                                    </a>
-                                </td> --}}
-                            </tr>
+                        <tr>
+                            <td class="text-center">{{ $photo->title }}</td>
+                            <td class="text-center">{{ $photo->img_name }}</td>
+                            <td class="text-center">{{ date('m / d / Y',strtotime($photo->date)) }}</td>
+                        </tr>
                         @endforeach
-
-
                     </tbody>
                 </table>
             </div>
@@ -57,9 +53,9 @@
     <script>
         // Call the dataTables jQuery plugin
         $(document).ready(function() {
-            $('#gallery-table').DataTable(
+            $('#img-table').DataTable({
                 "ordering": false
-            );
+            });
         });
     </script>
 @endsection

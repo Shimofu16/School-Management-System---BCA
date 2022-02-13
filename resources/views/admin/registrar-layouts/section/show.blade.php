@@ -6,13 +6,19 @@
 @section('contents')
     <div class="row align-items-center mb-3">
         <div class="col">
-            <h1 class="h3 text-gray-800 py-2">{{ $sections->section_name }}</h1>
+            <h1 class="h3 text-gray-800 py-2">{{ $section->section_name }}</h1>
         </div>
         <div class="col">
             <div class="d-flex justify-content-end">
-                <a href="{{ route('section.index') }}" class="btn btn-primary mr-5">
-                    <span class="d-flex align-items-center"><i class="fas fa-chevron-circle-left"></i>&#160;Back</span>
-                </a>
+                @foreach ($sections as $section)
+                    @if (url()->previous() == url('/registrar/section/' . Str::lower($section->gradeLevel->grade_name)))
+                        <a href="{{ route('section.'.Str::lower($section->gradeLevel->grade_name).'.index') }}" class="btn btn-primary mr-5">
+                            <span class="d-flex align-items-center"><i
+                                    class="fas fa-chevron-circle-left"></i>&#160;Back</span>
+                        </a>
+                    @break
+                @endif
+                @endforeach
             </div>
         </div>
     </div>
@@ -29,7 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($sections->students as $student)
+                        @foreach ($section->students as $student)
                             <tr>
                                 <td>{{ $student->student_lrn }}</td>
                                 <td>{{ $student->first_name }}</td>

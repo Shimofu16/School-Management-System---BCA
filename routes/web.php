@@ -1,5 +1,6 @@
 <?php
 
+use App\Grade_level;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,7 @@ use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Controllers\UsersController;
 use App\Mail\acceptedMessage;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,7 @@ use Illuminate\Support\Facades\Mail;
 Route::middleware(['middleware' => 'PreventBackMiddleware'])->group(function () {
     Auth::routes();
 });
+Route::get('/back', 'HomeController@back')->name('back');
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/about us', 'HomeController@about')->name('about.index');
 Route::get('/academics', 'HomeController@academics')->name('academics.index');
@@ -36,10 +39,8 @@ Route::get('/calendar', 'HomeController@calendar')->name('calendar.index');
 Route::get('/enroll', 'HomeController@enroll')->name('enroll.index');
 Route::post('/enroll', 'HomeController@store')->name('enroll.store');
 /* ============================== Portal ================================ */
-Route::group(['prefix' => 'portal'], function () {
+Route::group(['prefix' => 'portal', 'middleware' => 'PreventBackMiddleware'], function () {
     Route::get('/', 'HomeController@portal')->name('portal.index');
-    Route::get('/admin', 'AdminLoginController@index')->name('admin.login.index');
-    Route::post('/admin', 'AdminLoginController@login')->name('admin.login');
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 });
 /* ============================== Student ================================ */
@@ -57,6 +58,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','isAdmin']], function
     Route::get('/user', [UsersController::class, 'index'])->name('users.index');
     /* Manage | Photo Gallery */
     Route::get('manage/photo gallery', 'PhotoGalleryController@index')->name('gallery.index');
+    Route::get('manage/photo gallery/test', 'PhotoGalleryController@test')->name('gallery.test');
+    Route::get('image/{filename}', 'PhotoGalleryController@displayImage')->name('image.displayImage');
     Route::post('manage/photo gallery', 'PhotoGalleryController@store')->name('gallery.store');
 });
 /* ============================== Registrar ================================ */
@@ -84,11 +87,17 @@ Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], 
     Route::get('/teachers/{id}/edit', 'RTeachersController@edit')->name('teachers.edit');
     Route::put('/teachers/{id}', 'RTeachersController@update')->name('teachers.update');
     /* Registrar|section */
-    Route::get('/sections', 'RSectionsController@index')->name('section.index');
+  /*   Route::get('/sections', 'RSectionsController@index')->name('section.index'); */
     Route::get('/sections/{id}', 'RSectionsController@show')->name('section.show');
     Route::post('/sections', 'RSectionsController@store')->name('section.store');
     Route::put('/section/{id}', 'RSectionsController@update')->name('section.update');
     Route::delete('/sections/{id}', 'RSectionsController@destroy')->name('section.destroy');
+    /* Registrar | Sections in grade level */
+    $gradeLevels = Grade_level::all();
+    foreach ($gradeLevels as $gradeLevel) {
+        $grade = str_replace(' ','',Str::lower($gradeLevel->grade_name));
+        Route::get('/section/'.$grade, 'RSectionsController@index')->name('section.'.$grade.'.index');
+    }
     /* Registrar|subject */
     Route::get('/subjects', 'SubjectController@index')->name('subject.index');
     Route::post('/subjects', 'SubjectController@store')->name('subject.store');

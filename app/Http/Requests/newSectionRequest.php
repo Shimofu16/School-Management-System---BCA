@@ -24,13 +24,17 @@ class newSectionRequest extends FormRequest
     public function rules()
     {
         return [
-            'section_name'=> 'required',
+            'section_name' => 'required',
+            'adviser' => 'required',
+            'grade_level_id' => 'required',
         ];
     }
-/*     public function attributes()
+    public function attributes()
     {
         return [
-            'section_name' = 'Section Name'
+            'section_name' => 'Section Name',
+            'adviser' => 'Adviser',
+            'grade_level_id' => 'Grade Level',
         ];
-    } */
+    }
 }

@@ -9,8 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('gallery.store') }}" method="POST">
-                    {{-- {{ route('add_teacher') }} --}}
+                <form action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="title" class="text-dark text-black font-weight-bold">Title:</label>
@@ -19,7 +18,7 @@
                     </div>
                     <div class="form-group">
                         <label for="image" class="text-dark text-black font-weight-bold">Image:</label>
-                        <input class="form-control" type="file" name="image">
+                        <input type="file" name="image" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="date" class="text-dark text-black font-weight-bold">Date:</label>

@@ -17,8 +17,17 @@
                             placeholder="Section name">
                     </div>
                     <div class="form-group mb-3">
+                        <label for="adviser" class="text-dark text-black font-weight-bold">Grade Level:</label>
+                        <select class="custom-select" id="inputGroupSelect01" name="grade_level_id">
+                            <option selected>Choose...</option>
+                            @foreach ($gradeLevels as $gradeLevel)
+                            <option value="{{ $gradeLevel->id }}">{{ $gradeLevel->grade_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
                         <label for="adviser" class="text-dark text-black font-weight-bold">Adviser:</label>
-                        <select class="custom-select" id="inputGroupSelect01">
+                        <select class="custom-select" id="adviser" name="adviser">
                             <option selected>Choose...</option>
                             @foreach ($teachers as $teacher)
                             <option value="{{ $teacher->name }}">{{ $teacher->name }}</option>

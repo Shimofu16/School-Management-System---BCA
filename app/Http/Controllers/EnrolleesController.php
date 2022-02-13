@@ -159,8 +159,9 @@ class EnrolleesController extends Controller
         $student = Enrollee::with('gradeLevel')->findOrFail($id);
         $requirements = Enrollee_Requirement::all();
         $families = Enrollee_Student_Family::all();
+        $gradeLevels = Grade_level::all();
         $isEmpty = $requirements->isEmpty();
-        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'families', 'requirements', 'isEmpty', 'id'));
+        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'families', 'requirements', 'isEmpty', 'id','gradeLevels'));
     }
 
     /**

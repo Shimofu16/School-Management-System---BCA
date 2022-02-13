@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Grade_level;
 use App\Http\Requests\newSectionRequest;
 use App\Section;
 use App\Teacher;
 use Illuminate\Http\Request;
+
 class RSectionsController extends Controller
 {
     /**
@@ -15,10 +17,11 @@ class RSectionsController extends Controller
      */
     public function index()
     {
-        $sections = Section::with('students')->orderBy( 'id', 'asc' )
-        ->get();
+        $sections = Section::with('students')->orderBy('id', 'asc')
+            ->get();
         $teachers = Teacher::all();
-        return view('admin.registrar-layouts.section.index', compact('sections','teachers'));
+        $gradeLevels = Grade_level::all();
+        return view('admin.registrar-layouts.section.index', compact('sections', 'teachers', 'gradeLevels'));
     }
 
     /**
@@ -39,10 +42,21 @@ class RSectionsController extends Controller
      */
     public function store(newSectionRequest $request)
     {
-        Section::create(
-            $request->all()
-        );
-        return redirect()->route('section.index')->with('success', 'Section added successfully.');
+        $count = Section::where('section_name', $request->input('section_name'))->count();
+        $countAd = Section::where('adviser', $request->input('adviser'))->count();
+
+        if ($count == 1) {
+            return redirect()->back()->with('error', 'Section name should not the same with other section');
+        } elseif ($countAd == 1) {
+            return redirect()->back()->with('error', 'Adviser not Available');
+        } else {
+            Section::create([
+                'section_name' => $request->input('section_name'),
+                'adviser' => $request->input('adviser'),
+                'grade_level_id' => $request->input('grade_level_id'),
+            ]);
+            return redirect()->back()->with('success', 'Section added successfully.');
+        }
     }
 
     /**
@@ -53,8 +67,10 @@ class RSectionsController extends Controller
      */
     public function show($id)
     {
-        $sections = Section::with('students')->findOrFail($id);
-        return view('admin.registrar-layouts.section.show', compact('sections'));
+        $section = Section::with('students')->findOrFail($id);
+        $sections = Section::all();
+        $gradeLevels = Grade_level::all();
+        return view('admin.registrar-layouts.section.show', compact('sections', 'section', 'gradeLevels'));
     }
 
     /**
@@ -83,9 +99,9 @@ class RSectionsController extends Controller
             $request->all()
         );
         if ($section->wasChanged()) {
-            return redirect()->route('section.index')->with('success', 'Update Successfully.');
+            return redirect()->back()->with('success', 'Update Successfully.');
         }
-        return redirect()->route('section.index');
+        return redirect()->back();
     }
 
     /**
@@ -100,8 +116,8 @@ class RSectionsController extends Controller
         if ($section->students->count() == null) {
             $secName = $section->section_name;
             $section->delete();
-            return redirect()->route('section.index')->with('success','Section '.$secName.' Successfully deleted');
+            return redirect()->route('section.index')->with('success', 'Section ' . $secName . ' Successfully deleted');
         }
-        return redirect()->route('section.index')->with('error','Section '.$section->section_name.' can`t be deleted');
+        return redirect()->route('section.index')->with('error', 'Section ' . $section->section_name . ' can`t be deleted');
     }
 }

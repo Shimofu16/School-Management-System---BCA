@@ -16,8 +16,8 @@
                     @endif
                 </div>
                 <div class="text-center mb-3">
-                    <h5 class="fw-bolder text-dark">{{ $student->first_name }} {{ $student->middle_name }},
-                        {{ $student->last_name }}</h5>
+                    <h5 class="fw-bolder text-dark">{{ ucfirst($student->first_name) }} {{ substr(ucfirst($student->middle_name),0,1) }} ,
+                        {{ ucfirst($student->last_name) }}</h5>
                     <h6>{{ $student->email }}</h6>
                 </div>
                 <div class="text-center mb-3">

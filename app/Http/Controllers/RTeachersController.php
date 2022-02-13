@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Grade_level;
 use Illuminate\Support\Facades\Auth;
 use App\Teacher;
 use App\Section;
@@ -28,7 +29,8 @@ class RTeachersController extends Controller
         $teachers = Teacher::all();
         $sections = Section::all();
         $subjects = Subject::all();
-        return view('admin.registrar-layouts.teacher.index', compact('teachers', 'subjects', 'sections'));
+        $gradeLevels = Grade_level::all();
+        return view('admin.registrar-layouts.teacher.index', compact('teachers', 'subjects', 'sections','gradeLevels'));
     }
 
     /**

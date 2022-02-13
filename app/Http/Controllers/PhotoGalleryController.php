@@ -6,6 +6,8 @@ use App\PhotoGallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Validation\Rules\Exists;
+
 class PhotoGalleryController extends Controller
 {
     /**
@@ -16,8 +18,16 @@ class PhotoGalleryController extends Controller
     public function index()
     {
         $photos = PhotoGallery::all();
-        return view('admin.admin-layouts.manage.photo gallery.index',compact('photos'));
+        return view('admin.admin-layouts.manage.photo gallery.index', compact('photos'));
     }
+    public function test()
+    {
+        $photos = PhotoGallery::all();
+
+        return view('admin.admin-layouts.manage.photo gallery.test', compact('photos'));
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +36,6 @@ class PhotoGalleryController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -37,24 +46,28 @@ class PhotoGalleryController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->hasFile('image'),$request->all(),$request->input('image'));
-        /* $request->validate([
-            'image' => 'required|mimes:jpg,jpeg,png',
-        ]); */
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
         if (request()->hasFile('image')) {
-            $img = $request->file('image')->getClientOriginalName();
-            $imgExtension =$request->file('image')->getClientOriginalExtension();
-            $path ='/uploads/photoGallery/';
-            $imgPath = $path.$img.$imgExtension;
-            PhotoGallery::create([
-                'title'=> $request->input('title'),
-                'img_name'=> $img,
-                'path'=> $imgPath,
-            ]);
-            return redirect()->back();
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = $request->input('title') . '.' . $extention;
+            $path = 'uploads/photo gallery/';
+            if (file_exists($path)) {
+                $file->move($path, $filename);
+                $imgPath = $path . $filename;
+                PhotoGallery::create([
+                    'title' => $request->input('title'),
+                    'img_name' => $filename,
+                    'path' => $imgPath,
+                    'date' => $request->input('date')
+                ]);
+                return redirect()->back()->with('success','ok');
+            }
+            return redirect()->back()->with('error','folder');
         }
-        return redirect()->back()->with('error','no such file');
-
+        return redirect()->back()->with('error', 'no such file');
     }
 
     /**
