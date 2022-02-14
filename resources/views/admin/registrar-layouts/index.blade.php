@@ -83,11 +83,11 @@
                     @foreach ($gradeLevels as $gradeLevel)
                         @foreach ($grade_levels as $grade_level)
                             @if ($gradeLevel->grade_name == $grade_level)
-                                <a class="collapse-item"
-                                    href="{{ route('section.' . str_replace(' ', '', Str::lower($gradeLevel->grade_name)) . '.index') }}">{{ $gradeLevel->grade_name }}</a>
+                                <a class="collapse-item" href="{{ route('section.' . str_replace(' ', '', Str::lower($gradeLevel->grade_name)) . '.index') }}">{{ $gradeLevel->grade_name }}</a>
                             @endif
                         @endforeach
                     @endforeach
+                    <a class="collapse-item" href="{{ route('section.index') }}">Grade Levels</a>
                 </div>
             </div>
         </li>

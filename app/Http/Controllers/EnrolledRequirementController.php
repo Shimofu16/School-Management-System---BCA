@@ -39,120 +39,111 @@ class EnrolledRequirementController extends Controller
     {
         $id = $request->input('id');
         $student = Student::find($id);
-        $requirements = Enrolled_Requirement::all();
-        $requirement = new Enrolled_Requirement;
-
-        //Check if request has a psa with a extension of csv,txt,xlx,xls,pdf,jpg,jpeg,png,docx,pptx
-        /*   if ($request->validate(['psa' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,jpeg,png,docx,pptx|max:8192',])) { */
+        //checl if meron na ba data or submitted na ba yung requirements sa db
+        $hasFilePsa = Enrolled_Requirement::where('student_id', $id)
+            ->where('filename', 'psa')
+            ->where('isSubmitted', 1)
+            ->count();
+        $hasFileForm137 = Enrolled_Requirement::where('student_id', $id)
+            ->where('filename', 'form 137')
+            ->where('isSubmitted', 1)
+            ->count();
+        //checl if meron na ba data or submitted na ba yung requirements sa db
         if ($request->hasFile('psa')) {
-            $name = $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name;
-            $path = public_path() . '/uploads/requirements/' . $name;
-            $psa = $request->file('psa');
-            $extenstion = $psa->getClientOriginalExtension();
-            $filename = 'psa' . '.' . $extenstion;
-            if (!file_exists($path)) {
+            //Check if request has a psa with a extension of csv,txt,xlx,xls,pdf,jpg,jpeg,png,docx,pptx
+            if ($request->validate(['psa' => 'mimes:pdf,jpg,jpeg,png|max:8192',])) {
+                //get student full name for folder name
+                $name = $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name;
+                //add student full name to path to create specific folder for student
+                $path = public_path() . '/uploads/requirements/' . $name;
+                $psa = $request->file('psa');
+                //get file extention
+                $extention = $psa->getClientOriginalExtension();
+                //rename file to psa
+                $filename = 'psa' . '.' . $extention;
+                //check if the file path is exist in public folder
+                if (file_exists($path)) {
+                    //check if file is in folder /uploads/requirements/ + student full name
+                    if (file_exists($path . '/' . $filename)) {
+                        //if exist return file exist
+                        return redirect()->back()->with('error', ' PSA File Exist');
+                    }
+                    //if not exist move file with name of psa in folder /uploads/requirements/ + student full name
+                    $psa->move($path, $filename);
+                    //checl if meron na ba data or submitted na ba yung requirements sa db
+                    if ($hasFilePsa == 0) {
+                        Enrolled_Requirement::create([
+                            'student_id' => $id,
+                            'filename' => 'psa',
+                            'filepath' => $path . $filename,
+                            'isSubmitted' => 1,
+                        ]);
+                    }
+                    return redirect()->back()->with('success', 'Uploaded Successfully');
+                }
+                //if path is not exist create path then move file to it
                 Storage::disk('local')->makeDirectory($path);
                 $psa->move($path, $filename);
-                Enrolled_Requirement::create([
-                    'student_id' => $id,
-                    'filename' => 'psa',
-                    'filepath' => $path . $filename,
-                    'isSubmitted' => 1,
-                ]);
-                return redirect()->back()->with('success', 'Uploaded Successfully');
-            } else {
-                if (!$requirements->isEmpty()) {
-                    foreach ($requirements as $requirement) {
-                        if ($requirement->isSubmitted == 1 && $requirement->filename == 'psa') {
-                            return redirect()->back()->with('error', 'File exist');
-                        } else {
-                            $psa->move($path, $filename);
-                            Enrolled_Requirement::create([
-                                'student_id' => $id,
-                                'filename' => 'psa',
-                                'filepath' => $path . $filename,
-                                'isSubmitted' => 1,
-                            ]);
-                            return redirect()->back()->with('success', 'Uploaded Successfully');
-                        }
-                    }
-                } else {
-                    $psa->move($path, $filename);
+                //checl if meron na ba data or submitted na ba yung requirements sa db
+                if ($hasFilePsa == 0) {
                     Enrolled_Requirement::create([
                         'student_id' => $id,
                         'filename' => 'psa',
                         'filepath' => $path . $filename,
                         'isSubmitted' => 1,
                     ]);
-                    return redirect()->back()->with('success', 'Uploaded Successfully');
                 }
+                return redirect()->back()->with('success', 'Uploaded Successfully');
             }
         }
-        /*  } */
-
-
-        /* if ($request->validate(['form_137' => 'required|mimes:csv,txt,xlx,xls,pdf,jpg,jpeg,png,docx,pptx|max:8192',])) { */
         if ($request->hasFile('form_137')) {
-            $name = $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name;
-            $path = public_path() . '/uploads/requirements/' . $name;
-            $form137 = $request->file('form_137');
-            $extenstion = $form137->getClientOriginalExtension();
-            $filename = 'form_137' . '.' . $extenstion;
-            if (!file_exists($path)) {
-                Storage::disk('local')->makeDirectory($path);
-                Enrolled_Requirement::create([
-                    'student_id' => $id,
-                    'filename' => 'form_137',
-                    'filepath' => $path . $filename,
-                    'isSubmitted' => 1,
-                ]);
-                return redirect()->back()->with('success', 'Uploaded Successfully');
-            } else {
-                if (!$requirements->isEmpty()) {
-                    foreach ($requirements as $requirement) {
-                        if ($requirement->isSubmitted == 1 && $requirement->filename == 'form_137') {
-                            return redirect()->back()->with('error', 'File exist');
-                        } else {
-                            $form137->move($path, $filename);
-                            Enrolled_Requirement::create([
-                                'student_id' => $id,
-                                'filename' => 'form_137',
-                                'filepath' => $path . $filename,
-                                'isSubmitted' => 1,
-                            ]);
-                            return redirect()->back()->with('success', 'Uploaded Successfully');
-                        }
+            //Check if request has a psa with a extension of csv,txt,xlx,xls,pdf,jpg,jpeg,png,docx,pptx
+            if ($request->validate(['form_137' => 'mimes:pdf,jpg,jpeg,png|max:8192',])) {
+                //get student full name for folder name
+                $name = $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name;
+                //add student full name to path to create specific folder for student
+                $path = public_path() . '/uploads/requirements/' . $name;
+                $psa = $request->file('form_137');
+                //get file extention
+                $extention = $psa->getClientOriginalExtension();
+                //rename file to psa
+                $filename = 'form 137' . '.' . $extention;
+                //check if the file path is exist in public folder
+                if (file_exists($path)) {
+                    //check if file is in folder /uploads/requirements/ + student full name
+                    if (file_exists($path . '/' . $filename)) {
+                        //if exist return file exist
+                        return redirect()->back()->with('error', 'File Exist');
                     }
-                } else {
-                    $form137->move($path, $filename);
+                    //if not exist move file with name of psa in folder /uploads/requirements/ + student full name
+                    $psa->move($path, $filename);
+                    //checl if meron na ba data or submitted na ba yung requirements sa db
+                    if ($hasFileForm137 == 0) {
+                        Enrolled_Requirement::create([
+                            'student_id' => $id,
+                            'filename' => 'form 137',
+                            'filepath' => $path . $filename,
+                            'isSubmitted' => 1,
+                        ]);
+                    }
+                    return redirect()->back()->with('success', 'Uploaded Successfully');
+                }
+                //if path is not exist create path then move file to it
+                Storage::disk('local')->makeDirectory($path);
+                $psa->move($path, $filename);
+                //checl if meron na ba data or submitted na ba yung requirements sa db
+                if ($hasFileForm137 == 0) {
                     Enrolled_Requirement::create([
                         'student_id' => $id,
-                        'filename' => 'form_137',
+                        'filename' => 'form 137',
                         'filepath' => $path . $filename,
                         'isSubmitted' => 1,
                     ]);
-                    return redirect()->back()->with('success', 'Uploaded Successfully');
                 }
+                return redirect()->back()->with('success', 'Uploaded Successfully');
             }
         }
-        /*  } */
-
-
-        /*
-        if ($validated) {
-            if ($request->file()) {
-                $id = $request->input('id');
-                $student = Enrollee::find($id);
-                $requirement = Enrolled_Requirement::find($id);
-                $name = $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name;
-                $path ='/uploads/requirements/' . $name;
-                Storage::makeDirectory($path);
-                $extenstion = $request->file('file')->getClientOriginalExtension();
-                $filename = 'psa' . '.' . $extenstion;
-                $filePath = $request->file('file')->storeAs($path, $filename, 'public');
-            }
-            return redirect()->back();
-        } */
+        return back();
     }
 
     /**
@@ -163,7 +154,6 @@ class EnrolledRequirementController extends Controller
      */
     public function show(Enrolled_Requirement $enrolled_Requirement)
     {
-
     }
 
     /**

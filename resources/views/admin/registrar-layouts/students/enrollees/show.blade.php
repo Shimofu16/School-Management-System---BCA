@@ -16,8 +16,9 @@
                     @endif
                 </div>
                 <div class="text-center mb-3">
-                    <h5 class="fw-bolder text-dark">{{ ucfirst($student->first_name) }} {{ substr(ucfirst($student->middle_name),0,1) }} ,
-                        {{ ucfirst($student->last_name) }}</h5>
+                    <h5 class="fw-bolder text-dark">{{ ucfirst($student->first_name) }}
+                        {{ substr(ucfirst($student->middle_name), 0, 1) }} ,
+                        {{ ucfirst($student->last_name) }} @if ($student->ext_name !== null){{ ucfirst($student->ext_name) }}@endif</h5>
                     <h6>{{ $student->email }}</h6>
                 </div>
                 <div class="text-center mb-3">
@@ -421,20 +422,9 @@
             <div class="row px-3 pt-4 flex-column" id="student">
                 <div class="form-row mb-2">
                     <div class="col-12">
-                        @php
-                            $validPsa = false;
-                        @endphp
-                        @if (!$isEmpty)
-                            @foreach ($requirements as $requirement)
-                                @if ($requirement->isSubmitted == 1 && $requirement->filename == 'psa' && $requirement->student_id == $id)
-                                    @php
-                                        $validPsa = true;
-                                    @endphp
-                                @break
-                            @endif
-                        @endforeach
-                        @if ($validPsa)
-                            <h5><span class="text-dark text-black font-weight-bold">PSA:</span> Submitted</h5>
+                        @if ($hasFilePsa == true)
+                            <h5><span class="text-dark text-black font-weight-bold">Philippine Statistics Authority
+                                    (PSA):</span> Submitted</h5>
                         @else
                             <form action="{{ route('enrollees.store.requirements') }}" method="post"
                                 enctype="multipart/form-data">
@@ -450,71 +440,32 @@
                                 </div>
                             </form>
                         @endif
-                    @else
-                        <form action="{{ route('enrollees.store.requirements') }}" method="post"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <div class="custom-file d-flex justify-content center align-items-center mb-3">
-                                <h5 span class="text-dark text-black font-weight-bold py-3 mr-2">PSA</h5>
-                                <input type="file" name="psa">
-                                <input type="hidden" name="id" value="{{ $student->id }}">
-                                <div>
-                                    <button type="submit" name="submit" class="btn btn-primary btn-block">Upload
-                                        File</button>
-                                </div>
-                            </div>
-                        </form>
-        @endif
-    </div>
-    </div>
-    <div class="form-row mb-2">
-        <div class="col-12">
-            @php
-                $validForm137 = false;
-            @endphp
-            @if (!$isEmpty)
-                @foreach ($requirements as $requirement)
-                    @if ($requirement->isSubmitted == 1 && $requirement->filename == 'form_137' && $requirement->student_id == $id)
-                        @php
-                            $validForm137 = true;
-                        @endphp
-                    @break
-                @endif
-            @endforeach
-            @if ($validForm137)
-                <h5><span class="text-dark text-black font-weight-bold">Form 137:</span> Submitted</h5>
-            @else
-                <form action="{{ route('enrollees.store.requirements') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="custom-file d-flex justify-content center align-items-center mb-3">
-                        <h5 span class="text-dark text-black font-weight-bold py-3 mr-2">Form 137</h5>
-                        <input type="file" name="form_137">
-                        <input type="hidden" name="id" value="{{ $student->id }}">
-                        <div>
-                            <button type="submit" name="submit" class="btn btn-primary btn-block">Upload
-                                File</button>
-                        </div>
-                    </div>
-                </form>
-            @endif
-        @else
-            <form action="{{ route('enrollees.store.requirements') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="custom-file d-flex justify-content center align-items-center mb-3">
-                    <h5 span class="text-dark text-black font-weight-bold py-3 mr-2">Form 137</h5>
-                    <input type="file" name="form_137">
-                    <input type="hidden" name="id" value="{{ $student->id }}">
-                    <div>
-                        <button type="submit" name="submit" class="btn btn-primary btn-block">Upload
-                            File</button>
+
                     </div>
                 </div>
-            </form>
+                <div class="form-row mb-2">
+                    <div class="col-12">
+                        @if ($hasFileForm137 == true)
+                            <h5><span class="text-dark text-black font-weight-bold">Form 137:</span> Submitted</h5>
+                        @else
+                            <form action="{{ route('enrollees.store.requirements') }}" method="post"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="custom-file d-flex justify-content center align-items-center mb-3">
+                                    <h5 span class="text-dark text-black font-weight-bold py-3 mr-2">Form 137</h5>
+                                    <input type="file" name="form_137">
+                                    <input type="hidden" name="id" value="{{ $student->id }}">
+                                    <div>
+                                        <button type="submit" name="submit" class="btn btn-primary btn-block">Upload
+                                            File</button>
+                                    </div>
+                                </div>
+                            </form>
+                        @endif
+                    </div>
+                </div>
+            </div>
         @endif
-        </div>
-    </div>
-    </div>
-    @endif
     </div>
     </div>
 @endsection

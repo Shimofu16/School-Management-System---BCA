@@ -22,14 +22,13 @@ $title ='';
         </div>
         <div class="col">
             <div class="d-flex justify-content-end">
-                <a type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#add">
+                <a  class="btn btn-primary mr-5" data-toggle="modal" data-target="#add">
                     <span class="d-flex align-items-center"><i class="fas fa-plus-circle"></i>&#160; Add Section</span>
                 </a>
                 @include('admin.registrar-layouts.section.modal._modal-section')
             </div>
         </div>
     </div>
-    <hr>
     <div class="row">
         <div class="col-12">
             <div class="table-responsive">
@@ -57,7 +56,6 @@ $title ='';
                                  @else
                                      <td class="text-center">{{ $section->adviser }}</td>
                                  @endif
-
                                  <td class="d-flex justify-content-center align-items-center">
                                      <a class="btn btn-sm btn-info mr-1"
                                          href="{{ route('section.show', $section->id) }}">View</a>

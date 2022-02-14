@@ -25,51 +25,54 @@
                     <input type="hidden" name="birthplace" value="{{ $student->birthplace }}">
                     <input type="hidden" name="address" value="{{ $student->address }}">
                     <input type="hidden" name="grade_level_id" value="{{ $student->grade_level_id }}">
-                    {{--  fam   --}}
+                    {{-- fam --}}
 
                     @foreach ($families as $family)
-                    @if ($family->student_id == $student->id)
+                        @if ($family->student_id == $student->id)
 
-                        @if ($family->relationship == 'Father')
-                        <input type="hidden" name="father_name" value="{{ $family->name }}">
-                        <input type="hidden" name="father_birthdate" value="{{ $family->birthdate }}">
-                        <input type="hidden" name="father_email" value="{{ $family->email }}">
-                        <input type="hidden" name="father_landline" value="{{ $family->landline }}">
-                        <input type="hidden" name="father_contact_no" value="{{ $family->contact_no }}">
-                        <input type="hidden" name="father_occupation" value="{{ $family->occupation }}">
-                        <input type="hidden" name="father_office_address" value="{{ $family->office_address }}">
-                        <input type="hidden" name="father_office_contact" value="{{ $family->office_contact_no }}">
+                            @if ($family->relationship == 'Father')
+                                <input type="hidden" name="father_name" value="{{ $family->name }}">
+                                <input type="hidden" name="father_birthdate" value="{{ $family->birthdate }}">
+                                <input type="hidden" name="father_email" value="{{ $family->email }}">
+                                <input type="hidden" name="father_landline" value="{{ $family->landline }}">
+                                <input type="hidden" name="father_contact_no" value="{{ $family->contact_no }}">
+                                <input type="hidden" name="father_occupation" value="{{ $family->occupation }}">
+                                <input type="hidden" name="father_office_address"
+                                    value="{{ $family->office_address }}">
+                                <input type="hidden" name="father_office_contact"
+                                    value="{{ $family->office_contact_no }}">
                             @break
                         @endif
                     @endif
                     @endforeach
                     @foreach ($families as $family)
-                    @if ($family->student_id == $student->id)
-                        @if ($family->relationship == 'Mother')
-                        <input type="hidden" name="mother_name" value="{{ $family->name }}">
-                        <input type="hidden" name="mother_birthdate" value="{{ $family->birthdate }}">
-                        <input type="hidden" name="mother_email" value="{{ $family->email }}">
-                        <input type="hidden" name="mother_landline" value="{{ $family->landline }}">
-                        <input type="hidden" name="mother_contact_no" value="{{ $family->contact_no }}">
-                        <input type="hidden" name="mother_occupation" value="{{ $family->occupation }}">
-                        <input type="hidden" name="mother_office_address" value="{{ $family->office_address }}">
-                        <input type="hidden" name="mother_office_contact" value="{{ $family->office_contact_no }}">
+                        @if ($family->student_id == $student->id)
+                            @if ($family->relationship == 'Mother')
+                                <input type="hidden" name="mother_name" value="{{ $family->name }}">
+                                <input type="hidden" name="mother_birthdate" value="{{ $family->birthdate }}">
+                                <input type="hidden" name="mother_email" value="{{ $family->email }}">
+                                <input type="hidden" name="mother_landline" value="{{ $family->landline }}">
+                                <input type="hidden" name="mother_contact_no" value="{{ $family->contact_no }}">
+                                <input type="hidden" name="mother_occupation" value="{{ $family->occupation }}">
+                                <input type="hidden" name="mother_office_address"
+                                    value="{{ $family->office_address }}">
+                                <input type="hidden" name="mother_office_contact"
+                                    value="{{ $family->office_contact_no }}">
                             @break
                         @endif
                     @endif
                     @endforeach
                     @foreach ($families as $family)
-                    @if ($family->student_id == $student->id)
-                        @if ($family->relationship == 'Guardian')
-                        <input type="hidden" name="guardian_name" value="{{ $family->name }}">
-                        <input type="hidden" name="guardian_contact" value="{{ $family->contact_no }}">
+                        @if ($family->student_id == $student->id)
+                            @if ($family->relationship == 'Guardian')
+                                <input type="hidden" name="guardian_name" value="{{ $family->name }}">
+                                <input type="hidden" name="guardian_contact" value="{{ $family->contact_no }}">
                             @break
                         @endif
                     @endif
                     @endforeach
                     @foreach ($requirements as $requirement)
-                        @if ($requirement->isSubmitted == 1 && $requirement->filename == 'form_137' && $requirement->student_id == $student->id)
-                            <input type="hidden" name="form137_student_id" value="{{ $requirement->student_id }}">
+                        @if ($requirement->isSubmitted == 1 && $requirement->filename == 'form 137' && $requirement->student_id == $student->id)
                             <input type="hidden" name="form137_filename" value="{{ $requirement->filename }}">
                             <input type="hidden" name="form137_filepath" value="{{ $requirement->filepath }}">
                             <input type="hidden" name="form137_isSubmitted" value="{{ $requirement->isSubmitted }}">
@@ -77,7 +80,6 @@
                     @endforeach
                     @foreach ($requirements as $requirement)
                         @if ($requirement->isSubmitted == 1 && $requirement->filename == 'psa' && $requirement->student_id == $student->id)
-                            <input type="hidden" name="psa_student_id" value="{{ $requirement->student_id }}">
                             <input type="hidden" name="psa_filename" value="{{ $requirement->filename }}">
                             <input type="hidden" name="psa_filepath" value="{{ $requirement->filepath }}">
                             <input type="hidden" name="psa_isSubmitted" value="{{ $requirement->isSubmitted }}">
@@ -86,10 +88,12 @@
                     <div class="form-group">
                         <label for="section" class="text-dark text-black font-weight-bold">Section:</label>
                         <select name="section_id" id="section" class="form-control w-50">
-                            <option selected >---- Select section ----</option>
+                            <option selected>---- Select section ----</option>
                             @foreach ($sections as $section)
                                 @if ($student->grade_level_id == $section->grade_level_id)
-                                <option value="{{ $section->id }}">{{ $section->section_name }}</option>
+                                    @if ($section->students->count() <= 20)
+                                        <option value="{{ $section->id }}">{{ $section->section_name }}</option>
+                                    @endif
                                 @endif
                             @endforeach
                         </select>
@@ -100,8 +104,6 @@
                     </div>
                 </form>
             </div>
-
-
         </div>
     </div>
 </div>

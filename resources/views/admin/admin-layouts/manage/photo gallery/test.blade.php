@@ -25,9 +25,9 @@
             <li data-target="#myCarousel" data-slide-to="2" class=""></li>
         </ol>
         <div class="carousel-inner">
-            @foreach ($photos as $photo)
+        @foreach ($photos as $photo)
             <div class="carousel-item active">
-                <img class="first-slide" src="{{ asset('img/announcements/1.jpg') }}" alt="First slide">
+                <img class="first-slide" src="{{ asset('img/announcements/'.$photo->ing) }}" alt="First slide">
                 <div class="container">
                   {{--    <div class="carousel-caption text-left">
                         <h1>Example headline.</h1>

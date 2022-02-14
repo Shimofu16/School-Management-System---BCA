@@ -26,7 +26,8 @@ class RegistrarDashboardController extends Controller
         $sectionCount = Section::count();
         $teacherCount = Teacher::count();
         $gradeLevels = Grade_level::all();
-        return view('admin.registrar-layouts.dashboard.index', compact('enrolleeCount', 'enrolledCount', 'sectionCount', 'teacherCount','gradeLevels'));
+        $sections = Section::all();
+        return view('admin.registrar-layouts.dashboard.index', compact('enrolleeCount', 'enrolledCount', 'sectionCount', 'teacherCount','gradeLevels','sections'));
     }
 
     /**

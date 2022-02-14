@@ -158,10 +158,28 @@ class EnrolleesController extends Controller
     {
         $student = Enrollee::with('gradeLevel')->findOrFail($id);
         $requirements = Enrollee_Requirement::all();
+        $hasFilePsa = false;
+        $hasFileForm137 = false;
+        foreach ($requirements as $requirement) {
+            if ($requirement->student_id == $id) {
+                if ($requirement->filename == 'psa' && $requirement->isSubmitted == 1) {
+                    $hasFilePsa = true;
+                    break;
+                }
+            }
+        }
+        foreach ($requirements as $requirement) {
+            if ($requirement->student_id == $id) {
+                if ($requirement->filename == 'form 137' && $requirement->isSubmitted == 1) {
+                    $hasFileForm137 = true;
+                    break;
+                }
+            }
+        }
         $families = Enrollee_Student_Family::all();
+        $sections = Section::all();
         $gradeLevels = Grade_level::all();
-        $isEmpty = $requirements->isEmpty();
-        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'families', 'requirements', 'isEmpty', 'id','gradeLevels'));
+        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'families', 'requirements', 'id','sections','gradeLevels','hasFilePsa','hasFileForm137'));
     }
 
     /**

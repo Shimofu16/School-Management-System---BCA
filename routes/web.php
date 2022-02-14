@@ -78,8 +78,9 @@ Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], 
     //Enrolled
     Route::get('/students/enrolled', 'EnrolledStudentController@index')->name('enrolled.index');
     Route::get('/students/enrolled/{id}/show', 'EnrolledStudentController@show')->name('enrolled.show');
-    Route::get('/students/enrolled/{id}/requirements', 'EnrolledStudentController@show')->name('enrolled.show.requirements');
     Route::put('/students/enrolled/{id}', 'EnrolledStudentController@update')->name('enrolled.update');
+    Route::get('/students/enrolled/{id}/requirements', 'EnrolledStudentController@show')->name('enrolled.show.requirements');
+    Route::post('/students/requirements', 'EnrolledRequirementController@store')->name('enrolled.store.requirements');
     /* Registrar|teacher */
     Route::get('/teachers', 'RTeachersController@index')->name('teachers.index');
     Route::get('/teachers/create', 'RTeachersController@create')->name('teachers.create');
@@ -87,7 +88,7 @@ Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], 
     Route::get('/teachers/{id}/edit', 'RTeachersController@edit')->name('teachers.edit');
     Route::put('/teachers/{id}', 'RTeachersController@update')->name('teachers.update');
     /* Registrar|section */
-  /*   Route::get('/sections', 'RSectionsController@index')->name('section.index'); */
+    Route::get('/sections', 'RSectionsController@section')->name('section.index');
     Route::get('/sections/{id}', 'RSectionsController@show')->name('section.show');
     Route::post('/sections', 'RSectionsController@store')->name('section.store');
     Route::put('/section/{id}', 'RSectionsController@update')->name('section.update');

@@ -23,6 +23,13 @@ class RSectionsController extends Controller
         $gradeLevels = Grade_level::all();
         return view('admin.registrar-layouts.section.index', compact('sections', 'teachers', 'gradeLevels'));
     }
+    public function section(){
+        $sections = Section::with('students')->orderBy('id', 'asc')
+        ->get();
+        $teachers = Teacher::all();
+        $gradeLevels = Grade_level::all();
+        return view('admin.registrar-layouts.section.sections', compact('sections', 'teachers','gradeLevels'));
+    }
 
     /**
      * Show the form for creating a new resource.

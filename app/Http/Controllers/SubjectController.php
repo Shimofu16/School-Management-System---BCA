@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Grade_level;
+use App\Section;
 use Illuminate\Http\Request;
 use App\Subject;
 use DB;
@@ -16,8 +17,9 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = Subject::orderBy('id', 'asc')->get();
+        $sections = Section::all();
         $gradeLevels = Grade_level::all();
-        return view('admin.registrar-layouts.subjects.index', compact('subjects','gradeLevels'));
+        return view('admin.registrar-layouts.subjects.index', compact('subjects','sections','gradeLevels'));
     }
 
     /**
