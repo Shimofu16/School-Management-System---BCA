@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Enrollee;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,15 +11,15 @@ use Illuminate\Queue\SerializesModels;
 class acceptedMessage extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $details;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( $details)
     {
-        //
+        $this->details = $details;
     }
 
     /**
@@ -28,6 +29,6 @@ class acceptedMessage extends Mailable
      */
     public function build()
     {
-        return $this->subject('BCA')->markdown('emails.acceptedMessage');
+        return $this->subject('Mail from BCA')->markdown('emails.acceptedMessage');
     }
 }

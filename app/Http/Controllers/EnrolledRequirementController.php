@@ -43,11 +43,11 @@ class EnrolledRequirementController extends Controller
         $hasFilePsa = Enrolled_Requirement::where('student_id', $id)
             ->where('filename', 'psa')
             ->where('isSubmitted', 1)
-            ->count();
+            ->firstorfail();
         $hasFileForm137 = Enrolled_Requirement::where('student_id', $id)
             ->where('filename', 'form 137')
             ->where('isSubmitted', 1)
-            ->count();
+            ->firstorfail();
         //checl if meron na ba data or submitted na ba yung requirements sa db
         if ($request->hasFile('psa')) {
             //Check if request has a psa with a extension of csv,txt,xlx,xls,pdf,jpg,jpeg,png,docx,pptx
@@ -71,7 +71,7 @@ class EnrolledRequirementController extends Controller
                     //if not exist move file with name of psa in folder /uploads/requirements/ + student full name
                     $psa->move($path, $filename);
                     //checl if meron na ba data or submitted na ba yung requirements sa db
-                    if ($hasFilePsa == 0) {
+                    if ($hasFilePsa == null) {
                         Enrolled_Requirement::create([
                             'student_id' => $id,
                             'filename' => 'psa',
@@ -85,7 +85,7 @@ class EnrolledRequirementController extends Controller
                 Storage::disk('local')->makeDirectory($path);
                 $psa->move($path, $filename);
                 //checl if meron na ba data or submitted na ba yung requirements sa db
-                if ($hasFilePsa == 0) {
+                if ($hasFilePsa == null) {
                     Enrolled_Requirement::create([
                         'student_id' => $id,
                         'filename' => 'psa',
@@ -112,13 +112,21 @@ class EnrolledRequirementController extends Controller
                 if (file_exists($path)) {
                     //check if file is in folder /uploads/requirements/ + student full name
                     if (file_exists($path . '/' . $filename)) {
+                        if ($hasFileForm137 == null) {
+                            Enrolled_Requirement::create([
+                                'student_id' => $id,
+                                'filename' => 'form 137',
+                                'filepath' => $path . $filename,
+                                'isSubmitted' => 1,
+                            ]);
+                        }
                         //if exist return file exist
                         return redirect()->back()->with('error', 'File Exist');
                     }
                     //if not exist move file with name of psa in folder /uploads/requirements/ + student full name
                     $psa->move($path, $filename);
                     //checl if meron na ba data or submitted na ba yung requirements sa db
-                    if ($hasFileForm137 == 0) {
+                    if ($hasFileForm137 == null) {
                         Enrolled_Requirement::create([
                             'student_id' => $id,
                             'filename' => 'form 137',
@@ -132,7 +140,7 @@ class EnrolledRequirementController extends Controller
                 Storage::disk('local')->makeDirectory($path);
                 $psa->move($path, $filename);
                 //checl if meron na ba data or submitted na ba yung requirements sa db
-                if ($hasFileForm137 == 0) {
+                if ($hasFileForm137 == null) {
                     Enrolled_Requirement::create([
                         'student_id' => $id,
                         'filename' => 'form 137',

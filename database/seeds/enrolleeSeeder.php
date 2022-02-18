@@ -18,7 +18,7 @@ class enrolleeSeeder extends Seeder
         $students = [
             [
                 'student_lrn' => '123456789103',
-                'last_name' => 'Albayter',
+                'last_name' => 'Albaytar',
                 'first_name' => 'Poul Aedrian',
                 'middle_name' => 'R',
                 'gender' => 'Male',
@@ -27,6 +27,7 @@ class enrolleeSeeder extends Seeder
                 'birthdate' => '2019-05-23',
                 'birthplace' => 'calauan,laguna',
                 'address' => 'calauan,laguna',
+                'status' => 1,//new
                 'grade_level_id' => '1',
             ],
             [
@@ -40,6 +41,7 @@ class enrolleeSeeder extends Seeder
                 'birthdate' => '2019-05-23',
                 'birthplace' => 'calauan,laguna',
                 'address' => 'calauan,laguna',
+                'status' => 0,//new
                 'grade_level_id' => '1',
             ]
         ];
@@ -48,7 +50,7 @@ class enrolleeSeeder extends Seeder
         }
         $families = [
             [
-                'student_id' => '1',
+                'student_lrn' => '123456789103',
                 'name' => 'Dino Sy Tamad 1',
                 'birthdate' => '2000-05-23',
                 'contact_no' => '09123456782',
@@ -58,7 +60,7 @@ class enrolleeSeeder extends Seeder
                 'office_contact_no' => '09123456785',
             ],
             [
-                'student_id' => '1',
+                'student_lrn' => '123456789103',
                 'name' => 'Gina Dy Tamad 1',
                 'birthdate' => '2000-05-23',
                 'contact_no' => '09123456789',
@@ -68,13 +70,13 @@ class enrolleeSeeder extends Seeder
                 'office_contact_no' => '09123456785',
             ],
             [
-                'student_id' => '1',
+                'student_lrn' => '123456789103',
                 'name' => 'Gina Dy Tamad 1',
                 'relationship' => 'Guardian',
                 'contact_no' => '09123456789',
             ],
             [
-                'student_id' => '2',
+                'student_lrn' => '123456789104',
                 'name' => 'Dino Sy Tamad 2',
                 'birthdate' => '2000-05-23',
                 'contact_no' => '09123456782',
@@ -84,7 +86,7 @@ class enrolleeSeeder extends Seeder
                 'office_contact_no' => '09123456785',
             ],
             [
-                'student_id' => '2',
+                'student_lrn' => '123456789104',
                 'name' => 'Gina Dy Tamad 2',
                 'birthdate' => '2000-05-23',
                 'contact_no' => '09123456789',
@@ -94,7 +96,7 @@ class enrolleeSeeder extends Seeder
                 'office_contact_no' => '09123456785',
             ],
             [
-                'student_id' => '2',
+                'student_lrn' => '123456789104',
                 'name' => 'Gina Dy Tamad 2',
                 'relationship' => 'Guardian',
                 'contact_no' => '09123456789',

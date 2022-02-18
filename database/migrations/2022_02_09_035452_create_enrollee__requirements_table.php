@@ -15,11 +15,12 @@ class CreateEnrolleeRequirementsTable extends Migration
     {
         Schema::create('enrollee_requirements', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('student_id')->nullable();
+            $table->string('student_lrn')->nullable();
+            /* $table->unsignedBigInteger('student_id')->nullable();
             $table->foreign('student_id')
                 ->references('id')
                 ->on('enrollees')
-                ->onDelete('cascade')->onUpdate('cascade');
+                ->onDelete('cascade')->onUpdate('cascade'); */
             $table->string('filename')->nullable();
             $table->string('filepath')->nullable();
             $table->boolean('isSubmitted')->default(0)->nullable();

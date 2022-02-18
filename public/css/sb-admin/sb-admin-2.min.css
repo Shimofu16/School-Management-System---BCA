@@ -10,6 +10,7 @@
  */
 :root {
     --bca: #0b2090;
+    --bcahover: #1c309e;
     --blue: #4e73df;
     --indigo: #6610f2;
     --purple: #6f42c1;
@@ -62,11 +63,13 @@ html {
     color: #fff !important;
     border-color: var(--bca) !important;
     background-color: var(--bca) !important;
-    transition: all 0.5s;
 }
 .btn-bca:hover{
-    letter-spacing: 1px;
+    color: #fff !important;
+    border-color: var(--bca) !important;
+    background-color: var(--bcahover) !important;
 }
+
 .link-tag{
     text-decoration: none;
     color: #fff;

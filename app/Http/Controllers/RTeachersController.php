@@ -25,6 +25,7 @@ class RTeachersController extends Controller
         /*    dd(date('m'.'/'.'d'.'/'.'Y')); */
         /* $teachers = Teacher::with( 'subjects', 'sections' )->get();
         */
+      
         $teachers = Teacher::orderBy('id', 'asc')->get();
         $teachers = Teacher::all();
         $sections = Section::all();

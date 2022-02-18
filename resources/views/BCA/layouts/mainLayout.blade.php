@@ -23,7 +23,7 @@
     <!-- navigation bar -->
     @include('BCA.layouts._header')
 
-    <div class="container pt-home border">
+    <div class="container pt-home shadow border">
         @yield('contents')
     </div>
     <!-- footer -->

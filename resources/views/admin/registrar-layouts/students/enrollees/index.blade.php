@@ -5,6 +5,7 @@
 @endsection
 @section('contents')
     <h1 class="h3 mb-4 text-gray-800">@yield('page-title')</h1>
+    @include('admin.alert-msgs._success')
     <div class="row">
         <div class="col-12">
             <div class="table-responsive">

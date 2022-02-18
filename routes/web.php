@@ -73,14 +73,14 @@ Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], 
     Route::get('/students/enrollee', 'EnrolleesController@index')->name('enrollees.index');
     Route::get('/students/enrollee/{id}/show', 'EnrolleesController@show')->name('enrollees.show');
     Route::get('/students/enrollee/{id}/requirements', 'EnrolleesController@show')->name('enrollees.show.requirements');
-    Route::post('/students/requirements', 'EnrolleeRequirementController@store')->name('enrollees.store.requirements');
-    Route::get('/students/requirements/download/{filename}', 'EnrolleeRequirementController@download')->name('enrollees.download.requirements');
+    Route::post('/students/enrollee/requirements', 'EnrolleeRequirementController@store')->name('enrollees.store.requirements');
+
     //Enrolled
     Route::get('/students/enrolled', 'EnrolledStudentController@index')->name('enrolled.index');
     Route::get('/students/enrolled/{id}/show', 'EnrolledStudentController@show')->name('enrolled.show');
     Route::put('/students/enrolled/{id}', 'EnrolledStudentController@update')->name('enrolled.update');
     Route::get('/students/enrolled/{id}/requirements', 'EnrolledStudentController@show')->name('enrolled.show.requirements');
-    Route::post('/students/requirements', 'EnrolledRequirementController@store')->name('enrolled.store.requirements');
+    Route::post('/students/enrolled/requirements', 'EnrolledRequirementController@store')->name('enrolled.store.requirements');
     /* Registrar|teacher */
     Route::get('/teachers', 'RTeachersController@index')->name('teachers.index');
     Route::get('/teachers/create', 'RTeachersController@create')->name('teachers.create');
@@ -106,6 +106,12 @@ Route::group(['prefix' => 'registrar', 'middleware' => ['auth','isRegistrar']], 
     Route::delete('/subjects/{id}', 'SubjectController@destroy')->name('subject.destroy');
 });
 Route::get('email', function(){
-    Mail::to('royjosephlatayan0816@gmail.com')->send(new acceptedMessage);
-    return new acceptedMessage();
+    $details =[
+        'to'=>'royjosephlatayan16@gmail.com',
+        'text'=>'asd'
+    ];
+    Mail::send('emails.acceptedMessage',$details,function($message) use ($details){
+        $message->to($details['to'])->subject('BCA');
+    });
+    return redirect()->route('home.index');
 })->name('user');

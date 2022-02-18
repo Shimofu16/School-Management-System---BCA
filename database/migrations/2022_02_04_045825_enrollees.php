@@ -31,7 +31,7 @@ class Enrollees extends Migration
                 ->references('id')
                 ->on('grade_levels')
                 ->onDelete('restrict')->onUpdate('cascade');
-
+            $table->boolean('status')->default(0)->nullable();
         });
     }
 

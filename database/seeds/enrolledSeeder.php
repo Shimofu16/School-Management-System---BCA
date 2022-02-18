@@ -37,7 +37,7 @@ class enrolledSeeder extends Seeder
         }
         $families = [
             [
-                'student_id' => '1',
+                'student_lrn' => '123456789102',
                 'name' => 'Dino Sy Tamad',
                 'birthdate' => '2000-05-23',
                 'contact_no' => '09123456782',
@@ -47,7 +47,7 @@ class enrolledSeeder extends Seeder
                 'office_contact_no' => '09123456785',
             ],
             [
-                'student_id' => '1',
+                'student_lrn' => '123456789102',
                 'name' => 'Gina Dy Tamad',
                 'birthdate' => '2000-05-23',
                 'contact_no' => '09123456789',
@@ -57,7 +57,7 @@ class enrolledSeeder extends Seeder
                 'office_contact_no' => '09123456785',
             ],
             [
-                'student_id' => '1',
+                'student_lrn' => '123456789102',
                 'name' => 'Gina Dy Tamad',
                 'relationship' => 'Guardian',
                 'contact_no' => '09123456789',

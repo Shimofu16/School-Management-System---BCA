@@ -15,11 +15,12 @@ class CreateEnrolledStudentFamiliesTable extends Migration
     {
         Schema::create('enrolled_student_families', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('student_id')->nullable();
+            $table->string('student_lrn')->nullable();
+            /* $table->unsignedBigInteger('student_id')->nullable();
             $table->foreign('student_id')
                 ->references('id')
                 ->on('enrolled_students')
-                ->onDelete('restrict')->onUpdate('cascade');
+                ->onDelete('restrict')->onUpdate('cascade'); */
             $table->string('name')->nullable();
             $table->date('birthdate')->useCurrent()->nullable();
             $table->string('landline', 20)->nullable();

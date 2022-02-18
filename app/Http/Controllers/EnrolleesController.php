@@ -11,12 +11,17 @@ use App\Enrollee;
 use App\Enrollee_Requirement;
 use App\Enrollee_Student_Family;
 use App\Grade_level;
+use App\Mail\acceptedMessage;
 use App\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class EnrolleesController extends Controller
 {
@@ -30,11 +35,10 @@ class EnrolleesController extends Controller
     {
         $students = Enrollee::with('gradeLevel')->orderBy('id', 'asc')
             ->get();
-        $families = Enrollee_Student_Family::all();
         $sections = Section::all();
         $requirements = Enrollee_Requirement::all();
         $gradeLevels = Grade_level::all();
-        return view('admin.registrar-layouts.students.enrollees.index', compact('students', 'sections', 'gradeLevels', 'families', 'requirements'));
+        return view('admin.registrar-layouts.students.enrollees.index', compact('students', 'sections', 'gradeLevels'));
     }
 
     /**
@@ -57,94 +61,126 @@ class EnrolleesController extends Controller
 
     public function store(Request $request)
     {
+        $student_lrn = $request->input('student_lrn');
+        try {
+            $psa = Enrollee_Requirement::where('student_lrn', $student_lrn)
+                ->where('filename', 'psa')
+                ->where('isSubmitted', 1)
+                ->first();
+            $hasFilePsa = true;
+        } catch (ModelNotFoundException $e) {
+            $hasFilePsa = false;
+        }
+        try {
+            $form137 = Enrollee_Requirement::where('student_lrn', $student_lrn)
+                ->where('filename', 'form 137')
+                ->where('isSubmitted', 1)
+                ->first();
+            $hasFileForm137 = true;
+        } catch (ModelNotFoundException $e) {
+            $hasFileForm137 = false;
+        }
 
-        $student = new Student;
-        $student->student_lrn = $request->input('student_lrn');
-        $student->first_name = $request->input('first_name');
-        $student->middle_name = $request->input('middle_name');
-        $student->last_name = $request->input('last_name');
-        $student->ext_name = $request->input('ext_name');
-        $student->gender = $request->input('gender');
-        $student->age = $request->input('age');
-        $student->email = $request->input('email');
-        $student->birthdate = $request->input('birthdate');
-        $student->birthplace = $request->input('birthplace');
-        $student->address = $request->input('address');
-        $student->section_id = $request->input('section_id');
-        $student->grade_level_id = $request->input('grade_level_id');
-        $student->sy_id = 1;
-        $student->save();
-        $students = Student::all();
-        $c = 0;
-        foreach ($students as $student) {
-            $c++;
-            $id[$c] = $student->id;
-        }
-        $lastId = Arr::last($id);
-        $families = [
-            [
-                'student_id' => $lastId,
-                'name' => $request->input('father_name'),
-                'birthdate' => $request->input('father_birthdate'),
-                'email' => $request->input('father_email'),
-                'landline' => $request->input('father_landline'),
-                'contact_no' => $request->input('father_contact_no'),
-                'occupation' => $request->input('father_occupation'),
-                'office_address' => $request->input('father_office_address'),
-                'office_contact_no' => $request->input('father_office_contact'),
-                'relationship' => 'Father',
-            ], [
-                'student_id' => $lastId,
-                'name' => $request->input('mother_name'),
-                'birthdate' => $request->input('mother_birthdate'),
-                'email' => $request->input('mother_email'),
-                'landline' => $request->input('mother_landline'),
-                'contact_no' => $request->input('mother_contact_no'),
-                'occupation' => $request->input('mother_occupation'),
-                'office_address' => $request->input('mother_office_address'),
-                'office_contact_no' => $request->input('mother_office_contact'),
-                'relationship' => 'Mother',
-            ], [
-                'student_id' => $lastId,
-                'name' => $request->input('guardian_name'),
-                'contact_no' => $request->input('guardian_contact'),
-                'relationship' => 'Guardian',
-            ]
-        ];
-        foreach ($families as $family) {
-            Enrolled_Student_Family::create($family);
-        }
-        $enrolledStudents = Student::all();
-        foreach ($enrolledStudents as $enrolledStudent) {
-            if ($enrolledStudent->student_lrn == $request->input('student_lrn')) {
-                $studentID =  $enrolledStudent->id;
+        $father = Enrollee_Student_Family::where('student_lrn', $student_lrn)
+            ->where('relationship', 'Father')
+            ->firstorfail();
+        $mother = Enrollee_Student_Family::where('student_lrn', $student_lrn)
+            ->where('relationship', 'Mother')
+            ->firstorfail();
+        $guardian = Enrollee_Student_Family::where('student_lrn', $student_lrn)
+            ->where('relationship', 'Guardian')
+            ->firstorfail();
+        if ($hasFileForm137 == false && $hasFilePsa == false) {
+            $student = new Student;
+            $student->student_lrn = $student_lrn;
+            $student->first_name = $request->input('first_name');
+            $student->middle_name = $request->input('middle_name');
+            $student->last_name = $request->input('last_name');
+            $student->ext_name = $request->input('ext_name');
+            $student->gender = $request->input('gender');
+            $student->age = $request->input('age');
+            $student->email = $request->input('email');
+            $student->birthdate = $request->input('birthdate');
+            $student->birthplace = $request->input('birthplace');
+            $student->address = $request->input('address');
+            $student->section_id = $request->input('section_id');
+            $student->grade_level_id = $request->input('grade_level_id');
+            $student->sy_id = 1;
+
+
+
+            $families = [
+                [
+                    'student_lrn' => $student_lrn,
+                    'name' => $father->name,
+                    'birthdate' => $father->birthdate,
+                    'email' => $father->email,
+                    'landline' => $father->landline,
+                    'contact_no' => $father->contact_no,
+                    'occupation' => $father->occupation,
+                    'office_address' => $father->office_address,
+                    'office_contact_no' => $father->office_contact_no,
+                    'relationship' => 'Father',
+                ], [
+                    'student_lrn' => $student_lrn,
+                    'name' => $mother->name,
+                    'birthdate' => $mother->birthdate,
+                    'email' => $mother->email,
+                    'landline' => $mother->landline,
+                    'contact_no' => $mother->contact_no,
+                    'occupation' => $mother->occupation,
+                    'office_address' => $mother->office_address,
+                    'office_contact_no' => $mother->office_contact_no,
+                    'relationship' => 'Mother',
+                ], [
+                    'student_lrn' => $student_lrn,
+                    'name' => $guardian->name,
+                    'contact_no' => $guardian->contact_no,
+                    'relationship' => $guardian->relationship,
+                ]
+            ];
+
+            $requirements = [
+                [
+                    'student_lrn' => $student_lrn,
+                    'filename' => $psa->filename,
+                    'filepath' => $psa->filepath,
+                    'isSubmitted' => $psa->isSubmitted,
+                ],
+                [
+                    'student_lrn' => $student_lrn,
+                    'filename' => $form137->filename,
+                    'filepath' => $form137->filepath,
+                    'isSubmitted' => $form137->isSubmitted,
+                ],
+            ];
+            foreach ($requirements as $requirement) {
+                Enrolled_Requirement::create($requirement);
             }
+            foreach ($families as $family) {
+                Enrolled_Student_Family::create($family);
+            }
+            $student->save();
+            $id = $request->input('id');
+            $enrollee = Enrollee::findOrFail($id);
+            $enrollee->delete();
+            $fam = Enrollee_Student_Family::findOrFail($id);
+            $fam->delete();
+            $req = Enrollee_Requirement::findOrFail($id);
+            $req->delete();
+            $details =[
+                'text'=>'hoy panget',
+            ];
+            $details =[
+                'to'=>$request->input('email'),
+                'text'=>'Accepted',
+            ];
+            Mail::send('emails.acceptedMessage',$details,function($message) use ($details){
+                $message->to($details['to'])->subject('Message from BCA');
+            });
+            return redirect()->route('enrolled.index')->with('success', 'Student ' . $request->input('first_name') . ' ' . $request->input('last_name'));
         }
-        $requirements = [
-            [
-                'student_id' => $studentID,
-                'filename' => request()->input('form137_filename'),
-                'filepath' => request()->input('form137_filepath'),
-                'isSubmitted' => request()->input('form137_isSubmitted'),
-            ],
-            [
-                'student_id' => $studentID,
-                'filename' => request()->input('psa_filename'),
-                'filepath' => request()->input('psa_filepath'),
-                'isSubmitted' => request()->input('psa_isSubmitted'),
-            ],
-        ];
-        foreach ($requirements as $requirement) {
-            Enrolled_Requirement::create($requirement);
-        }
-        $id = $request->input('id');
-        $enrollee = Enrollee::findOrFail($id);
-        $fam = Enrollee_Student_Family::findOrFail($id);
-        $req = Enrollee_Requirement::findOrFail($id);
-        $req->delete();
-        $enrollee->delete();
-        $fam->delete();
-        return redirect()->route('enrolled.index');
+        return redirect()->back()->with('error', 'Requirements are emprty');
     }
 
     /**
@@ -157,29 +193,128 @@ class EnrolleesController extends Controller
     public function show($id)
     {
         $student = Enrollee::with('gradeLevel')->findOrFail($id);
-        $requirements = Enrollee_Requirement::all();
-        $hasFilePsa = false;
-        $hasFileForm137 = false;
-        foreach ($requirements as $requirement) {
-            if ($requirement->student_id == $id) {
-                if ($requirement->filename == 'psa' && $requirement->isSubmitted == 1) {
-                    $hasFilePsa = true;
+        //get student full name for folder name
+        $name = $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name;
+        $fileTypes = [
+            'jpg',
+            'pdf',
+            'jpeg',
+            'png',
+        ];
+        try {
+            $psaFille = Enrollee_Requirement::where('student_lrn', $student->student_lrn)
+                ->where('filename', 'psa')
+                ->where('isSubmitted', 1)
+                ->firstorfail();
+            $hasFilePsa = true;
+        } catch (ModelNotFoundException $e) {
+            $filePath = public_path() . '/uploads/requirements/' . $name . '/psa.';
+            foreach ($fileTypes as $fileType) {
+                $filePath = $filePath . $fileType;
+                $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                if ($extension !== null) {
+                    if (file_exists($filePath)) {
+                        Enrollee_Requirement::create([
+                            'student_lrn' => $student->student_lrn,
+                            'filename' => 'psa',
+                            'filepath' => $filePath,
+                            'isSubmitted' => 1,
+                        ]);
+                    }
                     break;
                 }
             }
+            $hasFilePsa = false;
         }
-        foreach ($requirements as $requirement) {
-            if ($requirement->student_id == $id) {
-                if ($requirement->filename == 'form 137' && $requirement->isSubmitted == 1) {
-                    $hasFileForm137 = true;
+        try {
+            $form137File = Enrollee_Requirement::where('student_lrn', $student->student_lrn)
+                ->where('filename', 'form 137')
+                ->where('isSubmitted', 1)
+                ->firstorfail();
+            $hasFileForm137 = true;
+        } catch (ModelNotFoundException $e) {
+            $filePath = public_path() . '/uploads/requirements/' . $name . '/form 137.';
+            foreach ($fileTypes as $fileType) {
+                $filePath = $filePath . $fileType;
+                $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                if ($extension !== null) {
+                    if (file_exists($filePath)) {
+                        Enrollee_Requirement::create([
+                            'student_lrn' => $student->student_lrn,
+                            'filename' => 'form 137',
+                            'filepath' => $filePath,
+                            'isSubmitted' => 1,
+                        ]);
+                    }
                     break;
                 }
             }
+            $hasFileForm137 = false;
         }
-        $families = Enrollee_Student_Family::all();
+        try {
+            $goodMoral = Enrollee_Requirement::where('student_lrn', $student->student_lrn)
+                ->where('filename', 'good moral certificate')
+                ->where('isSubmitted', 1)
+                ->firstorfail();
+            $hasFileGoodMoral = true;
+        } catch (ModelNotFoundException $e) {
+            $filePath = public_path() . '/uploads/requirements/' . $name . '/good moral certificate.';
+            foreach ($fileTypes as $fileType) {
+                $filePath = $filePath . $fileType;
+                $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                if ($extension !== null) {
+                    if (file_exists($filePath)) {
+                        Enrollee_Requirement::create([
+                            'student_lrn' => $student->student_lrn,
+                            'filename' => 'good moral certificate',
+                            'filepath' => $filePath,
+                            'isSubmitted' => 1,
+                        ]);
+                    }
+                    break;
+                }
+            }
+            $hasFileGoodMoral = false;
+        }
+        try {
+            $studentPhoto = Enrollee_Requirement::where('student_lrn', $student->student_lrn)
+                ->where('filename', 'photo')
+                ->where('isSubmitted', 1)
+                ->firstorfail();
+            $hasFilePhoto = true;
+        } catch (ModelNotFoundException $e) {
+            $filePath = public_path() . '/uploads/requirements/' . $name . '/photo.';
+            foreach ($fileTypes as $fileType) {
+                $filePath = $filePath . $fileType;
+                $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                if ($extension !== null) {
+                    if (file_exists($filePath)) {
+                        Enrollee_Requirement::create([
+                            'student_lrn' => $student->student_lrn,
+                            'filename' => 'photo',
+                            'filepath' => $filePath,
+                            'isSubmitted' => 1,
+                        ]);
+                    }
+                    break;
+                }
+            }
+            $hasFilePhoto = false;
+        }
+
+
+        $father = Enrollee_Student_Family::where('student_lrn', $student->student_lrn)
+            ->where('relationship', 'Father')
+            ->firstorfail();
+        $mother = Enrollee_Student_Family::where('student_lrn', $student->student_lrn)
+            ->where('relationship', 'Mother')
+            ->firstorfail();
+        $guardian = Enrollee_Student_Family::where('student_lrn', $student->student_lrn)
+            ->where('relationship', 'Guardian')
+            ->firstorfail();
         $sections = Section::all();
         $gradeLevels = Grade_level::all();
-        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'families', 'requirements', 'id','sections','gradeLevels','hasFilePsa','hasFileForm137'));
+        return view('admin.registrar-layouts.students.enrollees.show', compact('student', 'sections', 'gradeLevels', 'hasFilePsa', 'hasFileForm137', 'hasFileGoodMoral', 'hasFilePhoto', 'father', 'mother', 'guardian'));
     }
 
     /**
