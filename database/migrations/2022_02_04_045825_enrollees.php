@@ -31,6 +31,9 @@ class Enrollees extends Migration
                 ->references('id')
                 ->on('grade_levels')
                 ->onDelete('restrict')->onUpdate('cascade');
+            $table->string('updated_by_user')->nullable();
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('created_at')->nullable();
             $table->boolean('status')->default(0)->nullable();
         });
     }

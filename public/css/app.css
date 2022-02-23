@@ -243,6 +243,9 @@ label {
     display: inline-block;
     margin-bottom: 0.5rem;
 }
+label:not(.gender)::after{
+    content: ' :';
+}
 
 button {
     border-radius: 0;
@@ -7328,6 +7331,7 @@ button.bg-dark:focus {
 .d-inline-flex {
     display: inline-flex !important;
 }
+
 
 @media (min-width: 576px) {
     .d-sm-none {

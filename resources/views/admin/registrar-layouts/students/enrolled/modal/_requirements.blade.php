@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @if ($student->status == 1)
+                @if ($student->status == 0)
                     <div class="form-row mb-2">
                         @if ($hasFilePsa == true)
                             <h5><span class="text-dark text-black font-weight-bold">Philippine Statistics Authority
@@ -98,86 +98,7 @@
                         @endif
                     </div>
                 @endif
-                @if ($student->status == 0)
-                    <div class="form-row mb-2">
-                        @if ($hasFilePsa !== true)
-                            <form action="{{ route('enrollees.store.requirements') }}" method="post"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="custom-file d-flex justify-content center align-items-center mb-3">
-                                    <h5 span class="text-dark text-black text-center font-weight-bold py-3 mr-4">
-                                        Philippine Statistics Authority
-                                        (PSA)</h5>
-                                    <input type="file" name="psa">
-                                    <input type="hidden" name="id" value="{{ $student->id }}">
-                                    <div>
-                                        <button type="submit" name="submit"
-                                            class="btn btn-primary btn-block">Upload</button>
-                                    </div>
-                                </div>
-                            </form>
-                        @endif
-                    </div>
-                    <div class="form-row mb-2">
-                        <div class="col-12">
-                            @if ($hasFileForm137 == true)
-                                <h5><span class="text-dark text-black text-center font-weight-bold">Form 137 / Report
-                                        Card:</span> Submitted</h5>
-                            @else
-                                <form action="{{ route('enrollees.store.requirements') }}" method="post"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="custom-file d-flex justify-content center align-items-center mb-3">
-                                        <h6 span class="text-dark text-black font-weight-bold py-3 mr-4">Form 137</h6>
-                                        <input type="file" name="form_137">
-                                        <input type="hidden" name="id" value="{{ $student->id }}">
-                                        <div>
-                                            <button type="submit" name="submit"
-                                                class="btn btn-primary btn-block">Upload</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="form-row mb-2">
-                        @if ($hasFileGoodMoral !== true)
-                            <form action="{{ route('enrollees.store.requirements') }}" method="post"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="custom-file d-flex justify-content center align-items-center mb-3">
-                                    <h5 span class="text-dark text-black text-center font-weight-bold py-3 mr-4">
-                                        Good Moral Certification</h5>
-                                    <input type="file" name="good_moral">
-                                    <input type="hidden" name="id" value="{{ $student->id }}">
-                                    <div>
-                                        <button type="submit" name="submit"
-                                            class="btn btn-primary btn-block">Upload</button>
-                                    </div>
-                                </div>
-                            </form>
-                        @endif
 
-                    </div>
-                    <div class="form-row mb-2">
-                        @if ($hasFilePhoto !== true)
-                            <form action="{{ route('enrollees.store.requirements') }}" method="post"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="custom-file d-flex justify-content center align-items-center mb-3">
-                                    <h5 span class="text-dark text-black text-center font-weight-bold py-3 mr-4">
-                                        1x1 Photo</h5>
-                                    <input type="file" name="photo">
-                                    <input type="hidden" name="id" value="{{ $student->id }}">
-                                    <div>
-                                        <button type="submit" name="submit"
-                                            class="btn btn-primary btn-block">Upload</button>
-                                    </div>
-                                </div>
-                            </form>
-                        @endif
-                    </div>
-                @endif
 
             </div>
             <div class="modal-footer">

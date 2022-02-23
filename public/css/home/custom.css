@@ -478,3 +478,14 @@ body{
     }
   }
 
+/* small */
+  @media (max-width:575px) {
+    .dd-sm-none {
+        display: none !important;
+    }
+
+    .cust-col-sm-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}

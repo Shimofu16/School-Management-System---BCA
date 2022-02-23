@@ -30,6 +30,8 @@ class enrolledSeeder extends Seeder
                 'grade_level_id' => '1',
                 'section_id' => '1',
                 'sy_id' => '1',
+                'status' => 0, //old
+                'created_at' => now(),
             ]
         ];
         foreach ($students as $student) {
@@ -45,6 +47,7 @@ class enrolledSeeder extends Seeder
                 'relationship' => 'Father',
                 'occupation' => 'Teacher',
                 'office_contact_no' => '09123456785',
+
             ],
             [
                 'student_lrn' => '123456789102',

@@ -23,12 +23,13 @@ class enrolleeSeeder extends Seeder
                 'middle_name' => 'R',
                 'gender' => 'Male',
                 'age' => '3',
-                'email' => 'para@gmail.com',
+                'email' => 'albaytarpaulaedrian@gmail.com',
                 'birthdate' => '2019-05-23',
                 'birthplace' => 'calauan,laguna',
                 'address' => 'calauan,laguna',
                 'status' => 1,//new
                 'grade_level_id' => '1',
+                'created_at'=> now(),
             ],
             [
                 'student_lrn' => '123456789104',
@@ -37,12 +38,13 @@ class enrolleeSeeder extends Seeder
                 'middle_name' => 'L',
                 'gender' => 'Female',
                 'age' => '3',
-                'email' => 'mmlp@gmail.com',
+                'email' => 'mamoureenpontanoza@gmail.com',
                 'birthdate' => '2019-05-23',
                 'birthplace' => 'calauan,laguna',
                 'address' => 'calauan,laguna',
-                'status' => 0,//new
+                'status' => 0,//old
                 'grade_level_id' => '1',
+                'created_at'=> now(),
             ]
         ];
         foreach ($students as $student) {

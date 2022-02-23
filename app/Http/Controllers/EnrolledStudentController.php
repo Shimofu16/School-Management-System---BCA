@@ -13,6 +13,7 @@ use App\Enrolled_Student_Family;
 use App\Family;
 use App\Grade_level;
 use App\Guardian;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -72,30 +73,137 @@ class EnrolledStudentController extends Controller
 
     public function show($id)
     {
-        $student = Student::with('gradeLevel','section','sy')->findOrFail($id);
-        $families = Enrolled_Student_Family::all();
-        $requirements = Enrolled_Requirement::all();
-        $hasFilePsa = false;
-        $hasFileForm137 = false;
-        foreach ($requirements as $requirement) {
-            if ($requirement->student_id == $id) {
-                if ($requirement->filename == 'psa' && $requirement->isSubmitted == 1) {
-                    $hasFilePsa = true;
+        $student = Student::with('gradeLevel')->findOrFail($id);
+        //get student full name for folder name
+        $name = $student->first_name . ' ' . $student->middle_name . ' ' . $student->last_name;
+        $fileTypes = [
+            'jpg',
+            'pdf',
+            'jpeg',
+            'png',
+        ];
+        try {
+            $psaFille = Enrolled_Requirement::where('student_lrn', $student->student_lrn)
+                ->where('filename', 'psa')
+                ->where('isSubmitted', 1)
+                ->firstorfail();
+            $hasFilePsa = true;
+        } catch (ModelNotFoundException $e) {
+            $filePath = public_path() . '/uploads/requirements/' . $name . '/psa.';
+            foreach ($fileTypes as $fileType) {
+                $filePath = $filePath . $fileType;
+                $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                if ($extension !== null) {
+                    if (file_exists($filePath)) {
+                        Enrolled_Requirement::create([
+                            'student_lrn' => $student->student_lrn,
+                            'filename' => 'psa',
+                            'filepath' => $filePath,
+                            'isSubmitted' => 1,
+                        ]);
+                        $hasFilePsa = true;
+                        break;
+                    }
+                    $hasFilePsa = false;
                     break;
                 }
             }
         }
-        foreach ($requirements as $requirement) {
-            if ($requirement->student_id == $id) {
-                if ($requirement->filename == 'form 137' && $requirement->isSubmitted == 1) {
-                    $hasFileForm137 = true;
+        try {
+            $form137File = Enrolled_Requirement::where('student_lrn', $student->student_lrn)
+                ->where('filename', 'form 137')
+                ->where('isSubmitted', 1)
+                ->firstorfail();
+            $hasFileForm137 = true;
+        } catch (ModelNotFoundException $e) {
+            $filePath = public_path() . '/uploads/requirements/' . $name . '/form 137.';
+            foreach ($fileTypes as $fileType) {
+                $filePath = $filePath . $fileType;
+                $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                if ($extension !== null) {
+                    if (file_exists($filePath)) {
+                        Enrolled_Requirement::create([
+                            'student_lrn' => $student->student_lrn,
+                            'filename' => 'form 137',
+                            'filepath' => $filePath,
+                            'isSubmitted' => 1,
+                        ]);
+                        $hasFileForm137 = true;
+                        break;
+                    }
+                    $hasFileForm137 = false;
                     break;
                 }
             }
         }
+        try {
+            $goodMoral = Enrolled_Requirement::where('student_lrn', $student->student_lrn)
+                ->where('filename', 'good moral certificate')
+                ->where('isSubmitted', 1)
+                ->firstorfail();
+            $hasFileGoodMoral = true;
+        } catch (ModelNotFoundException $e) {
+            $filePath = public_path() . '/uploads/requirements/' . $name . '/good moral certificate.';
+            foreach ($fileTypes as $fileType) {
+                $filePath = $filePath . $fileType;
+                $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                if ($extension !== null) {
+                    if (file_exists($filePath)) {
+                        Enrolled_Requirement::create([
+                            'student_lrn' => $student->student_lrn,
+                            'filename' => 'good moral certificate',
+                            'filepath' => $filePath,
+                            'isSubmitted' => 1,
+                        ]);
+                        $hasFileGoodMoral = true;
+                        break;
+                    }
+                    $hasFileGoodMoral = false;
+                    break;
+                }
+            }
+        }
+        try {
+            $studentPhoto = Enrolled_Requirement::where('student_lrn', $student->student_lrn)
+                ->where('filename', 'photo')
+                ->where('isSubmitted', 1)
+                ->firstorfail();
+            $hasFilePhoto = true;
+        } catch (ModelNotFoundException $e) {
+            $filePath = public_path() . '/uploads/requirements/' . $name . '/photo.';
+            foreach ($fileTypes as $fileType) {
+                $filePath = $filePath . $fileType;
+                $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                if ($extension !== null) {
+                    if (file_exists($filePath)) {
+                        Enrolled_Requirement::create([
+                            'student_lrn' => $student->student_lrn,
+                            'filename' => 'photo',
+                            'filepath' => $filePath,
+                            'isSubmitted' => 1,
+                        ]);
+                        $hasFilePhoto = true;
+                        break;
+                    }
+                    $hasFilePhoto = false;
+                    break;
+                }
+            }
+        }
+
+
+        $father = Enrolled_Student_Family::where('student_lrn', $student->student_lrn)
+            ->where('relationship', 'Father')
+            ->firstorfail();
+        $mother = Enrolled_Student_Family::where('student_lrn', $student->student_lrn)
+            ->where('relationship', 'Mother')
+            ->firstorfail();
+        $guardian = Enrolled_Student_Family::where('student_lrn', $student->student_lrn)
+            ->where('relationship', 'Guardian')
+            ->firstorfail();
         $sections = Section::all();
         $gradeLevels = Grade_level::all();
-        return view('admin.registrar-layouts.students.enrolled.show', compact('student','families','requirements','id','sections','gradeLevels','hasFilePsa','hasFileForm137'));
+        return view('admin.registrar-layouts.students.enrolled.show', compact('student', 'sections', 'gradeLevels', 'hasFilePsa', 'hasFileForm137', 'hasFileGoodMoral', 'hasFilePhoto', 'father', 'mother', 'guardian'));
     }
     public function showRequirements($id){
 

@@ -80,6 +80,24 @@ class EnrolleesController extends Controller
         } catch (ModelNotFoundException $e) {
             $hasFileForm137 = false;
         }
+        try {
+            $goodMoral = Enrollee_Requirement::where('student_lrn', $student_lrn)
+                ->where('filename', 'good moral certificate')
+                ->where('isSubmitted', 1)
+                ->firstorfail();
+            $hasFileGoodMoral = true;
+        } catch (ModelNotFoundException $e) {
+            $hasFileGoodMoral = false;
+        }
+        try {
+            $studentPhoto = Enrollee_Requirement::where('student_lrn', $student_lrn)
+                ->where('filename', 'photo')
+                ->where('isSubmitted', 1)
+                ->firstorfail();
+            $hasFilePhoto = true;
+        } catch (ModelNotFoundException $e) {
+            $hasFilePhoto = false;
+        }
 
         $father = Enrollee_Student_Family::where('student_lrn', $student_lrn)
             ->where('relationship', 'Father')
@@ -90,7 +108,8 @@ class EnrolleesController extends Controller
         $guardian = Enrollee_Student_Family::where('student_lrn', $student_lrn)
             ->where('relationship', 'Guardian')
             ->firstorfail();
-        if ($hasFileForm137 == false && $hasFilePsa == false) {
+
+        if ($hasFileForm137 == true && $hasFilePsa == true && $hasFileGoodMoral == true && $hasFilePhoto == true) {
             $student = new Student;
             $student->student_lrn = $student_lrn;
             $student->first_name = $request->input('first_name');
@@ -106,6 +125,7 @@ class EnrolleesController extends Controller
             $student->section_id = $request->input('section_id');
             $student->grade_level_id = $request->input('grade_level_id');
             $student->sy_id = 1;
+            $student->status = 0;
 
 
 
@@ -153,6 +173,18 @@ class EnrolleesController extends Controller
                     'filepath' => $form137->filepath,
                     'isSubmitted' => $form137->isSubmitted,
                 ],
+                [
+                    'student_lrn' => $student_lrn,
+                    'filename' => $goodMoral->filename,
+                    'filepath' => $goodMoral->filepath,
+                    'isSubmitted' => $goodMoral->isSubmitted,
+                ],
+                [
+                    'student_lrn' => $student_lrn,
+                    'filename' => $studentPhoto->filename,
+                    'filepath' => $studentPhoto->filepath,
+                    'isSubmitted' => $studentPhoto->isSubmitted,
+                ],
             ];
             foreach ($requirements as $requirement) {
                 Enrolled_Requirement::create($requirement);
@@ -164,18 +196,20 @@ class EnrolleesController extends Controller
             $id = $request->input('id');
             $enrollee = Enrollee::findOrFail($id);
             $enrollee->delete();
-            $fam = Enrollee_Student_Family::findOrFail($id);
-            $fam->delete();
-            $req = Enrollee_Requirement::findOrFail($id);
-            $req->delete();
-            $details =[
-                'text'=>'hoy panget',
+            /* paretns */
+            $father->delete();
+            $mother->delete();
+            $guardian->delete();
+            /* requirements */
+            $psa->delete();
+            $form137->delete();
+            $goodMoral->delete();
+            $studentPhoto->delete();
+            $details = [
+                'to' => $student->email,
+                'text' => 'Accepted',
             ];
-            $details =[
-                'to'=>$request->input('email'),
-                'text'=>'Accepted',
-            ];
-            Mail::send('emails.acceptedMessage',$details,function($message) use ($details){
+            Mail::send('emails.acceptedMessage', $details, function ($message) use ($details) {
                 $message->to($details['to'])->subject('Message from BCA');
             });
             return redirect()->route('enrolled.index')->with('success', 'Student ' . $request->input('first_name') . ' ' . $request->input('last_name'));
@@ -220,11 +254,13 @@ class EnrolleesController extends Controller
                             'filepath' => $filePath,
                             'isSubmitted' => 1,
                         ]);
+                        $hasFilePsa = true;
+                        break;
                     }
+                    $hasFilePsa = false;
                     break;
                 }
             }
-            $hasFilePsa = false;
         }
         try {
             $form137File = Enrollee_Requirement::where('student_lrn', $student->student_lrn)
@@ -245,11 +281,13 @@ class EnrolleesController extends Controller
                             'filepath' => $filePath,
                             'isSubmitted' => 1,
                         ]);
+                        $hasFileForm137 = true;
+                        break;
                     }
+                    $hasFileForm137 = false;
                     break;
                 }
             }
-            $hasFileForm137 = false;
         }
         try {
             $goodMoral = Enrollee_Requirement::where('student_lrn', $student->student_lrn)
@@ -270,11 +308,13 @@ class EnrolleesController extends Controller
                             'filepath' => $filePath,
                             'isSubmitted' => 1,
                         ]);
+                        $hasFileGoodMoral = true;
+                        break;
                     }
+                    $hasFileGoodMoral = false;
                     break;
                 }
             }
-            $hasFileGoodMoral = false;
         }
         try {
             $studentPhoto = Enrollee_Requirement::where('student_lrn', $student->student_lrn)
@@ -295,11 +335,13 @@ class EnrolleesController extends Controller
                             'filepath' => $filePath,
                             'isSubmitted' => 1,
                         ]);
+                        $hasFilePhoto = true;
+                        break;
                     }
+                    $hasFilePhoto = false;
                     break;
                 }
             }
-            $hasFilePhoto = false;
         }
 
 

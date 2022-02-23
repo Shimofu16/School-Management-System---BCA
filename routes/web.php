@@ -36,7 +36,7 @@ Route::get('/academics/primary/nursery', 'HomeController@nursery')->name('nurser
 Route::get('/academics/Elementary', 'HomeController@elementary')->name('elementary.index');
 Route::get('/academics/Junior Highschool', 'HomeController@juniorhighschool')->name('juniorhighschool.index');
 Route::get('/calendar', 'HomeController@calendar')->name('calendar.index');
-Route::get('/enroll', 'HomeController@enroll')->name('enroll.index');
+Route::get('/enrollment form', 'HomeController@enroll')->name('enroll.index');
 Route::post('/enroll', 'HomeController@store')->name('enroll.store');
 /* ============================== Portal ================================ */
 Route::group(['prefix' => 'portal', 'middleware' => 'PreventBackMiddleware'], function () {

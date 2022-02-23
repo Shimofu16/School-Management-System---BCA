@@ -16,6 +16,7 @@
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
         "laravel/ui": "*",
+        "livewire/livewire": "^2.10",
         "nesbot/carbon": "^2.55",
         "santigarcor/laratrust": "^6.3",
         "twbs/bootstrap": "4.6.1"
